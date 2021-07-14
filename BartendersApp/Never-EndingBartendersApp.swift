@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct BartendersAppApp: App {
+struct NeverEndingBartendersApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

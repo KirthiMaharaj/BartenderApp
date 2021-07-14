@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE886586269F411300B97E82 /* BartendersAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE886585269F411300B97E82 /* BartendersAppApp.swift */; };
+		FE886586269F411300B97E82 /* Never-EndingBartendersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE886585269F411300B97E82 /* Never-EndingBartendersApp.swift */; };
 		FE886588269F411300B97E82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE886587269F411300B97E82 /* ContentView.swift */; };
 		FE88658A269F411400B97E82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE886589269F411400B97E82 /* Assets.xcassets */; };
 		FE88658D269F411400B97E82 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE88658C269F411400B97E82 /* Preview Assets.xcassets */; };
@@ -16,7 +16,7 @@
 
 /* Begin PBXFileReference section */
 		FE886582269F411300B97E82 /* BartendersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BartendersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE886585269F411300B97E82 /* BartendersAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartendersAppApp.swift; sourceTree = "<group>"; };
+		FE886585269F411300B97E82 /* Never-EndingBartendersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Never-EndingBartendersApp.swift"; sourceTree = "<group>"; };
 		FE886587269F411300B97E82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE886589269F411400B97E82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE88658C269F411400B97E82 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		FE886584269F411300B97E82 /* BartendersApp */ = {
 			isa = PBXGroup;
 			children = (
-				FE886585269F411300B97E82 /* BartendersAppApp.swift */,
+				FE886585269F411300B97E82 /* Never-EndingBartendersApp.swift */,
 				FE886587269F411300B97E82 /* ContentView.swift */,
 				FE886589269F411400B97E82 /* Assets.xcassets */,
 				FE88658E269F411400B97E82 /* Info.plist */,
@@ -143,7 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE886588269F411300B97E82 /* ContentView.swift in Sources */,
-				FE886586269F411300B97E82 /* BartendersAppApp.swift in Sources */,
+				FE886586269F411300B97E82 /* Never-EndingBartendersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
