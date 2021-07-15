@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: Tab = .featured
+    enum Tab{
+        case featured
+        case list
+    }
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack{
+            TabView(selection: $selection) {
+                BarCategory()
+                .tabItem {
+                    Label("list", systemImage: "list.bullet")
+                }.tag(Tab.featured)
+                
+            }
+        }
+        
     }
 }
 

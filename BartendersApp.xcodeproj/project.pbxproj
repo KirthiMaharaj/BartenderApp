@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE38FE0526A0AEA6003C9D9F /* BarCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE38FE0426A0AEA6003C9D9F /* BarCategory.swift */; };
 		FE886586269F411300B97E82 /* Never-EndingBartendersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE886585269F411300B97E82 /* Never-EndingBartendersApp.swift */; };
 		FE886588269F411300B97E82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE886587269F411300B97E82 /* ContentView.swift */; };
 		FE88658A269F411400B97E82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE886589269F411400B97E82 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE38FE0426A0AEA6003C9D9F /* BarCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCategory.swift; sourceTree = "<group>"; };
 		FE886582269F411300B97E82 /* BartendersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BartendersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE886585269F411300B97E82 /* Never-EndingBartendersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Never-EndingBartendersApp.swift"; sourceTree = "<group>"; };
 		FE886587269F411300B97E82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				FE886585269F411300B97E82 /* Never-EndingBartendersApp.swift */,
 				FE886587269F411300B97E82 /* ContentView.swift */,
+				FE38FE0426A0AEA6003C9D9F /* BarCategory.swift */,
 				FE886589269F411400B97E82 /* Assets.xcassets */,
 				FE88658E269F411400B97E82 /* Info.plist */,
 				FE886594269F52BA00B97E82 /* bartenderScreen.storyboard */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE886588269F411300B97E82 /* ContentView.swift in Sources */,
+				FE38FE0526A0AEA6003C9D9F /* BarCategory.swift in Sources */,
 				FE886586269F411300B97E82 /* Never-EndingBartendersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
