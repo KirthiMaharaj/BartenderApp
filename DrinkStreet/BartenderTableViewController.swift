@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SwiftOverlays
 class BartenderTableViewController: UITableViewController {
 
     let bartenderProvider = BartenderProvider()
@@ -18,17 +18,29 @@ class BartenderTableViewController: UITableViewController {
             }
         }
     }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         getBartender()
+        getActivtyIndicator()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    private func getActivtyIndicator(){
+        
+        self.showWaitOverlay()
+        if let superview = self.view.superview {
+            self.showWaitOverlay()
+            SwiftOverlays.showCenteredWaitOverlayWithText(superview, text: "Please wait...")
+            SwiftOverlays.removeAllOverlaysFromView(superview)
+        }
+    }
+    
     fileprivate func getBartender() {
         bartenderProvider.fetchBratenderAPI { [weak self] drink in
             switch drink{
@@ -42,6 +54,8 @@ class BartenderTableViewController: UITableViewController {
             }
         }
     }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -119,5 +133,6 @@ class BartenderTableViewController: UITableViewController {
         }
     }
   
-
+    
 }
+

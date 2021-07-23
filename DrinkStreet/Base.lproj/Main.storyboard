@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -106,6 +107,18 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeK-7h-WW9">
+                                            <rect key="frame" x="304" y="58" width="48" height="47"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <size key="titleShadowOffset" width="20" height="70"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" name="LIST_Cell"/>
                                     <constraints>
@@ -134,7 +147,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUj-fm-iqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="827.536231884058" y="104.46428571428571"/>
+            <point key="canvasLocation" x="826.15384615384608" y="103.7914691943128"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3xg-dQ-0BN">
@@ -180,8 +193,8 @@
                                 <color key="textColor" systemColor="systemPinkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="MBV-5T-Dem">
-                                <rect key="frame" x="16" y="329" width="372" height="285.33333333333326"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="MBV-5T-Dem">
+                                <rect key="frame" x="16" y="329" width="372" height="261.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKT-ct-Hd4">
                                         <rect key="frame" x="0.0" y="0.0" width="372" height="20.333333333333332"/>
@@ -190,19 +203,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alcoholic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fq2-RG-l8C">
-                                        <rect key="frame" x="0.0" y="88.333333333333314" width="372" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="80.333333333333314" width="372" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="70" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="heb-1d-jf9">
-                                        <rect key="frame" x="0.0" y="176.66666666666669" width="372" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="160.66666666666669" width="372" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7G-Gk-DYv">
-                                        <rect key="frame" x="0.0" y="265" width="372" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="241" width="372" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
