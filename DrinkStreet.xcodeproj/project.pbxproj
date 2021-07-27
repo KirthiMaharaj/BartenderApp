@@ -18,6 +18,8 @@
 		FE09EDEB26A9CC7C00CD13CF /* BartenderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */; };
 		FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */; };
 		FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */; };
+		FE9304FA26AEAA210001466F /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9304F926AEAA210001466F /* FavouriteViewController.swift */; };
+		FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderProvider.swift; sourceTree = "<group>"; };
 		FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderListCell.swift; sourceTree = "<group>"; };
 		FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderTableViewController.swift; sourceTree = "<group>"; };
+		FE9304F926AEAA210001466F /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,19 +92,37 @@
 		FE09EDD326A9C9F500CD13CF /* DrinkStreet */ = {
 			isa = PBXGroup;
 			children = (
+				FE9304FC26AEAA570001466F /* Favourite */,
+				FE9304FB26AEAA2C0001466F /* HomeView */,
 				FE09EDD426A9C9F500CD13CF /* AppDelegate.swift */,
 				FE09EDD626A9C9F500CD13CF /* SceneDelegate.swift */,
-				FE09EDD826A9C9F500CD13CF /* BartenderDetailViewController.swift */,
 				FE09EDDA26A9C9F500CD13CF /* Main.storyboard */,
-				FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */,
 				FE09EDE826A9CC5A00CD13CF /* BartenderModel.swift */,
-				FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */,
 				FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */,
 				FE09EDDD26A9C9F600CD13CF /* Assets.xcassets */,
 				FE09EDDF26A9C9F600CD13CF /* LaunchScreen.storyboard */,
 				FE09EDE226A9C9F600CD13CF /* Info.plist */,
 			);
 			path = DrinkStreet;
+			sourceTree = "<group>";
+		};
+		FE9304FB26AEAA2C0001466F /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				FE09EDD826A9C9F500CD13CF /* BartenderDetailViewController.swift */,
+				FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */,
+				FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		FE9304FC26AEAA570001466F /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				FE9304F926AEAA210001466F /* FavouriteViewController.swift */,
+				FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */,
+			);
+			path = Favourite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,10 +241,12 @@
 			files = (
 				FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */,
 				FE09EDD926A9C9F500CD13CF /* BartenderDetailViewController.swift in Sources */,
+				FE9304FA26AEAA210001466F /* FavouriteViewController.swift in Sources */,
 				FE09EDD526A9C9F500CD13CF /* AppDelegate.swift in Sources */,
 				FE09EDEB26A9CC7C00CD13CF /* BartenderProvider.swift in Sources */,
 				FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */,
 				FE09EDD726A9C9F500CD13CF /* SceneDelegate.swift in Sources */,
+				FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */,
 				FE09EDE926A9CC5A00CD13CF /* BartenderModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

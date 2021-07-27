@@ -1,89 +1,45 @@
 //
-//  BartenderTableViewController.swift
+//  FavouriteViewController.swift
 //  DrinkStreet
 //
-//  Created by Kirthi Maharaj on 2021/07/22.
+//  Created by Kirthi Maharaj on 2021/07/26.
 //
 
 import UIKit
-import SwiftOverlays
-class BartenderTableViewController: UITableViewController {
 
-    let bartenderProvider = BartenderProvider()
-    var drinkDetail = [DrinkDetail]() {
-        didSet{
-            DispatchQueue.main.async { [self] in
-                self.tableView.reloadData()
-                self.navigationItem.title = "21 Drink Street"
-            }
-        }
-    }
-  
+class FavouriteViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getBartender()
-        getActivtyIndicator()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    private func getActivtyIndicator(){
-        
-        self.showWaitOverlay()
-        if let superview = self.view.superview {
-            self.showWaitOverlay()
-            SwiftOverlays.showCenteredWaitOverlayWithText(superview, text: "Please wait...")
-            SwiftOverlays.removeAllOverlaysFromView(superview)
-        }
-    }
-    
-    fileprivate func getBartender() {
-        bartenderProvider.fetchBratenderAPI { [weak self] drink in
-            switch drink{
-            case .success(let drinks):
-                self?.drinkDetail = drinks
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return drinkDetail.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderListCell", for: indexPath) as! BartenderListCell
-        // Configure the cell..."reuseIdentifier"
-        let barDetails = drinkDetail[indexPath.row]
-        let url = URL(string: "\(barDetails.strDrinkThumb)")
-        if let dataImage = try? Data(contentsOf: url!){
-            cell.drinkImage.image = UIImage(data: dataImage)
-        }
-        cell.drinkName?.text = barDetails.strDrink
-        cell.drinkCategory?.text = barDetails.strCategory
-        
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
-
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -120,19 +76,14 @@ class BartenderTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let destination = segue.destination as? BartenderDetailViewController {
-            destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-            
-        }
     }
-  
-    
-}
+    */
 
+}

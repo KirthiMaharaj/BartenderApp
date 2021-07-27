@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftOverlays
 
 enum BartenderError: Error {
     case noDataAvailable
@@ -20,6 +21,7 @@ struct BartenderProvider {
         
         let sharedSession = URLSession.shared
         let request = URLRequest(url: url)
+        
         let task = sharedSession.dataTask(with: request) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.noDataAvailable))
