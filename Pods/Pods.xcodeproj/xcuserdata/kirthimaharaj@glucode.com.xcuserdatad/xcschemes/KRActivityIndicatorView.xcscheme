@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8AF215D3EBF510E886AB145D0EFFFCF"
-               BuildableName = "SwiftOverlays.framework"
-               BlueprintName = "SwiftOverlays"
+               BlueprintIdentifier = "4F7A1E5A05AF87570E2873C5F725E2CB"
+               BuildableName = "KRActivityIndicatorView.framework"
+               BlueprintName = "KRActivityIndicatorView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

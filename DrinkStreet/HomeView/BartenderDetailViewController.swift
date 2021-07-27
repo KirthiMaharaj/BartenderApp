@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftOverlays
+
 
 class BartenderDetailViewController: UIViewController {
 
@@ -21,14 +21,11 @@ class BartenderDetailViewController: UIViewController {
     let bartenderProvider = BartenderProvider()
     var drinkDetail: DrinkDetail?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let superview = self.view.superview {
-            SwiftOverlays.showCenteredWaitOverlayWithText(superview, text: "Please wait...")
-            SwiftOverlays.removeAllOverlaysFromView(superview)
-        }
+
         getDetail()
-        
         // Do any additional setup after loading the view.
     }
 
@@ -44,6 +41,7 @@ class BartenderDetailViewController: UIViewController {
         drinkIngredient.text = "Ingredients:" + "\n \(drinkDetail?.strIngredient1 ?? "")" + "\n \(drinkDetail?.strIngredient2 ?? "")" + "\n \(drinkDetail?.strIngredient3 ?? "")"
             + "\n \(drinkDetail?.strIngredient4 ?? "")" + "\n \(drinkDetail?.strIngredient5 ?? "")"
             + "\n \(drinkDetail?.strIngredient6 ?? "")" + "\n \(drinkDetail?.strIngredient7 ?? "")"
+
     }
     
     

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftOverlays
 
 enum BartenderError: Error {
     case noDataAvailable

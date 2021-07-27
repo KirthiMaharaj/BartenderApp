@@ -1,16 +1,16 @@
 PODS:
-  - SwiftOverlays (5.0.1)
+  - KRActivityIndicatorView (3.0.7)
 
 DEPENDENCIES:
-  - SwiftOverlays (~> 5.0)
+  - KRActivityIndicatorView (~> 3.0)
 
 SPEC REPOS:
   trunk:
-    - SwiftOverlays
+    - KRActivityIndicatorView
 
 SPEC CHECKSUMS:
-  SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
+  KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
 
-PODFILE CHECKSUM: 86f3a538c38a6ebd93798ed6f089d1f571523bcb
+PODFILE CHECKSUM: 899287f7f84b11eb77290793bb5bf46daf5cf427
 
 COCOAPODS: 1.10.1

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double SwiftOverlaysVersionNumber;
-FOUNDATION_EXPORT const unsigned char SwiftOverlaysVersionString[];
+FOUNDATION_EXPORT double KRActivityIndicatorViewVersionNumber;
+FOUNDATION_EXPORT const unsigned char KRActivityIndicatorViewVersionString[];
 

@@ -6,56 +6,43 @@
 //
 
 import UIKit
-import SwiftOverlays
-
+import KRActivityIndicatorView
 
 class BartenderTableViewController: UITableViewController {
     let bartenderProvider = BartenderProvider()
     var drinkDetail = [DrinkDetail]() {
         didSet{
             DispatchQueue.main.async { [self] in
+                
+                //activityIndicator.animating = true
+                activityIndicator.startAnimating()
                 self.tableView.reloadData()
                 self.navigationItem.title = "21 Drink Street"
                 
             }
         }
     }
-  
-    var favDrinks = [Int:Bool]()
+    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+   // var favDrinks = [Int:Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let superview = self.view.superview {
-            SwiftOverlays.showCenteredWaitOverlayWithText(superview, text: "Please wait...")
-            SwiftOverlays.removeAllOverlaysFromView(superview)
-        }
+        view.addSubview(activityIndicator)
+        activityIndicator.frame(forAlignmentRect: .infinite)
         getBartender()
-       // getActivtyIndicator()
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+    /*
     private func notFav(){
         for i in 0...drinkDetail.count {
             favDrinks[i] = false
         }
     }
-    
-    /*
-    private func getActivtyIndicator(){
-        
-        self.showWaitOverlay()
-        if let superview = self.view.superview {
-            self.showWaitOverlay()
-            SwiftOverlays.showCenteredWaitOverlayWithText(superview, text: "Please wait...")
-            SwiftOverlays.removeAllOverlaysFromView(superview)
-        }
-    }
-
     */
     fileprivate func getBartender() {
         bartenderProvider.fetchBratenderAPI { [weak self] drink in
@@ -64,6 +51,8 @@ class BartenderTableViewController: UITableViewController {
                 self?.drinkDetail = drinks
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
+                    self?.activityIndicator.stopAnimating()
+                    //self?.activityIndicator.hidesWhenStopped
                 }
             case .failure(let error):
                 print(error)

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9969A2F1BBADD1498D42D092 /* Pods_DrinkStreet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5677DFF1C9A54EACF25A6D /* Pods_DrinkStreet.framework */; };
+		5590406D484E6DB9D8AA465F /* Pods_DrinkStreet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B123A01353022BBC06A793D4 /* Pods_DrinkStreet.framework */; };
 		FE09EDD526A9C9F500CD13CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDD426A9C9F500CD13CF /* AppDelegate.swift */; };
 		FE09EDD726A9C9F500CD13CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDD626A9C9F500CD13CF /* SceneDelegate.swift */; };
 		FE09EDD926A9C9F500CD13CF /* BartenderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDD826A9C9F500CD13CF /* BartenderDetailViewController.swift */; };
@@ -23,9 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F5677DFF1C9A54EACF25A6D /* Pods_DrinkStreet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkStreet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A3BC4E7C149D734EF022525 /* Pods-DrinkStreet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkStreet.debug.xcconfig"; path = "Target Support Files/Pods-DrinkStreet/Pods-DrinkStreet.debug.xcconfig"; sourceTree = "<group>"; };
-		87682C8D9B12B95366C3EDDC /* Pods-DrinkStreet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkStreet.release.xcconfig"; path = "Target Support Files/Pods-DrinkStreet/Pods-DrinkStreet.release.xcconfig"; sourceTree = "<group>"; };
+		B123A01353022BBC06A793D4 /* Pods_DrinkStreet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkStreet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB886F1BDABC5554672C8B54 /* Pods-DrinkStreet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkStreet.debug.xcconfig"; path = "Target Support Files/Pods-DrinkStreet/Pods-DrinkStreet.debug.xcconfig"; sourceTree = "<group>"; };
+		FB68FA6033405EB26C66D46C /* Pods-DrinkStreet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrinkStreet.release.xcconfig"; path = "Target Support Files/Pods-DrinkStreet/Pods-DrinkStreet.release.xcconfig"; sourceTree = "<group>"; };
 		FE09EDD126A9C9F500CD13CF /* DrinkStreet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkStreet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE09EDD426A9C9F500CD13CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE09EDD626A9C9F500CD13CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,28 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9969A2F1BBADD1498D42D092 /* Pods_DrinkStreet.framework in Frameworks */,
+				5590406D484E6DB9D8AA465F /* Pods_DrinkStreet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5DED4898E81F6F8DE16958E4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2F5677DFF1C9A54EACF25A6D /* Pods_DrinkStreet.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		DF4532B3181307EFE3AB2AC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7A3BC4E7C149D734EF022525 /* Pods-DrinkStreet.debug.xcconfig */,
-				87682C8D9B12B95366C3EDDC /* Pods-DrinkStreet.release.xcconfig */,
+				CB886F1BDABC5554672C8B54 /* Pods-DrinkStreet.debug.xcconfig */,
+				FB68FA6033405EB26C66D46C /* Pods-DrinkStreet.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E2DBBA97E29399F6F98179AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B123A01353022BBC06A793D4 /* Pods_DrinkStreet.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FE09EDC826A9C9F500CD13CF = {
@@ -77,7 +77,7 @@
 				FE09EDD326A9C9F500CD13CF /* DrinkStreet */,
 				FE09EDD226A9C9F500CD13CF /* Products */,
 				DF4532B3181307EFE3AB2AC8 /* Pods */,
-				5DED4898E81F6F8DE16958E4 /* Frameworks */,
+				E2DBBA97E29399F6F98179AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,11 +132,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE09EDE526A9C9F600CD13CF /* Build configuration list for PBXNativeTarget "DrinkStreet" */;
 			buildPhases = (
-				001BF2C4A0623344ACC964D1 /* [CP] Check Pods Manifest.lock */,
+				1A37A1F63E879A1BBFFD6C89 /* [CP] Check Pods Manifest.lock */,
 				FE09EDCD26A9C9F500CD13CF /* Sources */,
 				FE09EDCE26A9C9F500CD13CF /* Frameworks */,
 				FE09EDCF26A9C9F500CD13CF /* Resources */,
-				55A4B652BF5D58C0229AFE14 /* [CP] Embed Pods Frameworks */,
+				1D3B9AEFA16CCFF040F1791A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,7 +193,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		001BF2C4A0623344ACC964D1 /* [CP] Check Pods Manifest.lock */ = {
+		1A37A1F63E879A1BBFFD6C89 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -215,7 +215,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		55A4B652BF5D58C0229AFE14 /* [CP] Embed Pods Frameworks */ = {
+		1D3B9AEFA16CCFF040F1791A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -391,7 +391,7 @@
 		};
 		FE09EDE626A9C9F600CD13CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A3BC4E7C149D734EF022525 /* Pods-DrinkStreet.debug.xcconfig */;
+			baseConfigurationReference = CB886F1BDABC5554672C8B54 /* Pods-DrinkStreet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -410,7 +410,7 @@
 		};
 		FE09EDE726A9C9F600CD13CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87682C8D9B12B95366C3EDDC /* Pods-DrinkStreet.release.xcconfig */;
+			baseConfigurationReference = FB68FA6033405EB26C66D46C /* Pods-DrinkStreet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

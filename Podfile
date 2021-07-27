@@ -7,6 +7,5 @@ target 'DrinkStreet' do
 
   # Pods for DrinkStreet
 
-   pod 'SwiftOverlays', '~> 5.0'
-
+	pod 'KRActivityIndicatorView', '~> 3.0'
 end

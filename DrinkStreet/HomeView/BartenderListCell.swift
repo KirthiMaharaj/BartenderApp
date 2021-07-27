@@ -21,15 +21,14 @@ class BartenderListCell: UITableViewCell {
             barContainerView.layer.shadowOffset = CGSize(width: 10, height: 160)
             barContainerView.backgroundColor = UIColor.systemPink
             barContainerView.layer.masksToBounds = false
-            
         }
     }
     
     
     @IBOutlet weak var favoriteButton: UIButton!
     
-    
     let isFav = UserDefaults.standard.bool(forKey: "isFav")
+    
     @IBAction func favTapped(_ sender: UIButton) {
         if isFav == true {
             UserDefaults.standard.set(false, forKey: "isFav")
