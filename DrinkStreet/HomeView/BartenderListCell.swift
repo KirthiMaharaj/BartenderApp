@@ -14,7 +14,7 @@ class BartenderListCell: UITableViewCell {
     @IBOutlet weak var drinkCategory: UILabel!
     @IBOutlet weak var barContainerView: UIView!{
         didSet{
-            barContainerView.layer.cornerRadius = 10
+            barContainerView.layer.cornerRadius = 40
             barContainerView.layer.shadowOpacity = 10
             barContainerView.layer.shadowRadius = 2
             barContainerView.layer.shadowColor = UIColor(named: "Black")?.cgColor

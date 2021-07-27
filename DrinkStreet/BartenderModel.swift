@@ -35,3 +35,18 @@ struct DrinkDetail: Decodable {
         case strDrink, strCategory, strAlcoholic, strInstructions, strDrinkThumb, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7
     }
 }
+
+
+struct CategoryResponse: Decodable {
+    let catedrinks: [CategoryDetails]
+    enum CodingKeys: String, CodingKey {
+        case catedrinks = "drinks"
+    }
+}
+
+struct CategoryDetails: Decodable {
+    let strCategory:String
+    enum CodingKeys: String, CodingKey {
+        case strCategory
+    }
+}

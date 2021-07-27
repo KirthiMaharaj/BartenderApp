@@ -13,7 +13,6 @@ class BartenderTableViewController: UITableViewController {
     var drinkDetail = [DrinkDetail]() {
         didSet{
             DispatchQueue.main.async { [self] in
-                
                 //activityIndicator.animating = true
                 activityIndicator.startAnimating()
                 self.tableView.reloadData()

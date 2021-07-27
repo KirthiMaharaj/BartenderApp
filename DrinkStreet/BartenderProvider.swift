@@ -39,4 +39,27 @@ struct BartenderProvider {
         }
         task.resume()
     }
+    
+    func fetchCategoryAPI(completion: @escaping (Result<[CategoryDetails], BartenderError>) -> Void){
+        
+        let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list")!
+        let sharedSession = URLSession.shared
+        let request = URLRequest(url: url)
+        
+        let task = sharedSession.dataTask(with: request) { data, _, _ in
+            guard let jsonData = data else {
+                completion(.failure(.noDataAvailable))
+                return
+            }
+            do{
+                let BDecoder = JSONDecoder()
+                let categoryData = try BDecoder.decode(CategoryResponse.self, from: jsonData)
+                let categoryDetail = categoryData.catedrinks
+                completion(.success(categoryDetail))
+            } catch {
+                completion(.failure(.canNotProcessData))
+            }
+        }
+        task.resume()
+    }
 }
