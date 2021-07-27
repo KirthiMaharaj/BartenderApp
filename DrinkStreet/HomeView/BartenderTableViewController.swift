@@ -52,7 +52,7 @@ class BartenderTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                     self?.activityIndicator.stopAnimating()
-                    //self?.activityIndicator.hidesWhenStopped
+                    self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
                 print(error)
