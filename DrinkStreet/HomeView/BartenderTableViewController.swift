@@ -26,7 +26,7 @@ class BartenderTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
         activityIndicator.frame(forAlignmentRect: .infinite)
         getBartender()
        

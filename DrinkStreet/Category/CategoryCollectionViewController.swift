@@ -13,7 +13,8 @@ class CategoryCollectionViewController: UICollectionViewController {
     
     
     let bartenderProvider = BartenderProvider()
-    var categoryDetail :[CategoryDetails]?
+    var categoryDetail :CategoryDetails?
+    
     var drinkDetail = [DrinkDetail]() {
         didSet{
             DispatchQueue.main.async { [self] in
@@ -26,6 +27,7 @@ class CategoryCollectionViewController: UICollectionViewController {
         }
     }
     
+    var drinkDetails: DrinkDetail?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +35,7 @@ class CategoryCollectionViewController: UICollectionViewController {
         layout.itemSize = CGSize(width: collectionView!.bounds.width, height: 100)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
+        getBartender()
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
@@ -80,27 +82,27 @@ class CategoryCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell else {
-        //      return UICollectionViewCell()
-        //  }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         // Configure the cell
         let cateDetail = drinkDetail[indexPath.item]
         
-        if let categorys = categoryDetail  {
-            for category in categorys {
-                if category.strCategory == cateDetail.strCategory {
-                    let url = URL(string: "\(cateDetail.strDrinkThumb)")
-                    if let dataImage = try? Data(contentsOf: url!){
-                        cell.cateImage.image = UIImage(data: dataImage)
-                    }
-                }
+//        if let categorys = categoryDetail  {
+//            for category in categorys {
+//                if category.strCategory == cateDetail.strCategory {
+//                    let url = URL(string: "\(cateDetail.strDrinkThumb)")
+//                    if let dataImage = try? Data(contentsOf: url!){
+//                        cell.cateImage.image = UIImage(data: dataImage)
+//                    }
+//                }
+//            }
+//        }
+            let url = URL(string: "\(cateDetail.strDrinkThumb)")
+            if let dataImage = try? Data(contentsOf: url!){
+                cell.cateImage.image = UIImage(data: dataImage)
             }
-        }
-        //     let url = URL(string: "\(cateDetail.strDrinkThumb)")
-        //     if let dataImage = try? Data(contentsOf: url!){
-        //        cell.cateImage.image = UIImage(data: dataImage)
-        //     }
         return cell
     }
     

@@ -126,6 +126,7 @@
                         <segue destination="ZTS-uK-qax" kind="relationship" relationship="viewControllers" id="mFb-IO-MCs"/>
                         <segue destination="cGa-gE-Kvh" kind="relationship" relationship="viewControllers" id="PbM-Ph-OMU"/>
                         <segue destination="sve-tI-wPD" kind="relationship" relationship="viewControllers" id="Sg9-06-4Vh"/>
+                        <segue destination="cAj-ev-W5v" kind="relationship" relationship="viewControllers" id="JqN-uc-EKa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLC-vJ-eGl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -176,7 +177,6 @@
                                 <connections>
                                     <outlet property="categoryLabel" destination="B4y-OU-hVU" id="X1f-fM-qAB"/>
                                     <outlet property="categoryView" destination="vpa-e9-4U0" id="bat-Vj-JpU"/>
-                                    <segue destination="7Kg-XF-7l7" kind="show" id="sgj-0N-p2q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -189,55 +189,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GtV-Ph-ST5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="637.85046728971963" y="1249.8920086393089"/>
-        </scene>
-        <!--Category Collection View Controller-->
-        <scene sceneID="E3H-T5-c2b">
-            <objects>
-                <collectionViewController id="7Kg-XF-7l7" customClass="CategoryCollectionViewController" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="y30-mh-cAU">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewLayout key="collectionViewLayout" id="Fmv-pq-7Zt" customClass="CategoryLayout" customModule="DrinkStreet" customModuleProvider="target"/>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CategoryCollectionViewCell" id="Yhn-bq-oHD" customClass="CategoryCollectionViewCell" customModule="DrinkStreet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5bm-on-hqd">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FE7-Z5-IRU">
-                                            <rect key="frame" x="0.0" y="-40" width="200" height="280"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="280" id="npb-Ku-IVH"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="FE7-Z5-IRU" secondAttribute="trailing" id="BzO-sW-KQA"/>
-                                        <constraint firstItem="FE7-Z5-IRU" firstAttribute="centerY" secondItem="5bm-on-hqd" secondAttribute="centerY" id="NFC-oV-6Mk"/>
-                                        <constraint firstItem="FE7-Z5-IRU" firstAttribute="centerY" secondItem="5bm-on-hqd" secondAttribute="centerY" id="eJd-WR-A1x"/>
-                                        <constraint firstItem="FE7-Z5-IRU" firstAttribute="leading" secondItem="5bm-on-hqd" secondAttribute="leading" id="mtG-GN-3V9"/>
-                                    </constraints>
-                                </collectionViewCellContentView>
-                                <size key="customSize" width="200" height="200"/>
-                                <connections>
-                                    <outlet property="cateImage" destination="FE7-Z5-IRU" id="nx6-Yw-8F3"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="7Kg-XF-7l7" id="xjV-vx-jn0"/>
-                            <outlet property="delegate" destination="7Kg-XF-7l7" id="wyh-PG-1rt"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="fdu-vQ-lvJ"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7wc-AN-DLp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1554.6728971962616" y="1248.5961123110153"/>
+            <point key="canvasLocation" x="649" y="1194"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="no4-dV-jdu">
@@ -304,7 +256,73 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q5G-Tj-aw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2819" y="813"/>
+            <point key="canvasLocation" x="1755" y="814"/>
+        </scene>
+        <!--Category-->
+        <scene sceneID="lpA-lL-Dpl">
+            <objects>
+                <collectionViewController id="cAj-ev-W5v" customClass="CategoryViewController" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="BcW-fg-tl1">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Aua-Hq-caw">
+                            <size key="itemSize" width="426" height="175"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="rx6-jy-zaG" customClass="CategoryViewCell" customModule="DrinkStreet" customModuleProvider="target">
+                                <rect key="frame" x="1" y="0.0" width="426" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2N1-d2-9E9">
+                                    <rect key="frame" x="0.0" y="0.0" width="426" height="175"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z2Z-Sc-FfS">
+                                            <rect key="frame" x="20" y="-52.666666666666657" width="386" height="280.33333333333331"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="280" id="DdE-Ab-rTg"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oet-Yy-eeR">
+                                            <rect key="frame" x="145" y="19" width="234" height="71"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="234" id="mlY-lK-jMd"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <color key="textColor" red="0.136526069" green="0.87601623449999999" blue="1" alpha="0.79584373419999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Oet-Yy-eeR" secondAttribute="bottom" constant="85" id="35n-Dk-HP0"/>
+                                        <constraint firstItem="Oet-Yy-eeR" firstAttribute="leading" secondItem="2N1-d2-9E9" secondAttribute="leading" constant="145" id="46H-pU-Xn6"/>
+                                        <constraint firstItem="z2Z-Sc-FfS" firstAttribute="centerY" secondItem="2N1-d2-9E9" secondAttribute="centerY" id="8yr-gh-4PZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="z2Z-Sc-FfS" secondAttribute="trailing" constant="20" symbolic="YES" id="KPN-Sb-yd7"/>
+                                        <constraint firstItem="z2Z-Sc-FfS" firstAttribute="leading" secondItem="2N1-d2-9E9" secondAttribute="leading" constant="20" symbolic="YES" id="O2f-MJ-rPq"/>
+                                        <constraint firstItem="Oet-Yy-eeR" firstAttribute="top" secondItem="2N1-d2-9E9" secondAttribute="top" constant="19" id="t8I-yB-HJY"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oet-Yy-eeR" secondAttribute="trailing" constant="20" symbolic="YES" id="xpR-LG-UHv"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="426" height="175"/>
+                                <connections>
+                                    <outlet property="categoryImageView" destination="z2Z-Sc-FfS" id="h1g-8e-2xI"/>
+                                    <outlet property="categoryLabel" destination="Oet-Yy-eeR" id="sih-tU-3ck"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="cAj-ev-W5v" id="Q9g-Me-YVJ"/>
+                            <outlet property="delegate" destination="cAj-ev-W5v" id="2ZO-9h-j4U"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Category" image="square.grid.2x2" catalog="system" id="xQC-SH-kxA"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JhD-Qr-yso" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1232.2429906542056" y="1169.5464362850973"/>
         </scene>
         <!--Bartender Detail View Controller-->
         <scene sceneID="85A-2a-A0T">
@@ -440,7 +458,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gx6-aR-3WL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262.14953271028037" y="1249.8920086393089"/>
+            <point key="canvasLocation" x="-261" y="1194"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -455,6 +473,9 @@
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
