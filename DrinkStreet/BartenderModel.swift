@@ -18,7 +18,7 @@ struct CocktailResponse: Decodable {
 struct DrinkDetail: Decodable {
     let drinksId:String
     let strDrink:String
-    let strCategory:String
+    var strCategory:String
     let strAlcoholic:String
     let strInstructions:String
     let strDrinkThumb:String

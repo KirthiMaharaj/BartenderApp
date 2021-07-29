@@ -11,32 +11,33 @@ import KRActivityIndicatorView
 class CategoryTableViewController: UITableViewController {
     
     let bartenderProvider = BartenderProvider()
-//    var categoryDetail = [CategoryDetails]() {
-//        didSet{
-//            DispatchQueue.main.async { [self] in
-//                activityIndicator.startAnimating()
-//                self.tableView.reloadData()
-//                self.navigationItem.title = "21 Drink Street"
-//            }
-//        }
-//    }
-    
-    var drinkDetail = [DrinkDetail](){
+    var categoryDetail = [CategoryDetails]() {
         didSet{
             DispatchQueue.main.async { [self] in
+               // activityIndicator.startAnimating()
                 self.tableView.reloadData()
                 self.navigationItem.title = "21 Drink Street"
-
             }
         }
     }
+    
+//    var drinkDetail = [DrinkDetail]() {
+//        didSet{
+//            DispatchQueue.main.async { [self] in
+//                self.tableView.reloadData()
+//                self.navigationItem.title = "21 Drink Street"
+//
+//            }
+//        }
+//    }
     let activityIndicator = KRActivityIndicatorView(colors: [.green])
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(activityIndicator)
-        //getCategory()
+       // getBartenderCategory()
+        getCategory()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -45,36 +46,35 @@ class CategoryTableViewController: UITableViewController {
     }
     
     
-    fileprivate func getBartenderCategory() {
-        bartenderProvider.fetchBratenderAPI { [weak self] result in
-            switch result {
-            case .success(let drinks):
-                self?.drinkDetail = drinks
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    
-//    fileprivate func getCategory() {
-//        bartenderProvider.fetchCategoryAPI { [weak self] result in
+//    fileprivate func getBartenderCategory() {
+//        bartenderProvider.fetchBratenderAPI { [weak self] result in
 //            switch result {
-//            case .success(let category):
-//                self?.categoryDetail = category
+//            case .success(let drinks):
+//                self?.drinkDetail = drinks
 //                DispatchQueue.main.async {
 //                    self?.tableView.reloadData()
-//                    self?.activityIndicator.stopAnimating()
-//                    self?.activityIndicator.removeFromSuperview()
 //                }
 //            case .failure(let error):
 //                print(error)
 //            }
 //        }
 //    }
+//
+    fileprivate func getCategory() {
+        bartenderProvider.fetchCategoryAPI { [weak self] result in
+            switch result {
+            case .success(let category):
+                self?.categoryDetail = category
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.removeFromSuperview()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     // MARK: - Table view data source
     
@@ -85,16 +85,19 @@ class CategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return drinkDetail.count
+        //return drinkDetail.count
+        return categoryDetail.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         // Configure the cell...
-        let category = drinkDetail[indexPath.row]
-        cell.categoryLabel?.text = category.strCategory
-        
+      //  let category = drinkDetail[indexPath.row]
+        let category = categoryDetail[indexPath.row]
+//       let NoRepeatCategory = Array(Set(category.strCategory))
+//       cell.categoryLabel?.text = "\(NoRepeatCategory)"
+        cell.categoryLabel?.text = "\(category.strCategory)"
         return cell
     }
     
@@ -148,3 +151,39 @@ class CategoryTableViewController: UITableViewController {
     }
     
 }
+//extension Array where Element: Hashable{
+//    func removeDuplicates() -> [Element] {
+//        var addedDict = [Element:Bool]()
+//
+//        return filter {
+//            addedDict.updateValue(true, forKey: $0 ) == nil
+//        }
+//    }
+//
+//    mutating func removeDuplicates() {
+//        self = self.removeDuplicates()
+//    }
+//}
+
+//extension Sequence where Iterator.Element: Hashable{
+//
+//    mutating func removeDuplicates() {
+//        var result = [Iterator.Element]()
+//        for value in self {
+//            if !result.contains(value) {
+//                result.append(value)
+//            }
+//        }
+//        self = result as! Self
+//    }
+//}
+
+
+extension Sequence where Iterator.Element: Hashable{
+    func unique() -> [Iterator.Element] {
+        var seen: Set<Iterator.Element> = []
+        return filter { seen.insert($0).inserted}
+    }
+
+}
+
