@@ -12,6 +12,18 @@ class BartenderCategoryCell: UITableViewCell {
     @IBOutlet weak var drinkImageView: UIImageView!
     @IBOutlet weak var drinkName: UILabel!
     
+    @IBOutlet weak var barView: UIView!{
+        didSet{
+            barView.layer.cornerRadius = 10
+            barView.layer.shadowOpacity = 50
+            barView.layer.shadowRadius = 50
+            barView.layer.shadowColor = UIColor(named: "Black")?.cgColor
+            barView.layer.shadowOffset = CGSize(width: 100, height: 200)
+            barView.backgroundColor = UIColor.systemPink
+            barView.layer.masksToBounds = false
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

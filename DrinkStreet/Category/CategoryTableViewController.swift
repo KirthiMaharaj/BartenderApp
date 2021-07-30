@@ -14,13 +14,13 @@ class CategoryTableViewController: UITableViewController {
     var categoryDetail = [CategoryDetails]() {
         didSet{
             DispatchQueue.main.async { [self] in
-               // activityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 self.tableView.reloadData()
                 self.navigationItem.title = "21 Drink Street"
             }
         }
     }
-    
+    var category = [DrinkDetail]()
 //    var drinkDetail = [DrinkDetail]() {
 //        didSet{
 //            DispatchQueue.main.async { [self] in
@@ -102,6 +102,10 @@ class CategoryTableViewController: UITableViewController {
     }
     
     
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "SendDataSegue", sender: self)
+//    }
+    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -141,14 +145,17 @@ class CategoryTableViewController: UITableViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-//        if let destination = segue.destination as? CategoryCollectionViewController {
-//            destination.categoryDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
-//
-//        }
+        if let destination = segue.destination as? BartenderCategoryTableView {
+          //  destination.drinkDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
+           
+            destination.categoryDetail = categoryDetail
+        }
     }
+  
     
 }
 //extension Array where Element: Hashable{
