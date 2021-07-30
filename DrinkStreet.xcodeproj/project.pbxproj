@@ -22,8 +22,6 @@
 		FE51D51226B0370D0057F6DF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */; };
 		FE9304FA26AEAA210001466F /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9304F926AEAA210001466F /* FavouriteViewController.swift */; };
 		FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */; };
-		FEF134B526B1AE3D00E1C7F2 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF134B426B1AE3D00E1C7F2 /* CategoryViewCell.swift */; };
-		FEF134B726B1AEF000E1C7F2 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF134B626B1AEF000E1C7F2 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,8 +44,6 @@
 		FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		FE9304F926AEAA210001466F /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewCell.swift; sourceTree = "<group>"; };
-		FEF134B426B1AE3D00E1C7F2 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
-		FEF134B626B1AEF000E1C7F2 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +116,6 @@
 			children = (
 				FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */,
 				FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */,
-				FEF134B426B1AE3D00E1C7F2 /* CategoryViewCell.swift */,
-				FEF134B626B1AEF000E1C7F2 /* CategoryViewController.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -269,8 +263,6 @@
 				FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */,
 				FE09EDD726A9C9F500CD13CF /* SceneDelegate.swift in Sources */,
 				FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */,
-				FEF134B726B1AEF000E1C7F2 /* CategoryViewController.swift in Sources */,
-				FEF134B526B1AE3D00E1C7F2 /* CategoryViewCell.swift in Sources */,
 				FE09EDE926A9CC5A00CD13CF /* BartenderModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,10 +7,10 @@
 
 import UIKit
 
-private let reuseIdentifier = "CategoryViewCell"
 
-class CategoryViewController: UICollectionViewController {
 
+class CategoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    let reuseIdentifier:String = "CategoryViewCell"
     
     let bartenderProvider = BartenderProvider()
     var drinkDetail = [DrinkDetail](){
@@ -36,11 +36,12 @@ class CategoryViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+         self.clearsSelectionOnViewWillAppear = false
         getBartenderCategory()
+        // Register cell classes
+        collectionView.backgroundColor = .purple
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -95,17 +96,25 @@ class CategoryViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return drinkDetail.count
+        return 5
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CategoryViewCell else { return UICollectionViewCell() }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryViewCell
         // Configure the cell
-        let categoryDrinks = drinkDetail[indexPath.item]
-        cell.categoryLabel?.text = "\(categoryDrinks.strCategory)"
+//        let categoryDrinks = drinkDetail[indexPath.item]
+//        cell.categoryLabel?.text = "\(categoryDrinks.strCategory)"
+        //cell.categoryLabel.text = drinkDetail[indexPath.item].strCategory
+        cell.categoryLabel.text = "LLL"
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let width = view.frame.width
+            let height = CGFloat(200)
+            
+            return CGSize(width: width, height: height)
+    }
     // MARK: UICollectionViewDelegate
 
     /*
