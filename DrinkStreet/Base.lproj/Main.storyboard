@@ -175,6 +175,7 @@
                                 <connections>
                                     <outlet property="categoryLabel" destination="B4y-OU-hVU" id="X1f-fM-qAB"/>
                                     <outlet property="categoryView" destination="vpa-e9-4U0" id="bat-Vj-JpU"/>
+                                    <segue destination="uGm-y3-d1Q" kind="show" id="Di5-HQ-PUP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -188,6 +189,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GtV-Ph-ST5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="649" y="1194"/>
+        </scene>
+        <!--Bartender Category Table View-->
+        <scene sceneID="XHo-N3-TZh">
+            <objects>
+                <tableViewController id="uGm-y3-d1Q" customClass="BartenderCategoryTableView" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgq-Gc-lbk">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BartenderCategoryCell" rowHeight="231" id="SZ8-3K-Fp2" customClass="BartenderCategoryCell" customModule="DrinkStreet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="231"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SZ8-3K-Fp2" id="vHM-nY-ULo">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="231"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="82K-eF-mcd">
+                                            <rect key="frame" x="20" y="15.666666666666671" width="388" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="zpz-kh-oCi"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-8e-0BD">
+                                            <rect key="frame" x="46" y="140" width="60" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Txp-8e-0BD" secondAttribute="trailing" constant="20" symbolic="YES" id="Mfb-fL-xkJ"/>
+                                        <constraint firstItem="Txp-8e-0BD" firstAttribute="top" secondItem="vHM-nY-ULo" secondAttribute="top" constant="140" id="NT9-ls-JU1"/>
+                                        <constraint firstItem="82K-eF-mcd" firstAttribute="centerY" secondItem="vHM-nY-ULo" secondAttribute="centerY" id="YdS-r8-ucb"/>
+                                        <constraint firstItem="Txp-8e-0BD" firstAttribute="leading" secondItem="vHM-nY-ULo" secondAttribute="leadingMargin" constant="26" id="dJk-ug-Fre"/>
+                                        <constraint firstItem="82K-eF-mcd" firstAttribute="trailing" secondItem="vHM-nY-ULo" secondAttribute="trailingMargin" id="upC-hZ-AEZ"/>
+                                        <constraint firstItem="82K-eF-mcd" firstAttribute="leading" secondItem="vHM-nY-ULo" secondAttribute="leadingMargin" id="vQy-hJ-pkC"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Txp-8e-0BD" secondAttribute="bottom" constant="20" id="xGz-Qx-kwm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="drinkImageView" destination="82K-eF-mcd" id="uZ6-bJ-XJW"/>
+                                    <outlet property="drinkName" destination="Txp-8e-0BD" id="PUd-Fx-t6b"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uGm-y3-d1Q" id="G3t-e7-io9"/>
+                            <outlet property="delegate" destination="uGm-y3-d1Q" id="4NO-eT-9JV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7do-YS-lUZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="leB-3B-rqN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436.9158878504672" y="1544.7084233261339"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="no4-dV-jdu">
@@ -394,7 +451,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E9O-a8-srP"/>
+        <segue reference="PbM-Ph-OMU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
@@ -405,6 +462,9 @@
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -1,81 +1,28 @@
 //
-//  CategoryViewController.swift
+//  BartenderCollectionViewController.swift
 //  DrinkStreet
 //
-//  Created by Kirthi Maharaj on 2021/07/28.
+//  Created by Kirthi Maharaj on 2021/07/30.
 //
 
 import UIKit
 
+private let reuseIdentifier = "bartenderCell"
 
+class BartenderCollectionViewController: UICollectionViewController {
 
-class CategoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    let reuseIdentifier:String = "CategoryViewCell"
-    
-    let bartenderProvider = BartenderProvider()
-    var drinkDetail = [DrinkDetail](){
-        didSet{
-            DispatchQueue.main.async { [self] in
-                self.collectionView.reloadData()
-                self.navigationItem.title = "21 Drink Street"
-
-            }
-        }
-    }
-//    var drinkDetail: DrinkDetail?
-//    var cateDetail = [CategoryDetails](){
-//        didSet{
-//            DispatchQueue.main.async { [self] in
-//                self.collectionView.reloadData()
-//                self.navigationItem.title = "21 Drink Street"
-//
-//            }
-//        }
-//    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
-         self.clearsSelectionOnViewWillAppear = false
-        getBartenderCategory()
+        // self.clearsSelectionOnViewWillAppear = false
+
         // Register cell classes
-        collectionView.backgroundColor = .purple
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+
         // Do any additional setup after loading the view.
     }
-    
-    fileprivate func getBartenderCategory() {
-        bartenderProvider.fetchBratenderAPI { [weak self] result in
-            switch result {
-            case .success(let drinks):
-                self?.drinkDetail = drinks
-                DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
 
-    
-    
-//    fileprivate func getBartenderCategory() {
-//        bartenderProvider.fetchCategoryAPI { [weak self] result in
-//            switch result {
-//            case .success(let category):
-//                self?.cateDetail = category
-//                DispatchQueue.main.async {
-//                    self?.collectionView.reloadData()
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
-//
-    
     /*
     // MARK: - Navigation
 
@@ -96,25 +43,17 @@ class CategoryViewController: UICollectionViewController, UICollectionViewDelega
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 5
+        return 100
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bartenderCell", for: indexPath) as! BartenderCollectionViewCell
+    
         // Configure the cell
-//        let categoryDrinks = drinkDetail[indexPath.item]
-//        cell.categoryLabel?.text = "\(categoryDrinks.strCategory)"
-        //cell.categoryLabel.text = drinkDetail[indexPath.item].strCategory
-        cell.categoryLabel.text = "LLL"
+        cell.nameDrinkLabel.text = String(indexPath.row + 1)
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let width = view.frame.width
-            let height = CGFloat(200)
-            
-            return CGSize(width: width, height: height)
-    }
     // MARK: UICollectionViewDelegate
 
     /*
