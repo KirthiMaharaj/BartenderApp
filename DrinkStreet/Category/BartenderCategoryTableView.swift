@@ -64,11 +64,16 @@ class BartenderCategoryTableView: UITableViewController {
 
         // Configure the cell...
         let categorydrink = drinkDetail[indexPath.row]
-        cell.drinkName.text = "\(categorydrink.strDrink)"
-        let url = URL(string: "\(categorydrink.strDrinkThumb)")
-        if let dataImage = try? Data(contentsOf: url!){
-            cell.drinkImageView.image = UIImage(data: dataImage)
-        }
+      //  let cateDrink = categoryDetail![indexPath.row]
+//        let filteredArray = self.categoryDetail?.filter({($0.strCategory == "\(categorydrink.strCategory)")})
+           //if categoryDetail.strCategory == categorydrink.strCategory {
+                cell.drinkName.text = "\(categorydrink.strDrink)"
+                let url = URL(string: "\(categorydrink.strDrinkThumb)")
+                if let dataImage = try? Data(contentsOf: url!){
+                    cell.drinkImageView.image = UIImage(data: dataImage)
+                }
+          //  }
+        
         return cell
     }
     

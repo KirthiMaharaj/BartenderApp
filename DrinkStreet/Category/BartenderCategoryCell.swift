@@ -20,7 +20,7 @@ class BartenderCategoryCell: UITableViewCell {
             barView.layer.shadowColor = UIColor(named: "Black")?.cgColor
             barView.layer.shadowOffset = CGSize(width: 100, height: 200)
             barView.backgroundColor = UIColor.systemPink
-            barView.layer.masksToBounds = false
+            barView.layer.masksToBounds = true
         }
     }
     

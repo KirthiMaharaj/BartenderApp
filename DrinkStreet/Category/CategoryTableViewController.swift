@@ -21,6 +21,7 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     var category = [DrinkDetail]()
+   
 //    var drinkDetail = [DrinkDetail]() {
 //        didSet{
 //            DispatchQueue.main.async { [self] in
@@ -36,7 +37,7 @@ class CategoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(activityIndicator)
-       // getBartenderCategory()
+    //  getBartenderCategory()
         getCategory()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -59,7 +60,7 @@ class CategoryTableViewController: UITableViewController {
 //            }
 //        }
 //    }
-//
+
     fileprivate func getCategory() {
         bartenderProvider.fetchCategoryAPI { [weak self] result in
             switch result {
@@ -98,9 +99,11 @@ class CategoryTableViewController: UITableViewController {
 //       let NoRepeatCategory = Array(Set(category.strCategory))
 //       cell.categoryLabel?.text = "\(NoRepeatCategory)"
         cell.categoryLabel?.text = "\(category.strCategory)"
+        
         return cell
     }
     
+
     
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        performSegue(withIdentifier: "SendDataSegue", sender: self)
@@ -150,9 +153,9 @@ class CategoryTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderCategoryTableView {
-          //  destination.drinkDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
-           
+         // destination.drinkDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
             destination.categoryDetail = categoryDetail
+           // destination.categoryDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
   
@@ -186,11 +189,11 @@ class CategoryTableViewController: UITableViewController {
 //}
 
 
-extension Sequence where Iterator.Element: Hashable{
-    func unique() -> [Iterator.Element] {
-        var seen: Set<Iterator.Element> = []
-        return filter { seen.insert($0).inserted}
-    }
-
-}
+//extension Sequence where Iterator.Element: Hashable{
+//    func unique() -> [Iterator.Element] {
+//        var seen: Set<Iterator.Element> = []
+//        return filter { seen.insert($0).inserted}
+//    }
+//
+//}
 

@@ -18,6 +18,7 @@
 		FE09EDEB26A9CC7C00CD13CF /* BartenderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */; };
 		FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */; };
 		FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */; };
+		FE2BC82926B6F981007E2FE6 /* BartenderFirstTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2BC82826B6F981007E2FE6 /* BartenderFirstTabBar.swift */; };
 		FE51D51026B036BC0057F6DF /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */; };
 		FE51D51226B0370D0057F6DF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */; };
 		FE53FB7F26B3EC6700D214E8 /* BartenderCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE53FB7E26B3EC6700D214E8 /* BartenderCollectionViewController.swift */; };
@@ -44,6 +45,7 @@
 		FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderProvider.swift; sourceTree = "<group>"; };
 		FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderListCell.swift; sourceTree = "<group>"; };
 		FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderTableViewController.swift; sourceTree = "<group>"; };
+		FE2BC82826B6F981007E2FE6 /* BartenderFirstTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderFirstTabBar.swift; sourceTree = "<group>"; };
 		FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		FE53FB7E26B3EC6700D214E8 /* BartenderCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderCollectionViewController.swift; sourceTree = "<group>"; };
@@ -104,19 +106,28 @@
 		FE09EDD326A9C9F500CD13CF /* DrinkStreet */ = {
 			isa = PBXGroup;
 			children = (
+				FE2BC82726B6F88A007E2FE6 /* Model */,
 				FE51D50E26B0352B0057F6DF /* Category */,
 				FE9304FC26AEAA570001466F /* Favourite */,
 				FE9304FB26AEAA2C0001466F /* HomeView */,
 				FE09EDD426A9C9F500CD13CF /* AppDelegate.swift */,
 				FE09EDD626A9C9F500CD13CF /* SceneDelegate.swift */,
 				FE09EDDA26A9C9F500CD13CF /* Main.storyboard */,
-				FE09EDE826A9CC5A00CD13CF /* BartenderModel.swift */,
-				FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */,
 				FE09EDDD26A9C9F600CD13CF /* Assets.xcassets */,
 				FE09EDDF26A9C9F600CD13CF /* LaunchScreen.storyboard */,
 				FE09EDE226A9C9F600CD13CF /* Info.plist */,
+				FE2BC82826B6F981007E2FE6 /* BartenderFirstTabBar.swift */,
 			);
 			path = DrinkStreet;
+			sourceTree = "<group>";
+		};
+		FE2BC82726B6F88A007E2FE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */,
+				FE09EDE826A9CC5A00CD13CF /* BartenderModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FE51D50E26B0352B0057F6DF /* Category */ = {
@@ -265,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE2BC82926B6F981007E2FE6 /* BartenderFirstTabBar.swift in Sources */,
 				FE53FB7F26B3EC6700D214E8 /* BartenderCollectionViewController.swift in Sources */,
 				FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */,
 				FE53FB8326B3F0CE00D214E8 /* BartenderCategoryTableView.swift in Sources */,
