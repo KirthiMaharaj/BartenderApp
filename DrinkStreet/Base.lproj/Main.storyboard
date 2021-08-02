@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="1755.1401869158879" y="103.67170626349893"/>
         </scene>
-        <!--Bartender First Tab Bar-->
+        <!--Bartender View-->
         <scene sceneID="oaa-HU-hKH">
             <objects>
-                <viewController id="b6l-rr-Bqa" customClass="BartenderFirstTabBar" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Onborading" id="b6l-rr-Bqa" customClass="BartenderView" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CV8-AK-0aQ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -268,6 +268,7 @@
                                     <outlet property="barView" destination="vHM-nY-ULo" id="a69-mI-8v6"/>
                                     <outlet property="drinkImageView" destination="82K-eF-mcd" id="uZ6-bJ-XJW"/>
                                     <outlet property="drinkName" destination="Txp-8e-0BD" id="PUd-Fx-t6b"/>
+                                    <segue destination="EhE-MS-4Nu" kind="show" id="xid-PY-3BO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -487,7 +488,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E9O-a8-srP"/>
+        <segue reference="xid-PY-3BO"/>
+        <segue reference="PbM-Ph-OMU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="500" height="500"/>

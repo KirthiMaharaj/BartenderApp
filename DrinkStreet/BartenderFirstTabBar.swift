@@ -15,7 +15,21 @@ class BartenderFirstTabBar: UITabBarController {
         // Do any additional setup after loading the view.
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let defaults = UserDefaults.standard
+        if !defaults.bool(forKey: "onboradingComplete") {
+            present()
+        }
+    }
+    
+    func present(){
+        let storyborad = UIStoryboard(name: "Main", bundle: nil)
+        if let myView = storyborad.instantiateViewController(identifier: "Onborading") as? BartenderView {
+            myView.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            present(myView, animated: true, completion: nil)
+        }
+    }
     /*
     // MARK: - Navigation
 

@@ -21,10 +21,9 @@
 		FE2BC82926B6F981007E2FE6 /* BartenderFirstTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2BC82826B6F981007E2FE6 /* BartenderFirstTabBar.swift */; };
 		FE51D51026B036BC0057F6DF /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */; };
 		FE51D51226B0370D0057F6DF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */; };
-		FE53FB7F26B3EC6700D214E8 /* BartenderCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE53FB7E26B3EC6700D214E8 /* BartenderCollectionViewController.swift */; };
-		FE53FB8126B3ED6D00D214E8 /* BartenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE53FB8026B3ED6D00D214E8 /* BartenderCollectionViewCell.swift */; };
 		FE53FB8326B3F0CE00D214E8 /* BartenderCategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE53FB8226B3F0CE00D214E8 /* BartenderCategoryTableView.swift */; };
 		FE53FB8526B3F0FD00D214E8 /* BartenderCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE53FB8426B3F0FD00D214E8 /* BartenderCategoryCell.swift */; };
+		FE64420C26B7E9B700D92714 /* BartenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE64420B26B7E9B700D92714 /* BartenderView.swift */; };
 		FE9304FA26AEAA210001466F /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9304F926AEAA210001466F /* FavouriteViewController.swift */; };
 		FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -48,10 +47,9 @@
 		FE2BC82826B6F981007E2FE6 /* BartenderFirstTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderFirstTabBar.swift; sourceTree = "<group>"; };
 		FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
-		FE53FB7E26B3EC6700D214E8 /* BartenderCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderCollectionViewController.swift; sourceTree = "<group>"; };
-		FE53FB8026B3ED6D00D214E8 /* BartenderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE53FB8226B3F0CE00D214E8 /* BartenderCategoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderCategoryTableView.swift; sourceTree = "<group>"; };
 		FE53FB8426B3F0FD00D214E8 /* BartenderCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderCategoryCell.swift; sourceTree = "<group>"; };
+		FE64420B26B7E9B700D92714 /* BartenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderView.swift; sourceTree = "<group>"; };
 		FE9304F926AEAA210001466F /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +115,7 @@
 				FE09EDDF26A9C9F600CD13CF /* LaunchScreen.storyboard */,
 				FE09EDE226A9C9F600CD13CF /* Info.plist */,
 				FE2BC82826B6F981007E2FE6 /* BartenderFirstTabBar.swift */,
+				FE64420B26B7E9B700D92714 /* BartenderView.swift */,
 			);
 			path = DrinkStreet;
 			sourceTree = "<group>";
@@ -135,8 +134,6 @@
 			children = (
 				FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */,
 				FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */,
-				FE53FB7E26B3EC6700D214E8 /* BartenderCollectionViewController.swift */,
-				FE53FB8026B3ED6D00D214E8 /* BartenderCollectionViewCell.swift */,
 				FE53FB8226B3F0CE00D214E8 /* BartenderCategoryTableView.swift */,
 				FE53FB8426B3F0FD00D214E8 /* BartenderCategoryCell.swift */,
 			);
@@ -277,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE2BC82926B6F981007E2FE6 /* BartenderFirstTabBar.swift in Sources */,
-				FE53FB7F26B3EC6700D214E8 /* BartenderCollectionViewController.swift in Sources */,
+				FE64420C26B7E9B700D92714 /* BartenderView.swift in Sources */,
 				FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */,
 				FE53FB8326B3F0CE00D214E8 /* BartenderCategoryTableView.swift in Sources */,
 				FE09EDD926A9C9F500CD13CF /* BartenderDetailViewController.swift in Sources */,
@@ -290,7 +287,6 @@
 				FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */,
 				FE09EDD726A9C9F500CD13CF /* SceneDelegate.swift in Sources */,
 				FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */,
-				FE53FB8126B3ED6D00D214E8 /* BartenderCollectionViewCell.swift in Sources */,
 				FE09EDE926A9CC5A00CD13CF /* BartenderModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
