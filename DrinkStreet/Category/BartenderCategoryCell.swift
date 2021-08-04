@@ -8,7 +8,7 @@
 import UIKit
 
 class BartenderCategoryCell: UITableViewCell {
-
+    
     @IBOutlet weak var drinkImageView: UIImageView!
     @IBOutlet weak var drinkName: UILabel!
     
@@ -28,11 +28,11 @@ class BartenderCategoryCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

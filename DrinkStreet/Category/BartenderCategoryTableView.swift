@@ -6,24 +6,31 @@
 //
 
 import UIKit
+import KRActivityIndicatorView
 
 class BartenderCategoryTableView: UITableViewController {
     
-    
-    
-    let bartenderProvider = BartenderProvider()
+    var bartenderProvider = BartenderProvider()
     var drinkDetail = [DrinkDetail]() {
         didSet{
             DispatchQueue.main.async { [self] in
+                activityIndicator.startAnimating()
                 self.tableView.reloadData()
             }
         }
     }
+    let cate = CategoryTableViewController()
     //var categoryDetail: [CategoryDetails]?
+    
     var categoryDetail = [CategoryDetails]()
+    
+    var chosenCategory: String?
+    let activityIndicator = KRActivityIndicatorView(colors: [.green])
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.addSubview(activityIndicator)
+        activityIndicator.frame(forAlignmentRect: .infinite)
+        //  getBarDetail()
         getBartenderCategory()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,19 +40,21 @@ class BartenderCategoryTableView: UITableViewController {
     }
     
     fileprivate func getBartenderCategory() {
-        bartenderProvider.fetchBratenderAPI { [weak self] result in
+        bartenderProvider.chosenCategory = chosenCategory!
+        bartenderProvider.fetchAPI { [weak self] result in
             switch result {
             case .success(let drinks):
                 self?.drinkDetail = drinks
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
-                print(error)
+                print("API Fetching error: \(error)")
             }
         }
     }
-    
     
     // MARK: - Table view data source
     
@@ -64,16 +73,24 @@ class BartenderCategoryTableView: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderCategoryCell", for: indexPath) as! BartenderCategoryCell
         
         // Configure the cell...
-        let categorydrink = drinkDetail[indexPath.row]
-        //let filteredArray = self.categoryDetail?.filter({($0.strCategory == "\(categorydrink.strCategory)")})
-        for categey in categoryDetail {
-            if categorydrink.strCategory == categey.strCategory {
-                cell.drinkName.text = "\(categorydrink.strDrink)"
-                let url = URL(string: "\(categorydrink.strDrinkThumb)")
-                if let dataImage = try? Data(contentsOf: url!){
-                    cell.drinkImageView.image = UIImage(data: dataImage)
-                }
-            }
+        
+//        let categoryDrink = drinkDetail[indexPath.row]
+//
+//        let filteredArray = self.categoryDetail.filter({($0.strCategory == "\(categoryDrink.strCategory)")})
+//        for category in filteredArray {
+//            if category.strCategory == categoryDrink.strCategory {
+//                cell.drinkName.text = "\(categoryDrink.strDrink)"
+//                let url = URL(string: "\(categoryDrink.strDrinkThumb)")
+//                if let dataImage = try? Data(contentsOf: url!){
+//                    cell.drinkImageView.image = UIImage(data: dataImage)
+//                }
+//            }
+//        }
+        
+        cell.drinkName.text = drinkDetail[indexPath.row].strDrink
+        let url = URL(string: "\((drinkDetail[indexPath.row].strDrinkThumb)!)")
+        if let dataImage = try? Data(contentsOf: url!){
+            cell.drinkImageView.image = UIImage(data: dataImage)
         }
         
         return cell

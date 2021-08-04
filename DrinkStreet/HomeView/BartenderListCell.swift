@@ -26,22 +26,23 @@ class BartenderListCell: UITableViewCell {
     
     
     @IBOutlet weak var favoriteButton: UIButton!
-    
-    let isFav = UserDefaults.standard.bool(forKey: "isFav")
+    var addActionHandler: (() -> Void)?
+   // let isFav = UserDefaults.standard.bool(forKey: "isFav")
     
     @IBAction func favTapped(_ sender: UIButton) {
-        if isFav == true {
-            UserDefaults.standard.set(false, forKey: "isFav")
-            UserDefaults.standard.synchronize()
-            let image = UIImage(systemName: "heart")
-            sender.setImage(image, for: UIControl.State.normal)
-        }else {
-            UserDefaults.standard.set(true, forKey: "isFav")
-            UserDefaults.standard.synchronize()
-            let image = UIImage(systemName: "heart.fill")
-            sender.setImage(image, for: UIControl.State.normal)
-            
-        }
+        self.addActionHandler?()
+//        if isFav == true {
+//            UserDefaults.standard.set(false, forKey: "isFav")
+//            UserDefaults.standard.synchronize()
+//            let image = UIImage(systemName: "heart")
+//            sender.setImage(image, for: UIControl.State.normal)
+//        }else {
+//            UserDefaults.standard.set(true, forKey: "isFav")
+//            UserDefaults.standard.synchronize()
+//            let image = UIImage(systemName: "heart.fill")
+//            sender.setImage(image, for: UIControl.State.normal)
+//
+//        }
     }
     
     override func awakeFromNib() {

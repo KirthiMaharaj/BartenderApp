@@ -9,6 +9,7 @@ import UIKit
 
 class BartenderView: UIViewController {
 
+    @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,6 +17,8 @@ class BartenderView: UIViewController {
     }
     
 
+    @IBAction func StartTapped(_ sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 

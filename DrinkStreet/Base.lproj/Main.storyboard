@@ -115,31 +115,61 @@
         <scene sceneID="oaa-HU-hKH">
             <objects>
                 <viewController storyboardIdentifier="Onborading" id="b6l-rr-Bqa" customClass="BartenderView" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CV8-AK-0aQ">
+                    <view key="view" contentMode="scaleAspectFit" id="CV8-AK-0aQ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kk4-Q1-CV0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kk4-Q1-CV0">
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="459"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                <color key="backgroundColor" red="0.97227032229999999" green="0.97920274169999999" blue="1" alpha="0.36408521640000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="459" id="70M-Zc-GKh"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdi-lc-pTJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdi-lc-pTJ">
                                 <rect key="frame" x="54" y="406" width="333" height="198"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <string key="text">This app is show you different types of drinks. It is also category so that ypu can find a specfic drink that you are looking for.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="systemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWa-oT-lFX">
+                                <rect key="frame" x="54" y="752" width="320" height="34"/>
+                                <color key="backgroundColor" red="0.81378400057436973" green="1" blue="0.92797286836380088" alpha="0.19997805159612997" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="3pQ-zN-2s6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="GET STARTED">
+                                    <color key="titleColor" name="LIST_Cell"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="StartTapped:" destination="b6l-rr-Bqa" eventType="touchUpInside" id="RQX-VM-U4y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="flu-bU-A2y"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="tintColor" red="1" green="0.56408900439999998" blue="0.0" alpha="0.32987359659999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="flu-bU-A2y" firstAttribute="trailing" secondItem="fdi-lc-pTJ" secondAttribute="trailing" constant="41" id="4VY-nv-BNd"/>
                             <constraint firstItem="fdi-lc-pTJ" firstAttribute="top" secondItem="flu-bU-A2y" secondAttribute="top" constant="362" id="64f-s8-0KF"/>
+                            <constraint firstItem="Kk4-Q1-CV0" firstAttribute="top" secondItem="CV8-AK-0aQ" secondAttribute="top" id="7UN-2d-lbT"/>
+                            <constraint firstItem="nWa-oT-lFX" firstAttribute="centerX" secondItem="CV8-AK-0aQ" secondAttribute="centerX" id="8PB-02-jZq"/>
                             <constraint firstItem="flu-bU-A2y" firstAttribute="bottom" secondItem="fdi-lc-pTJ" secondAttribute="bottom" constant="288" id="GpA-7n-JJ1"/>
+                            <constraint firstItem="Kk4-Q1-CV0" firstAttribute="leading" secondItem="CV8-AK-0aQ" secondAttribute="leading" id="Yy2-XV-C6a"/>
                             <constraint firstItem="fdi-lc-pTJ" firstAttribute="leading" secondItem="flu-bU-A2y" secondAttribute="leading" constant="54" id="aO1-aN-SeR"/>
+                            <constraint firstItem="flu-bU-A2y" firstAttribute="bottom" secondItem="nWa-oT-lFX" secondAttribute="bottom" constant="106" id="fG3-7k-ydU"/>
+                            <constraint firstItem="nWa-oT-lFX" firstAttribute="leading" secondItem="fdi-lc-pTJ" secondAttribute="leading" id="rKL-Ed-HDy"/>
+                            <constraint firstItem="nWa-oT-lFX" firstAttribute="centerX" secondItem="Kk4-Q1-CV0" secondAttribute="centerX" id="tHR-2O-1Y4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="startButton" destination="nWa-oT-lFX" id="jie-Q8-cYT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vq1-Jc-jay" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -231,7 +261,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgq-Gc-lbk">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BartenderCategoryCell" rowHeight="231" id="SZ8-3K-Fp2" customClass="BartenderCategoryCell" customModule="DrinkStreet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="231"/>
@@ -264,6 +294,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="Txp-8e-0BD" secondAttribute="bottom" constant="20" id="xGz-Qx-kwm"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="barView" destination="vHM-nY-ULo" id="a69-mI-8v6"/>
                                     <outlet property="drinkImageView" destination="82K-eF-mcd" id="uZ6-bJ-XJW"/>
@@ -446,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZP9-sg-FZ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2529.2307692307691" y="103.7914691943128"/>
+            <point key="canvasLocation" x="2528.9719626168221" y="103.67170626349893"/>
         </scene>
         <!--Home-->
         <scene sceneID="7ey-44-HOP">
@@ -488,8 +519,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xid-PY-3BO"/>
-        <segue reference="PbM-Ph-OMU"/>
+        <segue reference="JE3-aH-ufd"/>
+        <segue reference="E9O-a8-srP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="500" height="500"/>
@@ -504,9 +535,6 @@
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -9,9 +9,21 @@ import UIKit
 
 class FavouriteViewController: UITableViewController {
 
+    let bartenderProvider = BartenderProvider()
+    var drinkDetail = [DrinkDetail]() {
+        didSet{
+            DispatchQueue.main.async { [self] in
+                //activityIndicator.animating = true
+               // activityIndicator.startAnimating()
+                self.tableView.reloadData()
+                self.navigationItem.title = "21 Drink Street"
+                
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getBartender()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -19,6 +31,21 @@ class FavouriteViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    fileprivate func getBartender() {
+        bartenderProvider.fetchBratenderAPI { [weak self] drink in
+            switch drink{
+            case .success(let drinks):
+                self?.drinkDetail = drinks
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+//                    self?.activityIndicator.stopAnimating()
+//                    self?.activityIndicator.removeFromSuperview()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -28,7 +55,7 @@ class FavouriteViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return drinkDetail.count
     }
 
     

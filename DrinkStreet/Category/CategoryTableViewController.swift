@@ -21,23 +21,23 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     var category = [DrinkDetail]()
-   
-//    var drinkDetail = [DrinkDetail]() {
-//        didSet{
-//            DispatchQueue.main.async { [self] in
-//                self.tableView.reloadData()
-//                self.navigationItem.title = "21 Drink Street"
 //
+//        var drinkDetail = [DrinkDetail]() {
+//            didSet{
+//                DispatchQueue.main.async { [self] in
+//                    self.tableView.reloadData()
+//                    self.navigationItem.title = "21 Drink Street"
+//
+//                }
 //            }
 //        }
-//    }
     let activityIndicator = KRActivityIndicatorView(colors: [.green])
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(activityIndicator)
-    //  getBartenderCategory()
+ //       getBartenderCategory()
         getCategory()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,20 +47,20 @@ class CategoryTableViewController: UITableViewController {
     }
     
     
-//    fileprivate func getBartenderCategory() {
-//        bartenderProvider.fetchBratenderAPI { [weak self] result in
-//            switch result {
-//            case .success(let drinks):
-//                self?.drinkDetail = drinks
-//                DispatchQueue.main.async {
-//                    self?.tableView.reloadData()
+//        fileprivate func getBartenderCategory() {
+//            bartenderProvider.fetchBratenderAPI { [weak self] result in
+//                switch result {
+//                case .success(let drinks):
+//                    self?.drinkDetail = drinks
+//                    DispatchQueue.main.async {
+//                        self?.tableView.reloadData()
+//                    }
+//                case .failure(let error):
+//                    print(error)
 //                }
-//            case .failure(let error):
-//                print(error)
 //            }
 //        }
-//    }
-
+    
     fileprivate func getCategory() {
         bartenderProvider.fetchCategoryAPI { [weak self] result in
             switch result {
@@ -94,20 +94,19 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         // Configure the cell...
-      //  let category = drinkDetail[indexPath.row]
         let category = categoryDetail[indexPath.row]
-//       let NoRepeatCategory = Array(Set(category.strCategory))
-//       cell.categoryLabel?.text = "\(NoRepeatCategory)"
         cell.categoryLabel?.text = "\(category.strCategory)"
         
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "SendDataSegue", sender: self)
-//    }
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        performSegue(withIdentifier: "SendDataSegue", sender: self)
+    //    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -153,12 +152,13 @@ class CategoryTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderCategoryTableView {
-         // destination.drinkDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
+            // destination.drinkDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
             destination.categoryDetail = categoryDetail
-           // destination.categoryDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
+            destination.chosenCategory = categoryDetail[(tableView.indexPathForSelectedRow?.row)!].strCategory
+            // destination.categoryDetail = categoryDetail[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
-  
+    
     
 }
 //extension Array where Element: Hashable{

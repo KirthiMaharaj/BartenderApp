@@ -16,14 +16,14 @@ struct CocktailResponse: Decodable {
 }
 
 struct DrinkDetail: Decodable {
-    let drinksId:String
-    let strDrink:String
-    var strCategory:String
-    let strAlcoholic:String
-    let strInstructions:String
-    let strDrinkThumb:String
-    let strIngredient1:String
-    let strIngredient2:String
+    let drinksId:String?
+    let strDrink:String?
+    var strCategory:String?
+    let strAlcoholic:String?
+    let strInstructions:String?
+    let strDrinkThumb:String?
+    let strIngredient1:String?
+    let strIngredient2:String?
     let strIngredient3:String?
     let strIngredient4:String?
     let strIngredient5:String?
