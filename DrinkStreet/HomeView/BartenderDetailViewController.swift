@@ -9,7 +9,7 @@ import UIKit
 
 
 class BartenderDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var drinkName: UILabel!
     @IBOutlet weak var drinkImageView: UIImageView!
@@ -18,22 +18,22 @@ class BartenderDetailViewController: UIViewController {
     @IBOutlet weak var drinkInstruction: UILabel!
     @IBOutlet weak var drinkIngredient: UILabel!
     
-    let bartenderProvider = BartenderProvider()
+    //    let bartenderProvider = BartenderProvider()
     var drinkDetail: DrinkDetail?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getDetail()
         // Do any additional setup after loading the view.
     }
-
-  fileprivate  func getDetail() {
+    
+    fileprivate  func getDetail() {
         drinkName.text = "\(drinkDetail?.strDrink ?? "")"
         let url = URL(string: "\(drinkDetail?.strDrinkThumb ?? "")")!
         if let dataImage = try? Data(contentsOf: url){
-        drinkImageView.image = UIImage(data: dataImage)
+            drinkImageView.image = UIImage(data: dataImage)
         }
         drinkCategory.text = "Category: \(drinkDetail?.strCategory ?? "")"
         drinkAlcoholic.text = "Alcoholic: \(drinkDetail?.strAlcoholic ?? "")"
@@ -41,10 +41,10 @@ class BartenderDetailViewController: UIViewController {
         drinkIngredient.text = "Ingredients:" + "\n \(drinkDetail?.strIngredient1 ?? "")" + "\n \(drinkDetail?.strIngredient2 ?? "")" + "\n \(drinkDetail?.strIngredient3 ?? "")"
             + "\n \(drinkDetail?.strIngredient4 ?? "")" + "\n \(drinkDetail?.strIngredient5 ?? "")"
             + "\n \(drinkDetail?.strIngredient6 ?? "")" + "\n \(drinkDetail?.strIngredient7 ?? "")"
-
+        
     }
     
     
-
+    
 }
 

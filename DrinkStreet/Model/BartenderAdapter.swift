@@ -8,43 +8,99 @@
 import Foundation
 import KRActivityIndicatorView
 
-protocol BartenderAdaptersProtocol {
-    func getAllBartender() -> ()
+protocol BartenderAdaptersProtocol: AnyObject {
+    func getAllBartender()
+    static var userQuery: String? { get  }
 }
 
-class BartenderAdapter: BartenderAdaptersProtocol {
-    
-    let activityIndicator = KRActivityIndicatorView(colors: [.green])
-    let bartenderProvider = BartenderProvider()
-    var drinkDetail = [DrinkDetail]() {
-        didSet{
-            DispatchQueue.main.async { [self] in
-                activityIndicator.animating = true
-                activityIndicator.startAnimating()
-//                self.tableView.reloadData()
-//                self.navigationItem.title = "21 Drink Street"
-                
-            }
-        }
-    }
+protocol BartenderAdaptersProtocol2: AnyObject {
+    func getCategory()
+}
 
-    internal func getAllBartender() {
+protocol BartenderAdaptersProtocol3: AnyObject{
+    static var chosenCategory: String? { get }
+    func getBartenderCategory()
+}
+class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3 {
+    
+    static var chosenCategory: String?
+    static var userQuery: String?
+    weak var delegate: BartenderAdaptersProtocol?
+    weak var delegate2: BartenderAdaptersProtocol2?
+    weak var delegate3: BartenderAdaptersProtocol3?
+    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+    var bartenderProvider = BartenderProvider()
+    var drinkDetail: [DrinkDetail] = []
+    var categoryDetail: [CategoryDetails] = []
+    //    var categoryDetail = [CategoryDetails](){
+    //        didSet{
+    //            DispatchQueue.main.async { [self] in
+    //                activityIndicator.startAnimating()
+    //                self.tableView.reloadData()
+    //                self.navigationItem.title = "21 Drink Street"
+    //            }
+    //        }
+    //    }
+    //    var drinkDetail = [DrinkDetail] (){
+    //        didSet{
+    //            DispatchQueue.main.async { [self] in
+    //                activityIndicator.animating = true
+    //                activityIndicator.startAnimating()
+    //            }
+    //        }
+    //    }
+    
+    func getAllBartender() {
+        self.delegate?.getAllBartender()
+        bartenderProvider.userQuery = BartenderAdapter.userQuery
         bartenderProvider.fetchAllBratenderAPI { [weak self] allDetail in
             switch allDetail {
             case .success(let drinksDetail):
+                self?.drinkDetail = drinksDetail
+                self?.delegate?.getAllBartender()
                 DispatchQueue.main.async {
-                    self?.drinkDetail = drinksDetail
                     self?.activityIndicator.stopAnimating()
                     self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
-                print(error)
+                print("API Fetching error: \(error)")
             }
         }
     }
     
-    func getDrinkDetails(){
-        getAllBartender()
+    func getCategory() {
+        self.delegate2?.getCategory()
+        bartenderProvider.fetchCategoryAPI { [weak self] result in
+            switch result {
+            case .success(let category):
+                self?.categoryDetail = category
+                self?.delegate2?.getCategory()
+                DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.removeFromSuperview()
+                }
+            case .failure(let error):
+                print("API Fetching error: \(error)")
+            }
+        }
+    }
+    
+    func getBartenderCategory() {
+        self.delegate3?.getBartenderCategory()
+        bartenderProvider.chosenCategory = BartenderAdapter.chosenCategory!
+        bartenderProvider.fetchAPI { [weak self] result in
+            switch result {
+            case .success(let drinks):
+                self?.drinkDetail = drinks
+                self?.delegate3?.getBartenderCategory()
+                DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.removeFromSuperview()
+                }
+            case .failure(let error):
+                print("API Fetching error: \(error)")
+            }
+        }
     }
     
     

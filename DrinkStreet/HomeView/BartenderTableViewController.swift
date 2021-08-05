@@ -6,38 +6,41 @@
 //
 
 import UIKit
-import KRActivityIndicatorView
-
 
 class BartenderTableViewController: UITableViewController {
     
-    //    let bartenderProvider = BartenderProvider()
-        var drinkDetail = [DrinkDetail]() {
-            didSet{
-                DispatchQueue.main.async { [self] in
-                    //activityIndicator.animating = true
-                    bartenderAdapter.activityIndicator.startAnimating()
-                    self.tableView.reloadData()
-                    self.navigationItem.title = "21 Drink Street"
+    //    var bartenderProvider = BartenderProvider()
+    //        var drinkDetail = [DrinkDetail]() {
+    //            didSet{
+    //                DispatchQueue.main.async { [self] in
+    //                    //activityIndicator.animating = true
+    //                    activityIndicator.startAnimating()
+    //                    self.tableView.reloadData()
+    //                    self.navigationItem.title = "21 Drink Street"
+    //
+    //                }
+    //            }
+    //        }
+    //    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+    //    var favDrinks = [Int:Bool]()
     
-                }
-            }
-        }
-    
-    // var favDrinks = [Int:Bool]()
     let bartenderAdapter = BartenderAdapter()
+    //let bar = BartenderAdaptersProtocol
+    // var userQuery: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.addSubview(bartenderAdapter.activityIndicator)
+        tableView.addSubview( bartenderAdapter.activityIndicator)
         bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
-        bartenderAdapter.getDrinkDetails()
-        tableView.reloadData()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.bindViewModel()
+        self.bartenderAdapter.getAllBartender()
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    fileprivate func bindViewModel() {
+        self.bartenderAdapter.delegate = self
+    }
+    
     /*
      private func notFav(){
      for i in 0...drinkDetail.count {
@@ -45,6 +48,21 @@ class BartenderTableViewController: UITableViewController {
      }
      }
      */
+    //  fileprivate func getAllBartender() {
+    //        bartenderProvider.userQuery = userQuery
+    //        bartenderProvider.fetchAllBratenderAPI { [weak self] allDetail in
+    //            switch allDetail {
+    //            case .success(let drinksDetail):
+    //                self?.drinkDetail = drinksDetail
+    //                DispatchQueue.main.async {
+    //                    self?.activityIndicator.stopAnimating()
+    //                    self?.activityIndicator.removeFromSuperview()
+    //                }
+    //            case .failure(let error):
+    //                print("API Fetching error: \(error)")
+    //            }
+    //        }
+    //    }
     
     // MARK: - Table view data source
     
@@ -55,21 +73,26 @@ class BartenderTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        //  return drinkDetail.count
-        return bartenderAdapter.drinkDetail.count
+        return  bartenderAdapter.drinkDetail.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderListCell", for: indexPath) as! BartenderListCell
         // Configure the cell..."reuseIdentifier"
-        let barDetails = bartenderAdapter.drinkDetail[indexPath.row]
-        let url = URL(string: "\((barDetails.strDrinkThumb)!)")
+        //        let barDetails =  bartenderAdapter.drinkDetail[indexPath.row]
+        //        let url = URL(string: "\((barDetails.strDrinkThumb)!)")
+        //        if let dataImage = try? Data(contentsOf: url!){
+        //            cell.drinkImage.image = UIImage(data: dataImage)
+        //        }
+        //        cell.drinkName?.text = barDetails.strDrink
+        //        cell.drinkCategory?.text = barDetails.strCategory
+        cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
+        cell.drinkCategory.text = bartenderAdapter.drinkDetail[indexPath.row].strCategory
+        let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
             cell.drinkImage.image = UIImage(data: dataImage)
         }
-        cell.drinkName?.text = barDetails.strDrink
-        cell.drinkCategory?.text = barDetails.strCategory
         
         /*
          if favDrinks[indexPath.row] == true {
@@ -123,21 +146,20 @@ class BartenderTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-            
+            destination.drinkDetail =  bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
         }
-        if let destination = segue.destination as? FavouriteViewController {
-            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-            destination.drinkDetail = drinkDetail
-        }
-        /*
-         if let favDestination = segue.destination as? FavouriteViewController {
-         favDestination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-         }
-         */
-        
+        //        if let destination = segue.destination as? FavouriteViewController {
+        //            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+        //            destination.drinkDetail =  bartenderAdapter.drinkDetail
+        //        }
     }
-    
-    
 }
 
+extension BartenderTableViewController: BartenderAdaptersProtocol {
+    static var userQuery: String?
+    func getAllBartender() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}

@@ -8,7 +8,7 @@
 import UIKit
 
 class BartenderListCell: UITableViewCell {
-
+    
     @IBOutlet weak var drinkImage: UIImageView!
     @IBOutlet weak var drinkName: UILabel!
     @IBOutlet weak var drinkCategory: UILabel!
@@ -27,35 +27,35 @@ class BartenderListCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButton: UIButton!
     var addActionHandler: (() -> Void)?
-   // let isFav = UserDefaults.standard.bool(forKey: "isFav")
+    // let isFav = UserDefaults.standard.bool(forKey: "isFav")
     
     @IBAction func favTapped(_ sender: UIButton) {
         self.addActionHandler?()
-//        if isFav == true {
-//            UserDefaults.standard.set(false, forKey: "isFav")
-//            UserDefaults.standard.synchronize()
-//            let image = UIImage(systemName: "heart")
-//            sender.setImage(image, for: UIControl.State.normal)
-//        }else {
-//            UserDefaults.standard.set(true, forKey: "isFav")
-//            UserDefaults.standard.synchronize()
-//            let image = UIImage(systemName: "heart.fill")
-//            sender.setImage(image, for: UIControl.State.normal)
-//
-//        }
+        //        if isFav == true {
+        //            UserDefaults.standard.set(false, forKey: "isFav")
+        //            UserDefaults.standard.synchronize()
+        //            let image = UIImage(systemName: "heart")
+        //            sender.setImage(image, for: UIControl.State.normal)
+        //        }else {
+        //            UserDefaults.standard.set(true, forKey: "isFav")
+        //            UserDefaults.standard.synchronize()
+        //            let image = UIImage(systemName: "heart.fill")
+        //            sender.setImage(image, for: UIControl.State.normal)
+        //
+        //        }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-       // self.favoriteButton.backgroundColor = UIColor.clear
+        // self.favoriteButton.backgroundColor = UIColor.clear
     }
-
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

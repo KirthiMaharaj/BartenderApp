@@ -10,51 +10,49 @@ import KRActivityIndicatorView
 
 class BartenderCategoryTableView: UITableViewController {
     
-    var bartenderProvider = BartenderProvider()
-    var drinkDetail = [DrinkDetail]() {
-        didSet{
-            DispatchQueue.main.async { [self] in
-                activityIndicator.startAnimating()
-                self.tableView.reloadData()
-            }
-        }
-    }
+    
+    
+    //    var bartenderProvider = BartenderProvider()
+    //    var drinkDetail = [DrinkDetail]() {
+    //        didSet{
+    //            DispatchQueue.main.async { [self] in
+    //                activityIndicator.startAnimating()
+    //                self.tableView.reloadData()
+    //            }
+    //        }
+    //    }
     let cate = CategoryTableViewController()
-    //var categoryDetail: [CategoryDetails]?
-    
-    var categoryDetail = [CategoryDetails]()
-    
-    var chosenCategory: String?
-    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+    let bartenderAdapter = BartenderAdapter()
+    //    var categoryDetail = [CategoryDetails]()
+    //    var chosenCategory: String?
+    //    let activityIndicator = KRActivityIndicatorView(colors: [.green])
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.addSubview(activityIndicator)
-        activityIndicator.frame(forAlignmentRect: .infinite)
-        //  getBarDetail()
-        getBartenderCategory()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.addSubview(bartenderAdapter.activityIndicator)
+        bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
+        self.bindViewModel()
+        bartenderAdapter.getBartenderCategory()
     }
     
-    fileprivate func getBartenderCategory() {
-        bartenderProvider.chosenCategory = chosenCategory!
-        bartenderProvider.fetchAPI { [weak self] result in
-            switch result {
-            case .success(let drinks):
-                self?.drinkDetail = drinks
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
-                }
-            case .failure(let error):
-                print("API Fetching error: \(error)")
-            }
-        }
+    fileprivate func bindViewModel() {
+        self.bartenderAdapter.delegate3 = self
     }
+    //    fileprivate func getBartenderCategory() {
+    //        bartenderProvider.chosenCategory = chosenCategory!
+    //        bartenderProvider.fetchAPI { [weak self] result in
+    //            switch result {
+    //            case .success(let drinks):
+    //                self?.drinkDetail = drinks
+    //                DispatchQueue.main.async {
+    //                    self?.tableView.reloadData()
+    //                    self?.activityIndicator.stopAnimating()
+    //                    self?.activityIndicator.removeFromSuperview()
+    //                }
+    //            case .failure(let error):
+    //                print("API Fetching error: \(error)")
+    //            }
+    //        }
+    //    }
     
     // MARK: - Table view data source
     
@@ -65,7 +63,7 @@ class BartenderCategoryTableView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return drinkDetail.count
+        return bartenderAdapter.drinkDetail.count
     }
     
     
@@ -74,21 +72,21 @@ class BartenderCategoryTableView: UITableViewController {
         
         // Configure the cell...
         
-//        let categoryDrink = drinkDetail[indexPath.row]
-//
-//        let filteredArray = self.categoryDetail.filter({($0.strCategory == "\(categoryDrink.strCategory)")})
-//        for category in filteredArray {
-//            if category.strCategory == categoryDrink.strCategory {
-//                cell.drinkName.text = "\(categoryDrink.strDrink)"
-//                let url = URL(string: "\(categoryDrink.strDrinkThumb)")
-//                if let dataImage = try? Data(contentsOf: url!){
-//                    cell.drinkImageView.image = UIImage(data: dataImage)
-//                }
-//            }
-//        }
+        //        let categoryDrink = drinkDetail[indexPath.row]
+        //
+        //        let filteredArray = self.categoryDetail.filter({($0.strCategory == "\(categoryDrink.strCategory)")})
+        //        for category in filteredArray {
+        //            if category.strCategory == categoryDrink.strCategory {
+        //                cell.drinkName.text = "\(categoryDrink.strDrink)"
+        //                let url = URL(string: "\(categoryDrink.strDrinkThumb)")
+        //                if let dataImage = try? Data(contentsOf: url!){
+        //                    cell.drinkImageView.image = UIImage(data: dataImage)
+        //                }
+        //            }
+        //        }
         
-        cell.drinkName.text = drinkDetail[indexPath.row].strDrink
-        let url = URL(string: "\((drinkDetail[indexPath.row].strDrinkThumb)!)")
+        cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
+        let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
             cell.drinkImageView.image = UIImage(data: dataImage)
         }
@@ -139,8 +137,17 @@ class BartenderCategoryTableView: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            destination.drinkDetail = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
             
+        }
+    }
+}
+
+extension BartenderCategoryTableView: BartenderAdaptersProtocol3 {
+    static var chosenCategory: String?
+    func getBartenderCategory() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
