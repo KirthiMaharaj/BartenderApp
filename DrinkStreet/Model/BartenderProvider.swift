@@ -16,7 +16,7 @@ struct BartenderProvider {
     
     var chosenCategory:String?
     
-    func fetchBratenderAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
+    func fetchAllBratenderAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
         // guard let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a&f=b&f=c") else {return}
         //let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")!
         let url = "https://www.thecocktaildb.com/api/json/v1/1"

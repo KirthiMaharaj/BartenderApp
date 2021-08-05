@@ -10,28 +10,28 @@ import KRActivityIndicatorView
 
 
 class BartenderTableViewController: UITableViewController {
-
-    let bartenderProvider = BartenderProvider()
-    var drinkDetail = [DrinkDetail]() {
-        didSet{
-            DispatchQueue.main.async { [self] in
-                //activityIndicator.animating = true
-                activityIndicator.startAnimating()
-                self.tableView.reloadData()
-                self.navigationItem.title = "21 Drink Street"
-                
+    
+    //    let bartenderProvider = BartenderProvider()
+        var drinkDetail = [DrinkDetail]() {
+            didSet{
+                DispatchQueue.main.async { [self] in
+                    //activityIndicator.animating = true
+                    bartenderAdapter.activityIndicator.startAnimating()
+                    self.tableView.reloadData()
+                    self.navigationItem.title = "21 Drink Street"
+    
+                }
             }
         }
-    }
-    let activityIndicator = KRActivityIndicatorView(colors: [.green])
-    // var favDrinks = [Int:Bool]()
     
+    // var favDrinks = [Int:Bool]()
+    let bartenderAdapter = BartenderAdapter()
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.addSubview(activityIndicator)
-        activityIndicator.frame(forAlignmentRect: .infinite)
-        getBartender()
-        
+        tableView.addSubview(bartenderAdapter.activityIndicator)
+        bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
+        bartenderAdapter.getDrinkDetails()
+        tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -45,22 +45,6 @@ class BartenderTableViewController: UITableViewController {
      }
      }
      */
-    fileprivate func getBartender() {
-        bartenderProvider.fetchBratenderAPI { [weak self] drink in
-            switch drink{
-            case .success(let drinks):
-                self?.drinkDetail = drinks
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     
     // MARK: - Table view data source
     
@@ -71,14 +55,15 @@ class BartenderTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return drinkDetail.count
+        //  return drinkDetail.count
+        return bartenderAdapter.drinkDetail.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderListCell", for: indexPath) as! BartenderListCell
         // Configure the cell..."reuseIdentifier"
-        let barDetails = drinkDetail[indexPath.row]
+        let barDetails = bartenderAdapter.drinkDetail[indexPath.row]
         let url = URL(string: "\((barDetails.strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
             cell.drinkImage.image = UIImage(data: dataImage)

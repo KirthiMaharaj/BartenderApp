@@ -6,46 +6,47 @@
 //
 
 import UIKit
-
+import KRActivityIndicatorView
 class FavouriteViewController: UITableViewController {
 
     let bartenderProvider = BartenderProvider()
     var drinkDetail = [DrinkDetail]() {
         didSet{
             DispatchQueue.main.async { [self] in
-                //activityIndicator.animating = true
-               // activityIndicator.startAnimating()
+                activityIndicator.animating = true
+                activityIndicator.startAnimating()
                 self.tableView.reloadData()
                 self.navigationItem.title = "21 Drink Street"
                 
             }
         }
     }
+    let activityIndicator = KRActivityIndicatorView(colors: [.green])
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBartender()
+      //  getBartender()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-    fileprivate func getBartender() {
-        bartenderProvider.fetchBratenderAPI { [weak self] drink in
-            switch drink{
-            case .success(let drinks):
-                self?.drinkDetail = drinks
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+//
+//    fileprivate func getBartender() {
+//        bartenderProvider.fetchBratenderAPI { [weak self] drink in
+//            switch drink{
+//            case .success(let drinks):
+//                self?.drinkDetail = drinks
+//                DispatchQueue.main.async {
+//                    self?.tableView.reloadData()
 //                    self?.activityIndicator.stopAnimating()
 //                    self?.activityIndicator.removeFromSuperview()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
