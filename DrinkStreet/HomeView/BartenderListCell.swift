@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol BartenderListCellDelegate: AnyObject {
+    func didTapMakeFavourite(button: UIButton)
+}
+
 class BartenderListCell: UITableViewCell {
     
     @IBOutlet weak var drinkImage: UIImageView!
@@ -23,14 +27,24 @@ class BartenderListCell: UITableViewCell {
             barContainerView.layer.masksToBounds = false
         }
     }
-    
-    
+    weak var delegate: BartenderListCellDelegate?
     @IBOutlet weak var favoriteButton: UIButton!
-    var addActionHandler: (() -> Void)?
-    // let isFav = UserDefaults.standard.bool(forKey: "isFav")
-    
+    //    var addActionHandler: (() -> Void)?
+    //    let isFav = UserDefaults.standard.bool(forKey: "isFav")
+    override var accessibilityElements: [Any]? {
+        set {}
+        get{
+            return[
+                self.drinkName as Any,
+                self.drinkCategory as Any,
+                self.drinkImage as Any,
+                self.favoriteButton as Any
+            ]
+        }
+    }
     @IBAction func favTapped(_ sender: UIButton) {
-        self.addActionHandler?()
+        self.delegate?.didTapMakeFavourite(button: sender)
+        //        self.addActionHandler?()
         //        if isFav == true {
         //            UserDefaults.standard.set(false, forKey: "isFav")
         //            UserDefaults.standard.synchronize()
@@ -45,6 +59,20 @@ class BartenderListCell: UITableViewCell {
         //        }
     }
     
+    func fav(withDetail detail: DrinkDetail){
+        self.drinkName.text = detail.strDrink
+        self.drinkCategory.text = detail.strCategory
+        let  url = URL(string: "\((detail.strDrinkThumb)!)")
+        if let dataImage = try? Data(contentsOf: url!){
+            self.drinkImage.image = UIImage(data: dataImage)
+        }
+        self.favoriteButton.isSelected = detail.isFav
+        self.applyAccessibility()
+    }
+    private func applyAccessibility() {
+        self.favoriteButton.accessibilityLabel = "favourite"
+        self.favoriteButton.accessibilityHint = self.favoriteButton.isSelected ? "makes favourite" : "removes favourite"
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

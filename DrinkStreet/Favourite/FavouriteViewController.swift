@@ -6,47 +6,22 @@
 //
 
 import UIKit
-import KRActivityIndicatorView
+
 class FavouriteViewController: UITableViewController {
 
-    let bartenderProvider = BartenderProvider()
-    var drinkDetail = [DrinkDetail]() {
-        didSet{
-            DispatchQueue.main.async { [self] in
-                activityIndicator.animating = true
-                activityIndicator.startAnimating()
-                self.tableView.reloadData()
-                self.navigationItem.title = "21 Drink Street"
-                
-            }
-        }
-    }
-    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+    let bartenderAdapter = BartenderAdapter()
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  getBartender()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.addSubview( bartenderAdapter.activityIndicator)
+        bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
+        self.bindViewModel()
+        bartenderAdapter.getAllBartender()
     }
-//
-//    fileprivate func getBartender() {
-//        bartenderProvider.fetchBratenderAPI { [weak self] drink in
-//            switch drink{
-//            case .success(let drinks):
-//                self?.drinkDetail = drinks
-//                DispatchQueue.main.async {
-//                    self?.tableView.reloadData()
-//                    self?.activityIndicator.stopAnimating()
-//                    self?.activityIndicator.removeFromSuperview()
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    
+    fileprivate func bindViewModel() {
+        self.bartenderAdapter.delegate = self
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,12 +31,12 @@ class FavouriteViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return drinkDetail.count
+        return bartenderAdapter.drinkDetail.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
 
         // Configure the cell...
 
@@ -114,4 +89,15 @@ class FavouriteViewController: UITableViewController {
     }
     */
 
+}
+
+extension FavouriteViewController: BartenderAdaptersProtocol {
+    static var userQuery: String?
+    
+    func getAllBartender() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+  
 }

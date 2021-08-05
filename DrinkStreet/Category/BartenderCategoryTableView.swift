@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import KRActivityIndicatorView
 
 class BartenderCategoryTableView: UITableViewController {
     
@@ -148,6 +147,7 @@ extension BartenderCategoryTableView: BartenderAdaptersProtocol3 {
     func getBartenderCategory() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.navigationItem.title = "21 Drink Street"
         }
     }
     

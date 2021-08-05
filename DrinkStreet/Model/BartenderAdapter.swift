@@ -32,23 +32,6 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     var bartenderProvider = BartenderProvider()
     var drinkDetail: [DrinkDetail] = []
     var categoryDetail: [CategoryDetails] = []
-    //    var categoryDetail = [CategoryDetails](){
-    //        didSet{
-    //            DispatchQueue.main.async { [self] in
-    //                activityIndicator.startAnimating()
-    //                self.tableView.reloadData()
-    //                self.navigationItem.title = "21 Drink Street"
-    //            }
-    //        }
-    //    }
-    //    var drinkDetail = [DrinkDetail] (){
-    //        didSet{
-    //            DispatchQueue.main.async { [self] in
-    //                activityIndicator.animating = true
-    //                activityIndicator.startAnimating()
-    //            }
-    //        }
-    //    }
     
     func getAllBartender() {
         self.delegate?.getAllBartender()
@@ -103,5 +86,8 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         }
     }
     
+    func favorites(atIndex: Int){
+        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
+    }
     
 }

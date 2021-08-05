@@ -61,10 +61,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                             <size key="titleShadowOffset" width="20" height="70"/>
                                             <state key="normal">
-                                                <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="titleShadowColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                <imageReference key="image" image="ic_un_fav" symbolScale="large"/>
                                             </state>
                                             <connections>
                                                 <action selector="favTapped:" destination="xMf-bS-K9j" eventType="touchUpInside" id="5W0-Q4-yjk"/>
@@ -344,9 +341,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8M-Z9-Eu9">
-                                            <rect key="frame" x="344.66666666666669" y="53" width="25.333333333333314" height="22"/>
+                                            <rect key="frame" x="344.66666666666669" y="53" width="33" height="33"/>
                                             <state key="normal">
-                                                <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                                <imageReference key="image" image="ic_un_fav" symbolScale="large"/>
                                             </state>
                                         </button>
                                     </subviews>
@@ -519,13 +516,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xid-PY-3BO"/>
-        <segue reference="PbM-Ph-OMU"/>
+        <segue reference="JE3-aH-ufd"/>
+        <segue reference="E9O-a8-srP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="500" height="500"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="ic_un_fav" width="33" height="33"/>
         <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
         <namedColor name="LIST_Cell">
             <color red="0.96899998188018799" green="0.41100001335144043" blue="0.85500001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
