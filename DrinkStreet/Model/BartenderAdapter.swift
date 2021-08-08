@@ -32,6 +32,8 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     var bartenderProvider = BartenderProvider()
     var drinkDetail: [DrinkDetail] = []
     var categoryDetail: [CategoryDetails] = []
+    var details: DrinkDetail?
+    
     
     func getAllBartender() {
         self.delegate?.getAllBartender()

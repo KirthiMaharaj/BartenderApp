@@ -136,7 +136,7 @@ class BartenderCategoryTableView: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.drinkDetail = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
             
         }
     }

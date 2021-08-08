@@ -37,12 +37,22 @@ class FavouriteViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
-
+        
+        
+        cell.favButton.tag = indexPath.row
+        cell.favName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
+        let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
+        if let dataImage = try? Data(contentsOf: url!){
+            cell.favImageView.image = UIImage(data: dataImage)
+        }
         // Configure the cell...
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        bartenderAdapter.details = bartenderAdapter.drinkDetail[indexPath.row]
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -79,15 +89,20 @@ class FavouriteViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "Favourites"{
+            let dd = segue.destination as! BartenderTableViewController
+            let cell = sender as! BartenderListCell
+            dd.bartenderAdapter.drinkDetail[cell.tag] = bartenderAdapter.drinkDetail[cell.tag]
+        }
     }
-    */
+
 
 }
 

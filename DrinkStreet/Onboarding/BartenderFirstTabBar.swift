@@ -18,14 +18,14 @@ class BartenderFirstTabBar: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let defaults = UserDefaults.standard
-        if !defaults.bool(forKey: "onboradingComplete") {
+        if !defaults.bool(forKey: "Main") {
             present()
         }
     }
     
     func present(){
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        if let myView = storyborad.instantiateViewController(identifier: "Onborading") as? BartenderView {
+        if let myView = storyborad.instantiateViewController(identifier: "BartenderOnboardingViewController") as? BartenderOnboardingViewController{
             myView.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             present(myView, animated: true, completion: nil)
         }

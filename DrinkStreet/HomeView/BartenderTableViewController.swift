@@ -41,12 +41,12 @@ class BartenderTableViewController: UITableViewController {
     fileprivate func bindViewModel() {
         self.bartenderAdapter.delegate = self
     }
-    private func updateLoader(isLoading: Bool) {
-       // self.loadingContainerView.isHidden = !isLoading
-        //@IBOutlet weak var barContainerView: UIView!
-        self.myView.barContainerView?.isHidden = !isLoading
-        self.tableView.isHidden = isLoading
-    }
+    //    private func updateLoader(isLoading: Bool) {
+    //       // self.loadingContainerView.isHidden = !isLoading
+    //        //@IBOutlet weak var barContainerView: UIView!
+    //        self.myView.barContainerView?.isHidden = !isLoading
+    //        self.tableView.isHidden = isLoading
+    //    }
     
     /*
      private func notFav(){
@@ -87,16 +87,17 @@ class BartenderTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderListCell", for: indexPath) as! BartenderListCell
         // Configure the cell..."reuseIdentifier"
-    
-        //        cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
-        //        cell.drinkCategory.text = bartenderAdapter.drinkDetail[indexPath.row].strCategory
-        //        let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
-        //        if let dataImage = try? Data(contentsOf: url!){
-        //            cell.drinkImage.image = UIImage(data: dataImage)
-        //        }
+        
+        cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
+        cell.drinkCategory.text = bartenderAdapter.drinkDetail[indexPath.row].strCategory
+        let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
+        if let dataImage = try? Data(contentsOf: url!){
+            cell.drinkImage.image = UIImage(data: dataImage)
+        }
         cell.favoriteButton.tag = indexPath.row
         cell.fav(withDetail: self.bartenderAdapter.drinkDetail[indexPath.row])
         cell.delegate = self
+        
         /*
          if favDrinks[indexPath.row] == true {
          cell.favoriteButton.backgroundImage(for: UIControl.S) = UIColor.red
@@ -149,7 +150,7 @@ class BartenderTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.drinkDetail =  bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            destination.bartenderAdapter.details =  bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
         }
         //        if let destination = segue.destination as? FavouriteViewController {
         //            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
@@ -162,7 +163,6 @@ extension BartenderTableViewController: BartenderAdaptersProtocol {
     static var userQuery: String?
     func getAllBartender() {
         DispatchQueue.main.async {
-            self.updateLoader(isLoading: false)
             self.tableView.reloadData()
             self.navigationItem.title = "21 Drink Street"
         }
