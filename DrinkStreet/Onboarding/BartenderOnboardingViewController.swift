@@ -9,13 +9,15 @@ import UIKit
 
 class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
     
-   
+    
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var startButton: UIButton!
     var scrollWidth: CGFloat! = 0.0
     var scrollHeight: CGFloat! = 0.0
+    
     let bartenderAdapter = BartenderAdapter()
+    
     var titles = [" Welcome To 21 Drink Street","Drinks","About"]
     var descs = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
     var imgs = ["3","4","5"]
@@ -32,20 +34,20 @@ class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
         // Do any additional setup after loading the view.
     }
     
-
-
-    
     @IBAction func pageChanged(_ sender: Any) {
         scroll!.scrollRectToVisible(CGRect(x: scrollWidth * CGFloat ((pageController?.currentPage)!), y: 0, width: scrollWidth, height: scrollHeight), animated: true)
     }
     
-
+    
     @IBAction func startedTapped(_ sender: Any) {
+        bartenderAdapter.delegate = self
+        bartenderAdapter.getAllBartender()
         let controller = storyboard?.instantiateViewController(identifier: "Onboarding") as! UITabBarController
         controller.modalPresentationStyle = .fullScreen
-        controller.modalTransitionStyle = .crossDissolve
+        controller.modalTransitionStyle = .partialCurl
         UserDefaults.standard.hasOnboarded = true
         present(controller, animated: true, completion: nil)
+        startButton.isEnabled = false
     }
     
     
@@ -93,23 +95,16 @@ class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
         pageController.numberOfPages = titles.count
         pageController.currentPage = 0
     }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            setIndiactorForCurrentPage()
-        }
+        setIndiactorForCurrentPage()
+    }
+    
+    func setIndiactorForCurrentPage()  {
+        let page = (scroll?.contentOffset.x)!/scrollWidth
+        pageController?.currentPage = Int(page)
+    }
 
-        func setIndiactorForCurrentPage()  {
-            let page = (scroll?.contentOffset.x)!/scrollWidth
-            pageController?.currentPage = Int(page)
-        }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
@@ -130,3 +125,11 @@ extension UserDefaults {
     }
 }
 
+extension BartenderOnboardingViewController: BartenderAdaptersProtocol {
+    static var userQuery: String?
+    func getAllBartender() {
+        DispatchQueue.main.async {
+            self.navigationItem.title = "21 Drink Street"
+        }
+    }
+}
