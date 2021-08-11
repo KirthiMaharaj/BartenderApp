@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol BartenderListCellDelegate: AnyObject {
-    func didTapMakeFavourite(button: UIButton)
-}
+//protocol BartenderButtonDelegate: AnyObject {
+//    func favButton(didTapButton button: UIButton)
+//}
 
 class BartenderListCell: UITableViewCell {
     
@@ -27,58 +27,33 @@ class BartenderListCell: UITableViewCell {
             barContainerView.layer.masksToBounds = false
         }
     }
-    weak var delegate: BartenderListCellDelegate?
+    
     @IBOutlet weak var favoriteButton: UIButton!
-    //    var addActionHandler: (() -> Void)?
-    //    let isFav = UserDefaults.standard.bool(forKey: "isFav")
-//    override var accessibilityElements: [Any]? {
-//        set {}
-//        get{
-//            return[
-//                self.drinkName as Any,
-//                self.drinkCategory as Any,
-//                self.drinkImage as Any,
-//                self.favoriteButton as Any
-//            ]
-//        }
-//    }
-
-    func fav(withDetail detail: DrinkDetail){
-//        self.drinkName.text = detail.strDrink
-//        self.drinkCategory.text = detail.strCategory
-//        let  url = URL(string: "\((detail.strDrinkThumb)!)")
-//        if let dataImage = try? Data(contentsOf: url!){
-//            self.drinkImage.image = UIImage(data: dataImage)
-//        }
-        self.favoriteButton.isSelected = detail.isFav
-        self.applyAccessibility()
-    }
+//    weak var delegate: BartenderButtonDelegate?
+    var isFav = UserDefaults.standard.bool(forKey: "isFav")
     
     @IBAction func favTapped(_ sender: UIButton) {
-        self.delegate?.didTapMakeFavourite(button: sender)
-        //        self.addActionHandler?()
-        //        if isFav == true {
-        //            UserDefaults.standard.set(false, forKey: "isFav")
-        //            UserDefaults.standard.synchronize()
-        //            let image = UIImage(systemName: "heart")
-        //            sender.setImage(image, for: UIControl.State.normal)
-        //        }else {
-        //            UserDefaults.standard.set(true, forKey: "isFav")
-        //            UserDefaults.standard.synchronize()
-        //            let image = UIImage(systemName: "heart.fill")
-        //            sender.setImage(image, for: UIControl.State.normal)
-        //
-        //        }
+//        self.delegate?.favButton(didTapButton: sender)
+        if isFav {
+            UserDefaults.standard.set(false, forKey: "isFav")
+            UserDefaults.standard.synchronize()
+            let image = UIImage(named: "ic_un_fav")
+            sender.setImage(image, for: UIControl.State.normal)
+        }else {
+            UserDefaults.standard.set(true, forKey: "isFav")
+            UserDefaults.standard.synchronize()
+            let image = UIImage(named: "ic_fav")
+            sender.setImage(image, for: UIControl.State.normal)
+        }
+        isFav = !isFav
+        UserDefaults.standard.set(isFav, forKey: "isFav")
+        UserDefaults.standard.synchronize()
     }
     
-    
-    private func applyAccessibility() {
-        self.favoriteButton.accessibilityLabel = "favourite"
-        self.favoriteButton.accessibilityHint = self.favoriteButton.isSelected ? "makes favourite" : "removes favourite"
-    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .none
+     
         // Initialization code
         // self.favoriteButton.backgroundColor = UIColor.clear
     }

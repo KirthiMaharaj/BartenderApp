@@ -6,31 +6,23 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class BartenderTableViewController: UITableViewController {
     
-    //    var bartenderProvider = BartenderProvider()
-    //        var drinkDetail = [DrinkDetail]() {
-    //            didSet{
-    //                DispatchQueue.main.async { [self] in
-    //                    //activityIndicator.animating = true
-    //                    activityIndicator.startAnimating()
-    //                    self.tableView.reloadData()
-    //                    self.navigationItem.title = "21 Drink Street"
-    //
-    //                }
-    //            }
-    //        }
-    //    let activityIndicator = KRActivityIndicatorView(colors: [.green])
-    //    var favDrinks = [Int:Bool]()
+    
     
     let bartenderAdapter = BartenderAdapter()
     let myView = BartenderListCell()
-    //let bar = BartenderAdaptersProtocol
-    // var userQuery: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProgressHUD.animationType = .lineScaling
+        ProgressHUD.colorProgress = .systemBlue
+        ProgressHUD.colorAnimation = .systemBlue
+        ProgressHUD.showProgress(0.60)
+        ProgressHUD.show()
         tableView.addSubview( bartenderAdapter.activityIndicator)
         bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
         self.bindViewModel()
@@ -38,38 +30,12 @@ class BartenderTableViewController: UITableViewController {
         
     }
     
+    
     fileprivate func bindViewModel() {
         self.bartenderAdapter.delegate = self
     }
-    //    private func updateLoader(isLoading: Bool) {
-    //       // self.loadingContainerView.isHidden = !isLoading
-    //        //@IBOutlet weak var barContainerView: UIView!
-    //        self.myView.barContainerView?.isHidden = !isLoading
-    //        self.tableView.isHidden = isLoading
-    //    }
     
-    /*
-     private func notFav(){
-     for i in 0...drinkDetail.count {
-     favDrinks[i] = false
-     }
-     }
-     */
-    //  fileprivate func getAllBartender() {
-    //        bartenderProvider.userQuery = userQuery
-    //        bartenderProvider.fetchAllBratenderAPI { [weak self] allDetail in
-    //            switch allDetail {
-    //            case .success(let drinksDetail):
-    //                self?.drinkDetail = drinksDetail
-    //                DispatchQueue.main.async {
-    //                    self?.activityIndicator.stopAnimating()
-    //                    self?.activityIndicator.removeFromSuperview()
-    //                }
-    //            case .failure(let error):
-    //                print("API Fetching error: \(error)")
-    //            }
-    //        }
-    //    }
+    
     
     // MARK: - Table view data source
     
@@ -95,18 +61,25 @@ class BartenderTableViewController: UITableViewController {
             cell.drinkImage.image = UIImage(data: dataImage)
         }
         cell.favoriteButton.tag = indexPath.row
-        cell.fav(withDetail: self.bartenderAdapter.drinkDetail[indexPath.row])
-        cell.delegate = self
-        
-        /*
-         if favDrinks[indexPath.row] == true {
-         cell.favoriteButton.backgroundImage(for: UIControl.S) = UIColor.red
-         }
-         */
+       
+        // cell.favTapped(<#T##sender: UIButton##UIButton#>).self
+        cell.selectionStyle = .none
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! BartenderListCell
+        bartenderAdapter.details = bartenderAdapter.drinkDetail[ indexPath.row]
+        cell.favoriteButton.tag = indexPath.row
+        cell.favoriteButton.setImage(#imageLiteral(resourceName: "ic_fav.png") , for: .normal )
+        cell.isFav = true
+    }
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! BartenderListCell
+        cell.favoriteButton.tag = indexPath.row
+        cell.favoriteButton.setImage(#imageLiteral(resourceName: "ic_un_fav.png"), for: .normal )
+        cell.isFav = false
+    }
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -152,10 +125,13 @@ class BartenderTableViewController: UITableViewController {
         if let destination = segue.destination as? BartenderDetailViewController {
             destination.bartenderAdapter.details =  bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
         }
-        //        if let destination = segue.destination as? FavouriteViewController {
-        //            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-        //            destination.drinkDetail =  bartenderAdapter.drinkDetail
-        //        }
+        if let destination = segue.destination as? FavouriteViewController {
+            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            //let cell = sender as! FavouriteViewCell
+          //  destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            destination.bartenderAdapter.drinkDetail =  bartenderAdapter.drinkDetail
+            self.navigationController?.pushViewController(destination, animated: true)
+        }
     }
 }
 
@@ -168,9 +144,10 @@ extension BartenderTableViewController: BartenderAdaptersProtocol {
         }
     }
 }
-extension BartenderTableViewController: BartenderListCellDelegate {
-    func didTapMakeFavourite(button: UIButton) {
-        self.bartenderAdapter.favorites(atIndex: button.tag)
-        self.tableView.reloadData()
-    }
-}
+//extension BartenderTableViewController: BartenderButtonDelegate{
+//    func favButton(didTapButton button: UIButton) {
+//        self.tableView.reloadData()
+//    }
+//    
+//    
+//}

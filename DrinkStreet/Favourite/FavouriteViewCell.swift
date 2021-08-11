@@ -23,9 +23,30 @@ class FavouriteViewCell: UITableViewCell {
             favView.layer.masksToBounds = false
         }
     }
+    var isFav = UserDefaults.standard.bool(forKey: "isFav")
+    let bartenderAdapter = BartenderAdapter()
     
-    let bartenderProvider = BartenderProvider()
-    var drinkDetail: DrinkDetail?
+    
+    @IBAction func FavTapped(_ sender: UIButton) {
+        for i in 0...bartenderAdapter.drinkDetail.count{
+            if isFav == true {
+                bartenderAdapter.list.append(i)
+                UserDefaults.standard.set(false, forKey: "isFav")
+                UserDefaults.standard.synchronize()
+                let image = UIImage(named: "ic_un_fav")
+                sender.setImage(image, for: UIControl.State.normal)
+            }else {
+                UserDefaults.standard.set(true, forKey: "isFav")
+                UserDefaults.standard.synchronize()
+                let image = UIImage(named: "ic_fav")
+                sender.setImage(image, for: UIControl.State.normal)
+            }
+            isFav = !isFav
+            UserDefaults.standard.set(isFav, forKey: "isFav")
+            UserDefaults.standard.synchronize()
+        }
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,4 +8,5 @@ target 'DrinkStreet' do
   # Pods for DrinkStreet
 
 	pod 'KRActivityIndicatorView', '~> 3.0'
+	pod 'ProgressHUD', '~> 13.6'
 end

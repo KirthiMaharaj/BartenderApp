@@ -29,7 +29,7 @@ struct DrinkDetail: Decodable {
     let strIngredient5:String?
     let strIngredient6:String?
     let strIngredient7:String?
-    var isFav: Bool = false
+    
     
     enum CodingKeys: String, CodingKey {
         case drinksId = "idDrink"

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import ProgressHUD
 class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
     
     
@@ -19,7 +19,7 @@ class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
     let bartenderAdapter = BartenderAdapter()
     
     var titles = [" Welcome To 21 Drink Street","Drinks","About"]
-    var descs = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
+    var descs = ["Welcome to our bartender App 21 Drink Street"," We have an varity of drinks. Our drinks are non-alcoholic and alcoholic","This app is about finding your perfect drink. That have different category with ingredient and instructions so that you can make it."]
     var imgs = ["3","4","5"]
     
     override func viewDidLayoutSubviews() {
@@ -49,6 +49,7 @@ class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
         present(controller, animated: true, completion: nil)
         startButton.isEnabled = false
     }
+    
     
     
     func onboardingDetail() {
@@ -104,26 +105,10 @@ class BartenderOnboardingViewController: UIViewController, UIScrollViewDelegate{
         let page = (scroll?.contentOffset.x)!/scrollWidth
         pageController?.currentPage = Int(page)
     }
-
+    
     
 }
 
-
-extension UserDefaults {
-    private enum UserDefaultsKeys: String {
-        case hasOnboarded
-    }
-    
-    var hasOnboarded: Bool {
-        get {
-            bool(forKey: UserDefaultsKeys.hasOnboarded.rawValue)
-        }
-        
-        set {
-            setValue(newValue, forKey: UserDefaultsKeys.hasOnboarded.rawValue)
-        }
-    }
-}
 
 extension BartenderOnboardingViewController: BartenderAdaptersProtocol {
     static var userQuery: String?

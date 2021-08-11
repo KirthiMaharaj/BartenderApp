@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class CategoryTableViewController: UITableViewController {
     
@@ -36,6 +37,11 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProgressHUD.animationType = .lineScaling
+        ProgressHUD.colorProgress = .systemBlue
+        ProgressHUD.colorAnimation = .systemBlue
+        ProgressHUD.showProgress(0.45)
+        ProgressHUD.show()
         view.addSubview(bartenderAdapter.activityIndicator)
         bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
         self.bindViewModel()
@@ -45,37 +51,7 @@ class CategoryTableViewController: UITableViewController {
     fileprivate func bindViewModel() {
         self.bartenderAdapter.delegate2 = self
     }
-    
-    //        fileprivate func getBartenderCategory() {
-    //            bartenderProvider.fetchBratenderAPI { [weak self] result in
-    //                switch result {
-    //                case .success(let drinks):
-    //                    self?.drinkDetail = drinks
-    //                    DispatchQueue.main.async {
-    //                        self?.tableView.reloadData()
-    //                    }
-    //                case .failure(let error):
-    //                    print(error)
-    //                }
-    //            }
-    //        }
-    //
-    //    fileprivate func getCategory() {
-    //        bartenderProvider.fetchCategoryAPI { [weak self] result in
-    //            switch result {
-    //            case .success(let category):
-    //                self?.categoryDetail = category
-    //                DispatchQueue.main.async {
-    //                    self?.tableView.reloadData()
-    //                    self?.activityIndicator.stopAnimating()
-    //                    self?.activityIndicator.removeFromSuperview()
-    //                }
-    //            case .failure(let error):
-    //                print(error)
-    //            }
-    //        }
-    //    }
-    
+ 
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

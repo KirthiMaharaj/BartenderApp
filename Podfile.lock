@@ -1,16 +1,20 @@
 PODS:
   - KRActivityIndicatorView (3.0.7)
+  - ProgressHUD (13.6)
 
 DEPENDENCIES:
   - KRActivityIndicatorView (~> 3.0)
+  - ProgressHUD (~> 13.6)
 
 SPEC REPOS:
   trunk:
     - KRActivityIndicatorView
+    - ProgressHUD
 
 SPEC CHECKSUMS:
   KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
+  ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
 
-PODFILE CHECKSUM: 899287f7f84b11eb77290793bb5bf46daf5cf427
+PODFILE CHECKSUM: 6fb364faf87cf7ceeee4a172c98141c4e4555779
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

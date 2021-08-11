@@ -7,6 +7,7 @@
 
 import Foundation
 import KRActivityIndicatorView
+import ProgressHUD
 
 protocol BartenderAdaptersProtocol: AnyObject {
     func getAllBartender()
@@ -33,7 +34,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     var drinkDetail: [DrinkDetail] = []
     var categoryDetail: [CategoryDetails] = []
     var details: DrinkDetail?
-    
+    var list = [Int]()
     
     func getAllBartender() {
         self.delegate?.getAllBartender()
@@ -44,10 +45,13 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 self?.drinkDetail = drinksDetail
                 self?.delegate?.getAllBartender()
                 DispatchQueue.main.async {
+                    ProgressHUD.dismiss()
                     self?.activityIndicator.stopAnimating()
                     self?.activityIndicator.removeFromSuperview()
+                    ProgressHUD.dismiss()
                 }
             case .failure(let error):
+                ProgressHUD.showFailed()
                 print("API Fetching error: \(error)")
             }
         }
@@ -61,10 +65,12 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 self?.categoryDetail = category
                 self?.delegate2?.getCategory()
                 DispatchQueue.main.async {
+                    ProgressHUD.dismiss()
                     self?.activityIndicator.stopAnimating()
                     self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
+                ProgressHUD.showFailed()
                 print("API Fetching error: \(error)")
             }
         }
@@ -79,17 +85,20 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 self?.drinkDetail = drinks
                 self?.delegate3?.getBartenderCategory()
                 DispatchQueue.main.async {
+                    ProgressHUD.dismiss()
                     self?.activityIndicator.stopAnimating()
                     self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
+                ProgressHUD.showFailed()
                 print("API Fetching error: \(error)")
             }
         }
     }
     
-    func favorites(atIndex: Int){
-        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
-    }
+//    func favorites(atIndex: Int){
+//        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
+//    }
     
 }
+//  var descs = ["Welcome to our bartender App 21 Drink Street"," We have an varity of drinks. Our drinks are non-alcoholic and alcoholic","This app is about finding your perfect drink. That have different category with ingredient and instructions so that you can make it."]

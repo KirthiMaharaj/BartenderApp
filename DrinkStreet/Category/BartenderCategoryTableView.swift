@@ -6,27 +6,21 @@
 //
 
 import UIKit
+import ProgressHUD
+
 
 class BartenderCategoryTableView: UITableViewController {
-    
-    
-    
-    //    var bartenderProvider = BartenderProvider()
-    //    var drinkDetail = [DrinkDetail]() {
-    //        didSet{
-    //            DispatchQueue.main.async { [self] in
-    //                activityIndicator.startAnimating()
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
+  
     let cate = CategoryTableViewController()
     let bartenderAdapter = BartenderAdapter()
-    //    var categoryDetail = [CategoryDetails]()
-    //    var chosenCategory: String?
-    //    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProgressHUD.animationType = .lineScaling
+        ProgressHUD.colorProgress = .systemBlue
+        ProgressHUD.colorAnimation = .systemBlue
+        ProgressHUD.showProgress(0.45)
+        ProgressHUD.show()
         tableView.addSubview(bartenderAdapter.activityIndicator)
         bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
         self.bindViewModel()
@@ -36,22 +30,6 @@ class BartenderCategoryTableView: UITableViewController {
     fileprivate func bindViewModel() {
         self.bartenderAdapter.delegate3 = self
     }
-    //    fileprivate func getBartenderCategory() {
-    //        bartenderProvider.chosenCategory = chosenCategory!
-    //        bartenderProvider.fetchAPI { [weak self] result in
-    //            switch result {
-    //            case .success(let drinks):
-    //                self?.drinkDetail = drinks
-    //                DispatchQueue.main.async {
-    //                    self?.tableView.reloadData()
-    //                    self?.activityIndicator.stopAnimating()
-    //                    self?.activityIndicator.removeFromSuperview()
-    //                }
-    //            case .failure(let error):
-    //                print("API Fetching error: \(error)")
-    //            }
-    //        }
-    //    }
     
     // MARK: - Table view data source
     
@@ -136,8 +114,11 @@ class BartenderCategoryTableView: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            //destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
             
+            destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            BartenderAdapter.userQuery = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].strDrink
+          //  self.navigationController?.pushViewController(destination, animated: true)
         }
     }
 }
