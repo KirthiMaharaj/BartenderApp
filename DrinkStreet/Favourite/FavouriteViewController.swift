@@ -21,18 +21,19 @@ class FavouriteViewController: UITableViewController {
         bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
         self.bindViewModel()
         bartenderAdapter.getAllBartender()
+        //        getFav()
     }
     
-   
-    let favlist =  FavouriteViewCell()
-   
-    private func getFav(){
-        for i in 0...bartenderAdapter.drinkDetail.count {
-            if favlist.isFav == true {
-                bartenderAdapter.list.append(i)
-            }
-        }
-    }
+    
+//    var favlist = [Int:Bool]()
+//    let tempList = [Int]()
+//    private func getFav(){
+//        for i in 0...bartenderAdapter.drinkDetail.count {
+//            if favlist[i] == true {
+//                bartenderAdapter.list.append(i)
+//            }
+//        }
+//    }
     
     fileprivate func bindViewModel() {
         self.bartenderAdapter.delegate = self
@@ -110,15 +111,15 @@ class FavouriteViewController: UITableViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//        if segue.identifier == "Favourites"{
-//            let dd = segue.destination as! BartenderTableViewController
-//            let cell = sender as! BartenderListCell
-//            dd.bartenderAdapter.drinkDetail[cell.tag] = bartenderAdapter.drinkDetail[cell.tag]
-//        }
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        // Get the new view controller using segue.destination.
+    //        // Pass the selected object to the new view controller.
+    //        if segue.identifier == "Favourites"{
+    //            let dd = segue.destination as! BartenderTableViewController
+    //            let cell = sender as! BartenderListCell
+    //            dd.bartenderAdapter.drinkDetail[cell.tag] = bartenderAdapter.drinkDetail[cell.tag]
+    //        }
+    //    }
 }
 
 extension FavouriteViewController: BartenderAdaptersProtocol {

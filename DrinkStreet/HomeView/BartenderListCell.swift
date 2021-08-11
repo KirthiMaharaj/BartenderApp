@@ -29,21 +29,25 @@ class BartenderListCell: UITableViewCell {
     }
     
     @IBOutlet weak var favoriteButton: UIButton!
-//    weak var delegate: BartenderButtonDelegate?
+    var delegate: Favourited?
     var isFav = UserDefaults.standard.bool(forKey: "isFav")
+    let bartenderAdapter = BartenderAdapter()
     
-    @IBAction func favTapped(_ sender: UIButton) {
-//        self.delegate?.favButton(didTapButton: sender)
+    @IBAction func favTapped(_ sender: Any) {
+        if let favDrink = bartenderAdapter.details{
+            delegate?.toggleFav(drinks: favDrink)
+        }
+
         if isFav {
             UserDefaults.standard.set(false, forKey: "isFav")
             UserDefaults.standard.synchronize()
             let image = UIImage(named: "ic_un_fav")
-            sender.setImage(image, for: UIControl.State.normal)
+            (sender as AnyObject).setImage(image, for: UIControl.State.normal)
         }else {
             UserDefaults.standard.set(true, forKey: "isFav")
             UserDefaults.standard.synchronize()
             let image = UIImage(named: "ic_fav")
-            sender.setImage(image, for: UIControl.State.normal)
+            (sender as AnyObject).setImage(image, for: UIControl.State.normal)
         }
         isFav = !isFav
         UserDefaults.standard.set(isFav, forKey: "isFav")
@@ -55,7 +59,6 @@ class BartenderListCell: UITableViewCell {
         super.awakeFromNib()
      
         // Initialization code
-        // self.favoriteButton.backgroundColor = UIColor.clear
     }
     
     

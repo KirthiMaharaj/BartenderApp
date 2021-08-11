@@ -64,7 +64,7 @@
                                                 <imageReference key="image" image="ic_un_fav" symbolScale="large"/>
                                             </state>
                                             <connections>
-                                                <action selector="favTapped:" destination="xMf-bS-K9j" eventType="touchUpInside" id="5W0-Q4-yjk"/>
+                                                <action selector="favTapped:" destination="xMf-bS-K9j" eventType="touchUpInside" id="boM-pH-Axm"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -146,14 +146,14 @@
                                 <rect key="frame" x="154" y="766" width="120.33333333333331" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" red="0.82768560920000001" green="0.11156219689999999" blue="0.63047531020000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemGrayColor"/>
                                 <connections>
                                     <action selector="pageChanged:" destination="xSa-ju-XWa" eventType="valueChanged" id="VzA-xm-dgJ"/>
                                 </connections>
                             </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kv9-xn-RYc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kv9-xn-RYc" firstAttribute="trailing" secondItem="RCK-2x-N5v" secondAttribute="trailing" constant="20" id="0yI-Fz-37a"/>
                             <constraint firstItem="RCK-2x-N5v" firstAttribute="leading" secondItem="kv9-xn-RYc" secondAttribute="leading" constant="20" id="4IR-lU-Uaw"/>
@@ -518,7 +518,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="JE3-aH-ufd"/>
-        <segue reference="E9O-a8-srP"/>
+        <segue reference="PbM-Ph-OMU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
@@ -532,8 +532,8 @@
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

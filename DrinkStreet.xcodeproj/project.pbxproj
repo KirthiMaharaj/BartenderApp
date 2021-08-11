@@ -18,6 +18,8 @@
 		FE09EDEB26A9CC7C00CD13CF /* BartenderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */; };
 		FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */; };
 		FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */; };
+		FE351F4726C433EF00898F78 /* DrinkStreetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE351F4626C433EF00898F78 /* DrinkStreetTests.swift */; };
+		FE351F5526C4347F00898F78 /* DrinkStreetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE351F5426C4347F00898F78 /* DrinkStreetUITests.swift */; };
 		FE51D51026B036BC0057F6DF /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */; };
 		FE51D51226B0370D0057F6DF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */; };
 		FE53FB8326B3F0CE00D214E8 /* BartenderCategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE53FB8226B3F0CE00D214E8 /* BartenderCategoryTableView.swift */; };
@@ -29,6 +31,23 @@
 		FE9304FA26AEAA210001466F /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9304F926AEAA210001466F /* FavouriteViewController.swift */; };
 		FEA18A8D26ADA87400757905 /* FavouriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA18A8C26ADA87400757905 /* FavouriteViewCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE351F4926C433EF00898F78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE09EDC926A9C9F500CD13CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE09EDD026A9C9F500CD13CF;
+			remoteInfo = DrinkStreet;
+		};
+		FE351F5726C4347F00898F78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE09EDC926A9C9F500CD13CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE09EDD026A9C9F500CD13CF;
+			remoteInfo = DrinkStreet;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B123A01353022BBC06A793D4 /* Pods_DrinkStreet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrinkStreet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +65,12 @@
 		FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderProvider.swift; sourceTree = "<group>"; };
 		FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderListCell.swift; sourceTree = "<group>"; };
 		FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderTableViewController.swift; sourceTree = "<group>"; };
+		FE351F4426C433EF00898F78 /* DrinkStreetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrinkStreetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE351F4626C433EF00898F78 /* DrinkStreetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkStreetTests.swift; sourceTree = "<group>"; };
+		FE351F4826C433EF00898F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE351F5226C4347F00898F78 /* DrinkStreetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrinkStreetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE351F5426C4347F00898F78 /* DrinkStreetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkStreetUITests.swift; sourceTree = "<group>"; };
+		FE351F5626C4347F00898F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		FE51D51126B0370D0057F6DF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		FE53FB8226B3F0CE00D214E8 /* BartenderCategoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderCategoryTableView.swift; sourceTree = "<group>"; };
@@ -64,6 +89,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5590406D484E6DB9D8AA465F /* Pods_DrinkStreet.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE351F4126C433EF00898F78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE351F4F26C4347E00898F78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				FE09EDD326A9C9F500CD13CF /* DrinkStreet */,
+				FE351F4526C433EF00898F78 /* DrinkStreetTests */,
+				FE351F5326C4347F00898F78 /* DrinkStreetUITests */,
 				FE09EDD226A9C9F500CD13CF /* Products */,
 				DF4532B3181307EFE3AB2AC8 /* Pods */,
 				E2DBBA97E29399F6F98179AC /* Frameworks */,
@@ -101,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				FE09EDD126A9C9F500CD13CF /* DrinkStreet.app */,
+				FE351F4426C433EF00898F78 /* DrinkStreetTests.xctest */,
+				FE351F5226C4347F00898F78 /* DrinkStreetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +174,24 @@
 				FE69FBD826BACD61008F14D7 /* BartenderAdapter.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FE351F4526C433EF00898F78 /* DrinkStreetTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE351F4626C433EF00898F78 /* DrinkStreetTests.swift */,
+				FE351F4826C433EF00898F78 /* Info.plist */,
+			);
+			path = DrinkStreetTests;
+			sourceTree = "<group>";
+		};
+		FE351F5326C4347F00898F78 /* DrinkStreetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FE351F5426C4347F00898F78 /* DrinkStreetUITests.swift */,
+				FE351F5626C4347F00898F78 /* Info.plist */,
+			);
+			path = DrinkStreetUITests;
 			sourceTree = "<group>";
 		};
 		FE3716FC26BDAF58006C58EB /* Onboarding */ = {
@@ -195,6 +256,42 @@
 			productReference = FE09EDD126A9C9F500CD13CF /* DrinkStreet.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FE351F4326C433EF00898F78 /* DrinkStreetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE351F4D26C433EF00898F78 /* Build configuration list for PBXNativeTarget "DrinkStreetTests" */;
+			buildPhases = (
+				FE351F4026C433EF00898F78 /* Sources */,
+				FE351F4126C433EF00898F78 /* Frameworks */,
+				FE351F4226C433EF00898F78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE351F4A26C433EF00898F78 /* PBXTargetDependency */,
+			);
+			name = DrinkStreetTests;
+			productName = DrinkStreetTests;
+			productReference = FE351F4426C433EF00898F78 /* DrinkStreetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FE351F5126C4347E00898F78 /* DrinkStreetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE351F5926C4347F00898F78 /* Build configuration list for PBXNativeTarget "DrinkStreetUITests" */;
+			buildPhases = (
+				FE351F4E26C4347E00898F78 /* Sources */,
+				FE351F4F26C4347E00898F78 /* Frameworks */,
+				FE351F5026C4347E00898F78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE351F5826C4347F00898F78 /* PBXTargetDependency */,
+			);
+			name = DrinkStreetUITests;
+			productName = DrinkStreetUITests;
+			productReference = FE351F5226C4347F00898F78 /* DrinkStreetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -206,6 +303,14 @@
 				TargetAttributes = {
 					FE09EDD026A9C9F500CD13CF = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					FE351F4326C433EF00898F78 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = FE09EDD026A9C9F500CD13CF;
+					};
+					FE351F5126C4347E00898F78 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = FE09EDD026A9C9F500CD13CF;
 					};
 				};
 			};
@@ -223,6 +328,8 @@
 			projectRoot = "";
 			targets = (
 				FE09EDD026A9C9F500CD13CF /* DrinkStreet */,
+				FE351F4326C433EF00898F78 /* DrinkStreetTests */,
+				FE351F5126C4347E00898F78 /* DrinkStreetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +342,20 @@
 				FE09EDE126A9C9F600CD13CF /* LaunchScreen.storyboard in Resources */,
 				FE09EDDE26A9C9F600CD13CF /* Assets.xcassets in Resources */,
 				FE09EDDC26A9C9F500CD13CF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE351F4226C433EF00898F78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE351F5026C4347E00898F78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +428,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE351F4026C433EF00898F78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE351F4726C433EF00898F78 /* DrinkStreetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE351F4E26C4347E00898F78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE351F5526C4347F00898F78 /* DrinkStreetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE351F4A26C433EF00898F78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE09EDD026A9C9F500CD13CF /* DrinkStreet */;
+			targetProxy = FE351F4926C433EF00898F78 /* PBXContainerItemProxy */;
+		};
+		FE351F5826C4347F00898F78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE09EDD026A9C9F500CD13CF /* DrinkStreet */;
+			targetProxy = FE351F5726C4347F00898F78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FE09EDDA26A9C9F500CD13CF /* Main.storyboard */ = {
@@ -483,6 +633,80 @@
 			};
 			name = Release;
 		};
+		FE351F4B26C433EF00898F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DrinkStreetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = glucode.DrinkStreetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrinkStreet.app/DrinkStreet";
+			};
+			name = Debug;
+		};
+		FE351F4C26C433EF00898F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DrinkStreetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = glucode.DrinkStreetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrinkStreet.app/DrinkStreet";
+			};
+			name = Release;
+		};
+		FE351F5A26C4347F00898F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DrinkStreetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = glucode.DrinkStreetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DrinkStreet;
+			};
+			name = Debug;
+		};
+		FE351F5B26C4347F00898F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DrinkStreetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = glucode.DrinkStreetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DrinkStreet;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -500,6 +724,24 @@
 			buildConfigurations = (
 				FE09EDE626A9C9F600CD13CF /* Debug */,
 				FE09EDE726A9C9F600CD13CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE351F4D26C433EF00898F78 /* Build configuration list for PBXNativeTarget "DrinkStreetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE351F4B26C433EF00898F78 /* Debug */,
+				FE351F4C26C433EF00898F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE351F5926C4347F00898F78 /* Build configuration list for PBXNativeTarget "DrinkStreetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE351F5A26C4347F00898F78 /* Debug */,
+				FE351F5B26C4347F00898F78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

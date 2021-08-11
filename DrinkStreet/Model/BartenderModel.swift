@@ -7,6 +7,13 @@
 
 import Foundation
 
+
+protocol Favourites {
+    var isFav: Bool {get set}
+}
+protocol Favourited {
+    func toggleFav(drinks: DrinkDetail)
+}
 struct CocktailResponse: Decodable {
     let drinks: [DrinkDetail]
     
@@ -15,7 +22,8 @@ struct CocktailResponse: Decodable {
     }
 }
 
-struct DrinkDetail: Decodable {
+struct DrinkDetail: Decodable, Favourites {
+    
     let drinksId:String?
     let strDrink:String?
     var strCategory:String?
@@ -29,12 +37,14 @@ struct DrinkDetail: Decodable {
     let strIngredient5:String?
     let strIngredient6:String?
     let strIngredient7:String?
+    var isFav:Bool = false
     
     
     enum CodingKeys: String, CodingKey {
         case drinksId = "idDrink"
         case strDrink, strCategory, strAlcoholic, strInstructions, strDrinkThumb, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7
     }
+   
 }
 
 
@@ -50,4 +60,6 @@ struct CategoryDetails: Decodable {
     enum CodingKeys: String, CodingKey {
         case strCategory
     }
+    
+    
 }
