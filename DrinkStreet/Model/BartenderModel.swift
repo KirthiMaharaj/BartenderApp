@@ -11,9 +11,9 @@ import Foundation
 protocol Favourites {
     var isFav: Bool {get set}
 }
-protocol Favourited {
-    func toggleFav(drinks: DrinkDetail)
-}
+//protocol Favourited {
+//    func toggleFav(drinks: DrinkDetail)
+//}
 struct CocktailResponse: Decodable {
     let drinks: [DrinkDetail]
     

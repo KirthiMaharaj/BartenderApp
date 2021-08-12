@@ -49,19 +49,6 @@ class BartenderCategoryTableView: UITableViewController {
         
         // Configure the cell...
         
-        //        let categoryDrink = drinkDetail[indexPath.row]
-        //
-        //        let filteredArray = self.categoryDetail.filter({($0.strCategory == "\(categoryDrink.strCategory)")})
-        //        for category in filteredArray {
-        //            if category.strCategory == categoryDrink.strCategory {
-        //                cell.drinkName.text = "\(categoryDrink.strDrink)"
-        //                let url = URL(string: "\(categoryDrink.strDrinkThumb)")
-        //                if let dataImage = try? Data(contentsOf: url!){
-        //                    cell.drinkImageView.image = UIImage(data: dataImage)
-        //                }
-        //            }
-        //        }
-        
         cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
         let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
@@ -115,9 +102,8 @@ class BartenderCategoryTableView: UITableViewController {
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
             //destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-            
             destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-            BartenderAdapter.userQuery = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].strDrink
+            BartenderAdapter.userQuery = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
           //  self.navigationController?.pushViewController(destination, animated: true)
         }
     }

@@ -10,7 +10,9 @@ import UIKit
 //protocol BartenderButtonDelegate: AnyObject {
 //    func favButton(didTapButton button: UIButton)
 //}
-
+protocol Favourited {
+    func toggleFav(didTapButton button: UIButton)
+}
 class BartenderListCell: UITableViewCell {
     
     @IBOutlet weak var drinkImage: UIImageView!
@@ -33,25 +35,37 @@ class BartenderListCell: UITableViewCell {
     var isFav = UserDefaults.standard.bool(forKey: "isFav")
     let bartenderAdapter = BartenderAdapter()
     
+    func configure(withInfo drink: DrinkDetail) {
+        self.drinkName.text = drink.strDrink
+        self.drinkCategory.text = drink.strCategory
+        let url = URL(string: "\((drink.strDrinkThumb)!)")
+        if let dataImage = try? Data(contentsOf: url!){
+            self.drinkImage.image = UIImage(data: dataImage)
+        }
+        self.favoriteButton.setImage(drink.isFav ? .init(named: "ic_fav") : .init(named:"ic_un_fav"), for: .normal)
+    }
+    
     @IBAction func favTapped(_ sender: Any) {
-        if let favDrink = bartenderAdapter.details{
-            delegate?.toggleFav(drinks: favDrink)
-        }
+       // if let favDrink = bartenderAdapter.details {
+            delegate?.toggleFav(didTapButton: sender as! UIButton)
+//            if isFav {
+//                UserDefaults.standard.set(false, forKey: "isFav")
+//                UserDefaults.standard.synchronize()
+//                let image = UIImage(named: "ic_un_fav")
+//                (sender as AnyObject).setImage(image, for: UIControl.State.normal)
+//            }else {
+//                UserDefaults.standard.set(true, forKey: "isFav")
+//                UserDefaults.standard.synchronize()
+//                let image = UIImage(named: "ic_fav")
+//                (sender as AnyObject).setImage(image, for: UIControl.State.normal)
+//            }
+//            isFav = !isFav
+//            UserDefaults.standard.set(isFav, forKey: "isFav")
+//            UserDefaults.standard.synchronize()
+            
+       // }
 
-        if isFav {
-            UserDefaults.standard.set(false, forKey: "isFav")
-            UserDefaults.standard.synchronize()
-            let image = UIImage(named: "ic_un_fav")
-            (sender as AnyObject).setImage(image, for: UIControl.State.normal)
-        }else {
-            UserDefaults.standard.set(true, forKey: "isFav")
-            UserDefaults.standard.synchronize()
-            let image = UIImage(named: "ic_fav")
-            (sender as AnyObject).setImage(image, for: UIControl.State.normal)
-        }
-        isFav = !isFav
-        UserDefaults.standard.set(isFav, forKey: "isFav")
-        UserDefaults.standard.synchronize()
+        
     }
     
 

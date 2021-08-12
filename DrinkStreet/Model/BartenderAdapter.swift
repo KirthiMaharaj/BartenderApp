@@ -96,9 +96,12 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         }
     }
     
-//    func favorites(atIndex: Int){
-//        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
-//    }
+    func favorites(atIndex: Int){
+        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
+    }
     
 }
+
+
+
 //  var descs = ["Welcome to our bartender App 21 Drink Street"," We have an varity of drinks. Our drinks are non-alcoholic and alcoholic","This app is about finding your perfect drink. That have different category with ingredient and instructions so that you can make it."]

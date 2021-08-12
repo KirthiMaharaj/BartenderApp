@@ -10,29 +10,6 @@ import ProgressHUD
 
 class CategoryTableViewController: UITableViewController {
     
-    //    let bartenderProvider = BartenderProvider()
-    //    var categoryDetail = [CategoryDetails]() {
-    //        didSet{
-    //            DispatchQueue.main.async { [self] in
-    //                activityIndicator.startAnimating()
-    //                self.tableView.reloadData()
-    //                self.navigationItem.title = "21 Drink Street"
-    //            }
-    //        }
-    //    }
-    //    var category = [DrinkDetail]()
-    //
-    //        var drinkDetail = [DrinkDetail]() {
-    //            didSet{
-    //                DispatchQueue.main.async { [self] in
-    //                    self.tableView.reloadData()
-    //                    self.navigationItem.title = "21 Drink Street"
-    //
-    //                }
-    //            }
-    //        }
-    //    let activityIndicator = KRActivityIndicatorView(colors: [.green])
-    
     let bartenderAdapter = BartenderAdapter()
     
     override func viewDidLoad() {
@@ -61,7 +38,7 @@ class CategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        //return drinkDetail.count
+       
         return bartenderAdapter.categoryDetail.count
     }
     
@@ -76,9 +53,6 @@ class CategoryTableViewController: UITableViewController {
     }
     
     
-    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        performSegue(withIdentifier: "SendDataSegue", sender: self)
-    //    }
     
     /*
      // Override to support conditional editing of the table view.

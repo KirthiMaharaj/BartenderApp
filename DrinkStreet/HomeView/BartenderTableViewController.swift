@@ -23,22 +23,16 @@ class BartenderTableViewController: UITableViewController {
         ProgressHUD.show()
         tableView.addSubview( bartenderAdapter.activityIndicator)
         bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
-        self.bindViewModel()
+        self.bindDrinkModel()
         self.bartenderAdapter.getAllBartender()
-       // notFav()
+      
     }
     
     
-    fileprivate func bindViewModel() {
+    fileprivate func bindDrinkModel() {
         self.bartenderAdapter.delegate = self
     }
-    
-//    private func notFav(){
-//        for i in 0...bartenderAdapter.drinkDetail.count {
-//            favoritesDrinks[i] = false
-//        }
-//    }
-//    
+
     
     // MARK: - Table view data source
     
@@ -57,40 +51,23 @@ class BartenderTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderListCell", for: indexPath) as! BartenderListCell
         // Configure the cell..."reuseIdentifier"
         
-//        cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
-//        cell.drinkCategory.text = bartenderAdapter.drinkDetail[indexPath.row].strCategory
-//        let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
-//        if let dataImage = try? Data(contentsOf: url!){
-//            cell.drinkImage.image = UIImage(data: dataImage)
-//        }
         cell.favoriteButton.tag = indexPath.row
         if cell.isFav == true {
-            cell.favoriteButton.setImage(UIImage(named: "ic_fav"), for: UIControl.State.normal)
-            cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
-            cell.drinkCategory.text = bartenderAdapter.drinkDetail[indexPath.row].strCategory
-            let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
-            if let dataImage = try? Data(contentsOf: url!){
-                cell.drinkImage.image = UIImage(data: dataImage)
-            }
+            cell.configure(withInfo: self.bartenderAdapter.drinkDetail[indexPath.row])
+            
         }else{
-            cell.favoriteButton.setImage(UIImage(named: "ic_un_fav"), for: UIControl.State.normal)
-            cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
-            cell.drinkCategory.text = bartenderAdapter.drinkDetail[indexPath.row].strCategory
-            let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
-            if let dataImage = try? Data(contentsOf: url!){
-                cell.drinkImage.image = UIImage(data: dataImage)
-            }
+            cell.configure(withInfo: self.bartenderAdapter.drinkDetail[indexPath.row])
+            
         }
+        cell.delegate = self
         cell.selectionStyle = .none
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! BartenderListCell
-       // bartenderAdapter.details = bartenderAdapter.drinkDetail[ indexPath.row]
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.setImage(UIImage(named: "ic_fav"), for: .normal)
-       // favoritesDrinks[indexPath.row] = true
         cell.isFav = true
     }
     
@@ -98,7 +75,6 @@ class BartenderTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! BartenderListCell
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.setImage(UIImage(named: "ic_un_fav"), for: .normal)
-      //  favoritesDrinks[indexPath.row] = false
         cell.isFav = false
     }
     
@@ -147,13 +123,13 @@ class BartenderTableViewController: UITableViewController {
         if let destination = segue.destination as? BartenderDetailViewController {
             destination.bartenderAdapter.details =  bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
         }
-//        if let destination = segue.destination as? FavouriteViewController {
-//            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-//            //let cell = sender as! FavouriteViewCell
-//          //  destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-//            destination.bartenderAdapter.drinkDetail =  bartenderAdapter.drinkDetail
-//            self.navigationController?.pushViewController(destination, animated: true)
-//        }
+        //        if let destination = segue.destination as? FavouriteViewController {
+        //            //  destination.drinkDetail = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+        //            //let cell = sender as! FavouriteViewCell
+        //          //  destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+        //            destination.bartenderAdapter.drinkDetail =  bartenderAdapter.drinkDetail
+        //            self.navigationController?.pushViewController(destination, animated: true)
+        //        }
     }
 }
 
@@ -166,10 +142,11 @@ extension BartenderTableViewController: BartenderAdaptersProtocol {
         }
     }
 }
-//extension BartenderTableViewController: BartenderButtonDelegate{
-//    func favButton(didTapButton button: UIButton) {
-//        self.tableView.reloadData()
-//    }
-//    
-//    
-//}
+
+extension BartenderTableViewController: Favourited{
+    func toggleFav(didTapButton button: UIButton) {
+        self.bartenderAdapter.favorites(atIndex: button.tag)
+        self.tableView.reloadData()
+    }
+    
+}
