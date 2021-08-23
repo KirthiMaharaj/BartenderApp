@@ -19,8 +19,7 @@ class CategoryTableViewController: UITableViewController {
         ProgressHUD.colorAnimation = .systemBlue
         ProgressHUD.showProgress(0.45)
         ProgressHUD.show()
-        view.addSubview(bartenderAdapter.activityIndicator)
-        bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
+       
         self.bindViewModel()
         self.bartenderAdapter.getCategory()
     }

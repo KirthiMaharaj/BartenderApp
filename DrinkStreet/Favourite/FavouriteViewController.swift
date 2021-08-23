@@ -6,34 +6,20 @@
 //
 
 import UIKit
-import ProgressHUD
+
 class FavouriteViewController: UITableViewController {
-    var bar: DrinkDetail!
+    
     let bartenderAdapter = BartenderAdapter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ProgressHUD.animationType = .lineScaling
-        ProgressHUD.colorProgress = .systemBlue
-        ProgressHUD.colorAnimation = .systemBlue
-        ProgressHUD.showProgress(0.45)
-        ProgressHUD.show()
-        tableView.addSubview( bartenderAdapter.activityIndicator)
-        bartenderAdapter.activityIndicator.frame(forAlignmentRect: .infinite)
+
         self.bindViewModel()
-        bartenderAdapter.getAllBartender()
-        //        getFav()
+        bartenderAdapter.getFavouritesDrink()
     }
     
     
-//    var favlist = [Int:Bool]()
-//    let tempList = [Int]()
-//    private func getFav(){
-//        for i in 0...bartenderAdapter.drinkDetail.count {
-//            if favlist[i] == true {
-//                bartenderAdapter.list.append(i)
-//            }
-//        }
-//    }
+
     
     fileprivate func bindViewModel() {
         self.bartenderAdapter.delegate = self
@@ -48,81 +34,54 @@ class FavouriteViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return bartenderAdapter.list.count
+        return bartenderAdapter.drinkDetail.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
-        
-        
-        cell.favButton.tag = indexPath.row
-        cell.favName.text = bartenderAdapter.drinkDetail[bartenderAdapter.list[indexPath.row]].strDrink
-        let url = URL(string: "\((bartenderAdapter.drinkDetail[bartenderAdapter.list[indexPath.row]].strDrinkThumb)!)")
-        if let dataImage = try? Data(contentsOf: url!){
-            cell.favImageView.image = UIImage(data: dataImage)
-        }
-        
+
         // Configure the cell...
+        cell.configure(withInfo: bartenderAdapter.drinkDetail[indexPath.row])
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        bartenderAdapter.details = bartenderAdapter.drinkDetail[indexPath.row]
+       // bartenderAdapter.details = bartenderAdapter.drinkDetail[indexPath.row]
+        let destination = storyboard?.instantiateViewController(identifier: "BartenderDetailViewController") as? BartenderDetailViewController
+        destination!.bartenderAdapter.bartenderProvider.cocktailID = bartenderAdapter.drinkDetail[indexPath.row].drinksId
+        self.navigationController?.pushViewController(destination!, animated: true)
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    
+    func getCDCocktails() {
+        do {
+            bartenderAdapter.models = try bartenderAdapter.context.fetch(BartenderDrinks.fetchRequest())
+        } catch {
+            print("Error Getting items: \(error.localizedDescription)")
+        }
+    }
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        // Get the new view controller using segue.destination.
-    //        // Pass the selected object to the new view controller.
-    //        if segue.identifier == "Favourites"{
-    //            let dd = segue.destination as! BartenderTableViewController
-    //            let cell = sender as! BartenderListCell
-    //            dd.bartenderAdapter.drinkDetail[cell.tag] = bartenderAdapter.drinkDetail[cell.tag]
-    //        }
-    //    }
+   //  In a storyboard-based application, you will often want to do a little preparation before navigation
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            // Get the new view controller using segue.destination.
+            // Pass the selected object to the new view controller.
+            let destination = storyboard?.instantiateViewController(identifier: "BartenderDetailViewController") as? BartenderDetailViewController
+            destination!.bartenderAdapter.bartenderProvider.cocktailID = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
+            self.navigationController?.pushViewController(destination!, animated: true)
+           
+        }
 }
 
-extension FavouriteViewController: BartenderAdaptersProtocol {
+extension FavouriteViewController: BartenderAdaptersProtocol, BartenderAdaptersProtocol5 {
+    func getFavouritesDrink() {
+        getCDCocktails()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     static var userQuery: String?
     
     func getAllBartender() {

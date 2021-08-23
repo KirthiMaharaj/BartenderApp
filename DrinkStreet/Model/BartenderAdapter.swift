@@ -6,8 +6,9 @@
 //
 
 import Foundation
-import KRActivityIndicatorView
 import ProgressHUD
+import CoreData
+import UIKit
 
 protocol BartenderAdaptersProtocol: AnyObject {
     func getAllBartender()
@@ -18,23 +19,35 @@ protocol BartenderAdaptersProtocol2: AnyObject {
     func getCategory()
 }
 
-protocol BartenderAdaptersProtocol3: AnyObject{
+protocol BartenderAdaptersProtocol3: AnyObject {
     static var chosenCategory: String? { get }
     func getBartenderCategory()
 }
-class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3 {
-    
+
+protocol BartenderAdaptersProtocol4 {
+    func getFavourites()
+    static var cocktailID: String? { get }
+}
+protocol BartenderAdaptersProtocol5 {
+    func getFavouritesDrink()
+}
+class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3, BartenderAdaptersProtocol4, BartenderAdaptersProtocol5{
+ 
+
+    static var cocktailID: String?
     static var chosenCategory: String?
     static var userQuery: String?
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var models = [BartenderDrinks]()
     weak var delegate: BartenderAdaptersProtocol?
     weak var delegate2: BartenderAdaptersProtocol2?
     weak var delegate3: BartenderAdaptersProtocol3?
-    let activityIndicator = KRActivityIndicatorView(colors: [.green])
+    var delegate4: BartenderAdaptersProtocol4?
     var bartenderProvider = BartenderProvider()
     var drinkDetail: [DrinkDetail] = []
     var categoryDetail: [CategoryDetails] = []
     var details: DrinkDetail?
-    var list = [Int]()
+    
     
     func getAllBartender() {
         self.delegate?.getAllBartender()
@@ -45,9 +58,6 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 self?.drinkDetail = drinksDetail
                 self?.delegate?.getAllBartender()
                 DispatchQueue.main.async {
-                    ProgressHUD.dismiss()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
                     ProgressHUD.dismiss()
                 }
             case .failure(let error):
@@ -66,8 +76,6 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 self?.delegate2?.getCategory()
                 DispatchQueue.main.async {
                     ProgressHUD.dismiss()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
                 ProgressHUD.showFailed()
@@ -86,8 +94,6 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 self?.delegate3?.getBartenderCategory()
                 DispatchQueue.main.async {
                     ProgressHUD.dismiss()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
                 }
             case .failure(let error):
                 ProgressHUD.showFailed()
@@ -96,12 +102,53 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         }
     }
     
+    func getFavourites() {
+        self.delegate4 = self
+        bartenderProvider.cocktailID = BartenderAdapter.cocktailID
+        bartenderProvider.fetchFavouritesDetail { [weak self] result in
+           // self?.details = self?.drinkDetail[0]
+            switch result {
+            case .success(let drink):
+                self?.drinkDetail = drink
+                self?.details = drink[0]
+            case .failure(let error):
+                print("API Fetching error: \(error)")
+            }
+        }
+    }
+    
+    func getFavouritesDrink() {
+        bartenderProvider.fetchFavourites { [weak self] result in
+            switch result {
+            case .success(let drink):
+                self?.drinkDetail = drink
+            case .failure(let error):
+                print("API Fetching error: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    //    var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController<NSFetchRequestResult>()
+    //
+    //    private var bartenderDrink: BartenderDrinks?
+    //    weak var managedObjectContext:CoreDataStack.sharedInstance.persistentContainer.viewContext
+    //
+    //    func getFetchedResultController() -> NSFetchedResultsController<NSFetchRequestResult> {
+    //        fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+    //        return fetchedResultController
+    //    }
+    //
+    //    func taskFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BartenderDrinks")
+    //        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+    //        fetchRequest.sortDescriptors = [sortDescriptor]
+    //        return fetchRequest
+    //    }
+    
     func favorites(atIndex: Int){
         self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
     }
     
 }
-
-
-
-//  var descs = ["Welcome to our bartender App 21 Drink Street"," We have an varity of drinks. Our drinks are non-alcoholic and alcoholic","This app is about finding your perfect drink. That have different category with ingredient and instructions so that you can make it."]

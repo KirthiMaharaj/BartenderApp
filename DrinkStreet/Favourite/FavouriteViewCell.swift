@@ -12,6 +12,7 @@ class FavouriteViewCell: UITableViewCell {
     @IBOutlet weak var favImageView: UIImageView!
     @IBOutlet weak var favName: UILabel!
     @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var favCategory: UILabel!
     @IBOutlet weak var favView: UIView! {
         didSet{
             favView.layer.cornerRadius = 10
@@ -28,24 +29,17 @@ class FavouriteViewCell: UITableViewCell {
     
     
     @IBAction func FavTapped(_ sender: UIButton) {
-        for i in 0...bartenderAdapter.drinkDetail.count{
-            if isFav == true {
-                bartenderAdapter.list.append(i)
-                UserDefaults.standard.set(false, forKey: "isFav")
-                UserDefaults.standard.synchronize()
-                let image = UIImage(named: "ic_un_fav")
-                sender.setImage(image, for: UIControl.State.normal)
-            }else {
-                UserDefaults.standard.set(true, forKey: "isFav")
-                UserDefaults.standard.synchronize()
-                let image = UIImage(named: "ic_fav")
-                sender.setImage(image, for: UIControl.State.normal)
-            }
-            isFav = !isFav
-            UserDefaults.standard.set(isFav, forKey: "isFav")
-            UserDefaults.standard.synchronize()
-        }
+
         
+    }
+    
+    func configure(withInfo drink: DrinkDetail) {
+        self.favName.text = drink.strDrink
+        self.favCategory.text = drink.strCategory
+        let url = URL(string: "\((drink.strDrinkThumb)!)")
+        if let dataImage = try? Data(contentsOf: url!){
+            self.favImageView.image = UIImage(data: dataImage)
+        }
     }
     
     override func awakeFromNib() {

@@ -11,22 +11,20 @@ enum BartenderError: Error {
     case noDataAvailable
     case canNotProcessData
 }
+//enum Result<T> {
+//    case Success(T)
+//    case Error(String)
+//}
 
 struct BartenderProvider {
     
     var chosenCategory:String?
     var userQuery: String?
+    var cocktailID: String?
+    private var favDrinkId = [BartenderDrinks]()
+    
     func fetchAllBratenderAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
-        //
-        //        let url = "https://www.thecocktaildb.com/api/json/v1/1"
-        //        let searchPath = "search.php"
-        //        let quaryParam = "f"
-        //
-        //        let details = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"].compactMap({ $0 })
-        //
-        //        for bartender in details {
-        //            let urls = URL(string: "\(url)/\(searchPath)?\(quaryParam)=\(bartender)")!
-        //            print("\(url)/\(searchPath)?\(quaryParam)=\(bartender)")
+        
         let yourString = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=\((userQuery) ?? "")"
         let urlNew:String = yourString.replacingOccurrences(of: " ", with: "+").trimmingCharacters(in: .whitespacesAndNewlines)
         let url = URL(string: urlNew)!
@@ -103,4 +101,61 @@ struct BartenderProvider {
         }
         task.resume()
     }
+    
+    func fetchFavourites(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
+        for i in 0..<favDrinkId.count{
+            let items = favDrinkId[i].drinkId as String?
+            let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(items!)"
+            let url = URL(string: queryURL)!
+            let urlSession = URLSession.shared
+            let urlRequest = URLRequest(url: url)
+            let task = urlSession.dataTask(with: urlRequest){ data, _, _ in
+                
+                guard let jsonData = data else {
+                    completion(.failure(.noDataAvailable))
+                    return
+                }
+                do{
+                    let BDecoder = JSONDecoder()
+                    let categoryData = try BDecoder.decode(CocktailResponse.self, from: jsonData).drinks
+                    
+                    completion(.success(categoryData))
+                } catch {
+                    completion(.failure(.canNotProcessData))
+                }
+                
+            }
+            task.resume()
+        }
+    }
+    
+    
+    func fetchFavouritesDetail(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
+       
+        let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\((cocktailID) ?? "")"
+        let url = URL(string: queryURL)!
+        let sharedSession = URLSession.shared
+        let request = URLRequest(url: url)
+        
+        let task = sharedSession.dataTask(with: request) { data, _, _ in
+            guard let jsonData = data else {
+                completion(.failure(.noDataAvailable))
+                return
+            }
+            do{
+                let BDecoder = JSONDecoder()
+                let categoryData = try BDecoder.decode(CocktailResponse.self, from: jsonData)
+                let categoryDetail = categoryData.drinks
+                completion(.success(categoryDetail))
+            } catch {
+                completion(.failure(.canNotProcessData))
+            }
+        }
+        task.resume()
+    }
 }
+
+
+//class Bar {
+
+//}

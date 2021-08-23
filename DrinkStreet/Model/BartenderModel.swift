@@ -23,7 +23,6 @@ struct CocktailResponse: Decodable {
 }
 
 struct DrinkDetail: Decodable, Favourites {
-    
     let drinksId:String?
     let strDrink:String?
     var strCategory:String?

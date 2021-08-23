@@ -7,14 +7,13 @@
 
 import UIKit
 
-//protocol BartenderButtonDelegate: AnyObject {
-//    func favButton(didTapButton button: UIButton)
-//}
+
 protocol Favourited {
     func toggleFav(didTapButton button: UIButton)
 }
 class BartenderListCell: UITableViewCell {
     
+    var favController: FavouriteViewController?
     @IBOutlet weak var drinkImage: UIImageView!
     @IBOutlet weak var drinkName: UILabel!
     @IBOutlet weak var drinkCategory: UILabel!
@@ -29,15 +28,16 @@ class BartenderListCell: UITableViewCell {
             barContainerView.layer.masksToBounds = false
         }
     }
-    
     @IBOutlet weak var favoriteButton: UIButton!
     var delegate: Favourited?
     var isFav = UserDefaults.standard.bool(forKey: "isFav")
     let bartenderAdapter = BartenderAdapter()
+ //   let tabBarController = UITabBarController()
     
     func configure(withInfo drink: DrinkDetail) {
         self.drinkName.text = drink.strDrink
         self.drinkCategory.text = drink.strCategory
+       
         let url = URL(string: "\((drink.strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
             self.drinkImage.image = UIImage(data: dataImage)
@@ -45,33 +45,16 @@ class BartenderListCell: UITableViewCell {
         self.favoriteButton.setImage(drink.isFav ? .init(named: "ic_fav") : .init(named:"ic_un_fav"), for: .normal)
     }
     
-    @IBAction func favTapped(_ sender: Any) {
-       // if let favDrink = bartenderAdapter.details {
-            delegate?.toggleFav(didTapButton: sender as! UIButton)
-//            if isFav {
-//                UserDefaults.standard.set(false, forKey: "isFav")
-//                UserDefaults.standard.synchronize()
-//                let image = UIImage(named: "ic_un_fav")
-//                (sender as AnyObject).setImage(image, for: UIControl.State.normal)
-//            }else {
-//                UserDefaults.standard.set(true, forKey: "isFav")
-//                UserDefaults.standard.synchronize()
-//                let image = UIImage(named: "ic_fav")
-//                (sender as AnyObject).setImage(image, for: UIControl.State.normal)
-//            }
-//            isFav = !isFav
-//            UserDefaults.standard.set(isFav, forKey: "isFav")
-//            UserDefaults.standard.synchronize()
-            
-       // }
-
-        
+    @IBAction func favTapped(_ sender: UIButton) {
+     
+        delegate?.toggleFav(didTapButton: sender )
+ 
     }
     
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-     
+        
         // Initialization code
     }
     
