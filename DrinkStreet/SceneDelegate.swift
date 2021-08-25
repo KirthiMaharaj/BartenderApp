@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             controller = storyboard.instantiateViewController(identifier: "Onboarding") as! UITabBarController
         } else {
-            controller = BartenderOnboardingViewController.instantiate()
+            controller = BartenderOnboardingViewController2.instantiate()
         }
         window?.rootViewController = controller
         window?.makeKeyAndVisible()

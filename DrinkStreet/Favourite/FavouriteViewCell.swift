@@ -11,7 +11,6 @@ class FavouriteViewCell: UITableViewCell {
 
     @IBOutlet weak var favImageView: UIImageView!
     @IBOutlet weak var favName: UILabel!
-    @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var favCategory: UILabel!
     @IBOutlet weak var favView: UIView! {
         didSet{
@@ -27,11 +26,6 @@ class FavouriteViewCell: UITableViewCell {
     var isFav = UserDefaults.standard.bool(forKey: "isFav")
     let bartenderAdapter = BartenderAdapter()
     
-    
-    @IBAction func FavTapped(_ sender: UIButton) {
-
-        
-    }
     
     func configure(withInfo drink: DrinkDetail) {
         self.favName.text = drink.strDrink

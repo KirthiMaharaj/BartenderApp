@@ -45,7 +45,7 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         // Configure the cell...
-        //        let category = categoryDetail[indexPath.row]
+        
         cell.categoryLabel.text = bartenderAdapter.categoryDetail[indexPath.row].strCategory
         
         return cell
@@ -80,13 +80,13 @@ class CategoryTableViewController: UITableViewController {
      }
      */
     
-    
+    /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    
+    */
     
     
     // MARK: - Navigation

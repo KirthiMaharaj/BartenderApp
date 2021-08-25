@@ -12,15 +12,14 @@ import CoreData
 class BartenderTableViewController: UITableViewController {
     
     let bartenderAdapter = BartenderAdapter()
-
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicate()
         self.bindDrinkModel()
         self.bartenderAdapter.getAllBartender()
     }
-
+    
     fileprivate func bindDrinkModel() {
         self.bartenderAdapter.delegate = self
     }
@@ -41,7 +40,6 @@ class BartenderTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-      
         return bartenderAdapter.drinkDetail.count
     }
     
@@ -49,34 +47,41 @@ class BartenderTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderListCell", for: indexPath) as! BartenderListCell
         // Configure the cell..."reuseIdentifier"
-       
+        
         cell.favoriteButton.tag = indexPath.row
-        if cell.isFav == true {
+        let fav = checkIfExists(bartenderAdapter.drinkDetail[indexPath.row].drinksId ?? "")
+        if fav == false{
+            cell.favoriteButton.setImage(UIImage(named: "ic_un_fav"), for: .normal)
             cell.configure(withInfo: self.bartenderAdapter.drinkDetail[indexPath.row])
-        }else{
-        cell.configure(withInfo: self.bartenderAdapter.drinkDetail[indexPath.row])
+        }else {
+            cell.favoriteButton.setImage(UIImage(named: "ic_fav"), for: .normal)
+            cell.configure(withInfo: self.bartenderAdapter.drinkDetail[indexPath.row])
         }
-        cell.delegate = self
+       
         cell.selectionStyle = .none
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! BartenderListCell
-        cell.favoriteButton.tag = indexPath.row
-        cell.favoriteButton.setImage(UIImage(named: "ic_fav"), for: .normal)
-        cell.isFav = true 
+    
+    func checkIfExists( _ itemID: String) -> Bool {
+        var numRecords:Int = 0
+        do {
+            let request: NSFetchRequest<BartenderDrinks> = BartenderDrinks.fetchRequest()
+            request.predicate = NSPredicate(format: "drinkId == %@", itemID)
+            
+            numRecords = try bartenderAdapter.context.count(for: request)
+            print("We're counting our items: \(numRecords)")
+        } catch {
+            print("Error in checking items: \(error.localizedDescription)")
+        }
+        if numRecords == 0 {
+            return false
+        } else {
+            return true
+        }
     }
     
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! BartenderListCell
-        cell.favoriteButton.tag = indexPath.row
-        cell.favoriteButton.setImage(UIImage(named: "ic_un_fav"), for: .normal)
-        cell.isFav = false
-    }
     
-    
-  
     
     /*
      // Override to support conditional editing of the table view.
@@ -98,7 +103,7 @@ class BartenderTableViewController: UITableViewController {
      }
      */
     
-   
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -120,12 +125,4 @@ extension BartenderTableViewController: BartenderAdaptersProtocol {
             self.navigationItem.title = "21 Drink Street"
         }
     }
-}
-
-extension BartenderTableViewController: Favourited {
-    func toggleFav(didTapButton button: UIButton) {
-        self.bartenderAdapter.favorites(atIndex: button.tag)
-        self.tableView.reloadData()
-    }
-    
 }

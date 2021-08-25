@@ -46,7 +46,6 @@ class BartenderCategoryTableView: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BartenderCategoryCell", for: indexPath) as! BartenderCategoryCell
         
         // Configure the cell...
-        
         cell.drinkName.text = bartenderAdapter.drinkDetail[indexPath.row].strDrink
         let url = URL(string: "\((bartenderAdapter.drinkDetail[indexPath.row].strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
@@ -99,10 +98,11 @@ class BartenderCategoryTableView: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            //destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+           
             destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            destination.bartenderAdapter.details?.strCategory = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].strCategory
             BartenderAdapter.userQuery = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
-          //  self.navigationController?.pushViewController(destination, animated: true)
+           self.navigationController?.pushViewController(destination, animated: true)
         }
     }
 }

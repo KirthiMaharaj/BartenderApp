@@ -30,25 +30,29 @@ protocol BartenderAdaptersProtocol4 {
 }
 protocol BartenderAdaptersProtocol5 {
     func getFavouritesDrink()
+    
 }
 class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3, BartenderAdaptersProtocol4, BartenderAdaptersProtocol5{
- 
-
+    
+    
     static var cocktailID: String?
     static var chosenCategory: String?
     static var userQuery: String?
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var models = [BartenderDrinks]()
+    //var models = [BartenderDrinks]()
+    var favDrinkId = [BartenderDrinks]()
+    var favId: BartenderDrinks?
     weak var delegate: BartenderAdaptersProtocol?
     weak var delegate2: BartenderAdaptersProtocol2?
     weak var delegate3: BartenderAdaptersProtocol3?
     var delegate4: BartenderAdaptersProtocol4?
+    var delegate5: BartenderAdaptersProtocol5?
     var bartenderProvider = BartenderProvider()
     var drinkDetail: [DrinkDetail] = []
     var categoryDetail: [CategoryDetails] = []
     var details: DrinkDetail?
     
-    
+    // All drinks
     func getAllBartender() {
         self.delegate?.getAllBartender()
         bartenderProvider.userQuery = BartenderAdapter.userQuery
@@ -67,6 +71,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         }
     }
     
+    // Different type of Category for the Drink
     func getCategory() {
         self.delegate2?.getCategory()
         bartenderProvider.fetchCategoryAPI { [weak self] result in
@@ -84,6 +89,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         }
     }
     
+    // Select drinks for the Category
     func getBartenderCategory() {
         self.delegate3?.getBartenderCategory()
         bartenderProvider.chosenCategory = BartenderAdapter.chosenCategory!
@@ -102,11 +108,11 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         }
     }
     
+    // Favourting the drinks
     func getFavourites() {
         self.delegate4 = self
         bartenderProvider.cocktailID = BartenderAdapter.cocktailID
         bartenderProvider.fetchFavouritesDetail { [weak self] result in
-           // self?.details = self?.drinkDetail[0]
             switch result {
             case .success(let drink):
                 self?.drinkDetail = drink
@@ -116,39 +122,38 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
             }
         }
     }
-    
+    func getCDCocktails()
+    {
+        
+        do
+        {
+            favDrinkId = try context.fetch(BartenderDrinks.fetchRequest())
+            
+        }
+        catch
+        {
+            print("Error Getting items: \(error.localizedDescription)")
+        }
+        print("This is count \(favDrinkId.count)")
+    }
+    // Showing the favourting Drinks
     func getFavouritesDrink() {
+        self.delegate5 = self
+        bartenderProvider.favDrinkId = favDrinkId
+        //  bartenderProvider.favDrinkId = favId?.drinkId
         bartenderProvider.fetchFavourites { [weak self] result in
             switch result {
-            case .success(let drink):
-                self?.drinkDetail = drink
+            case .success(let drinkD):
+                self?.drinkDetail = drinkD
             case .failure(let error):
                 print("API Fetching error: \(error)")
             }
         }
+        
     }
-    
-    
-    
-    //    var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController<NSFetchRequestResult>()
-    //
-    //    private var bartenderDrink: BartenderDrinks?
-    //    weak var managedObjectContext:CoreDataStack.sharedInstance.persistentContainer.viewContext
-    //
-    //    func getFetchedResultController() -> NSFetchedResultsController<NSFetchRequestResult> {
-    //        fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-    //        return fetchedResultController
-    //    }
-    //
-    //    func taskFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-    //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BartenderDrinks")
-    //        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-    //        fetchRequest.sortDescriptors = [sortDescriptor]
-    //        return fetchRequest
-    //    }
-    
-    func favorites(atIndex: Int){
-        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
-    }
+//    
+//    func favorites(atIndex: Int){
+//        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
+//    }
     
 }

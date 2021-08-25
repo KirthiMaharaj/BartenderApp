@@ -7,10 +7,6 @@
 
 import UIKit
 
-
-protocol Favourited {
-    func toggleFav(didTapButton button: UIButton)
-}
 class BartenderListCell: UITableViewCell {
     
     var favController: FavouriteViewController?
@@ -29,35 +25,22 @@ class BartenderListCell: UITableViewCell {
         }
     }
     @IBOutlet weak var favoriteButton: UIButton!
-    var delegate: Favourited?
-    var isFav = UserDefaults.standard.bool(forKey: "isFav")
-    let bartenderAdapter = BartenderAdapter()
- //   let tabBarController = UITabBarController()
+    
     
     func configure(withInfo drink: DrinkDetail) {
         self.drinkName.text = drink.strDrink
         self.drinkCategory.text = drink.strCategory
-       
+        
         let url = URL(string: "\((drink.strDrinkThumb)!)")
         if let dataImage = try? Data(contentsOf: url!){
             self.drinkImage.image = UIImage(data: dataImage)
         }
-        self.favoriteButton.setImage(drink.isFav ? .init(named: "ic_fav") : .init(named:"ic_un_fav"), for: .normal)
     }
-    
-    @IBAction func favTapped(_ sender: UIButton) {
-     
-        delegate?.toggleFav(didTapButton: sender )
- 
-    }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Initialization code
     }
-    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
