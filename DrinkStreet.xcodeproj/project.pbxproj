@@ -18,6 +18,8 @@
 		FE09EDEB26A9CC7C00CD13CF /* BartenderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */; };
 		FE09EDED26A9CCDA00CD13CF /* BartenderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */; };
 		FE09EDEF26A9CDD700CD13CF /* BartenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */; };
+		FE2E06C026D80F83004B0DD7 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E06BF26D80F83004B0DD7 /* Snapshot.swift */; };
+		FE2E06C226D81865004B0DD7 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E06C126D81865004B0DD7 /* ImageExtension.swift */; };
 		FE351F4726C433EF00898F78 /* DrinkStreetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE351F4626C433EF00898F78 /* DrinkStreetTests.swift */; };
 		FE351F5526C4347F00898F78 /* DrinkStreetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE351F5426C4347F00898F78 /* DrinkStreetUITests.swift */; };
 		FE51D51026B036BC0057F6DF /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51D50F26B036BC0057F6DF /* CategoryTableViewCell.swift */; };
@@ -71,6 +73,8 @@
 		FE09EDEA26A9CC7C00CD13CF /* BartenderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderProvider.swift; sourceTree = "<group>"; };
 		FE09EDEC26A9CCDA00CD13CF /* BartenderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderListCell.swift; sourceTree = "<group>"; };
 		FE09EDEE26A9CDD700CD13CF /* BartenderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartenderTableViewController.swift; sourceTree = "<group>"; };
+		FE2E06BF26D80F83004B0DD7 /* Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		FE2E06C126D81865004B0DD7 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		FE351F4426C433EF00898F78 /* DrinkStreetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrinkStreetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE351F4626C433EF00898F78 /* DrinkStreetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkStreetTests.swift; sourceTree = "<group>"; };
 		FE351F4826C433EF00898F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,9 +197,11 @@
 		FE34CB3726CC0ED600FA3FBF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FE2E06BF26D80F83004B0DD7 /* Snapshot.swift */,
 				FE87D95626CFB974002908DF /* BartenderDrinks+CoreDataClass.swift */,
 				FE87D95726CFB974002908DF /* BartenderDrinks+CoreDataProperties.swift */,
 				FEC1C97D26D5790B0092F3A5 /* AppSettingsManager.swift */,
+				FE2E06C126D81865004B0DD7 /* ImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -443,9 +449,11 @@
 				FE9304FA26AEAA210001466F /* FavouriteViewController.swift in Sources */,
 				FE09EDD526A9C9F500CD13CF /* AppDelegate.swift in Sources */,
 				FE896A4326C1A411004172E3 /* UserDefaults+Extension.swift in Sources */,
+				FE2E06C026D80F83004B0DD7 /* Snapshot.swift in Sources */,
 				FE51D51226B0370D0057F6DF /* CategoryTableViewController.swift in Sources */,
 				FE09EDEB26A9CC7C00CD13CF /* BartenderProvider.swift in Sources */,
 				FE87D95826CFB974002908DF /* BartenderDrinks+CoreDataClass.swift in Sources */,
+				FE2E06C226D81865004B0DD7 /* ImageExtension.swift in Sources */,
 				FEC1C97C26D566730092F3A5 /* uotesCollectionViewCell.swift in Sources */,
 				FE69FBD926BACD61008F14D7 /* BartenderAdapter.swift in Sources */,
 				FEC1C97626D562BD0092F3A5 /* OnboardingItems.swift in Sources */,

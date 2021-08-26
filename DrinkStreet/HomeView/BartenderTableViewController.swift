@@ -11,6 +11,7 @@ import CoreData
 
 class BartenderTableViewController: UITableViewController {
     
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     let bartenderAdapter = BartenderAdapter()
     
     override func viewDidLoad() {
@@ -30,6 +31,44 @@ class BartenderTableViewController: UITableViewController {
         ProgressHUD.colorAnimation = .systemBlue
         ProgressHUD.showProgress(0.60)
         ProgressHUD.show()
+    }
+    
+    
+    @IBAction func shareBtnTapped(_ sender: Any) {
+        guard bartenderAdapter.shareEnabled else {
+            bartenderAdapter.shareEnabled = true
+            tableView?.allowsMultipleSelection = true
+            shareButton.title = "Done"
+            shareButton.style = UIBarButtonItem.Style.plain
+            return
+        }
+        
+        guard bartenderAdapter.selectedImages.count > 0 else {return}
+        
+        let snapshots = bartenderAdapter.selectedImages.map { $0.snapshot }
+        
+        let activityController = UIActivityViewController(activityItems: snapshots as [Any], applicationActivities: nil)
+        
+        activityController.completionWithItemsHandler = { (activityType, completed, returnedItem, error) in
+            //Deselect all selected items
+            if let indexPaths = self.tableView?.indexPathsForSelectedRows {
+                for indexPath in indexPaths {
+                    self.tableView.deselectRow(at: indexPath, animated: false)
+                }
+            }
+            activityController.popoverPresentationController?.sourceView = self.view
+            activityController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.mail]
+            //Remove all items from selectedImages array
+            self.bartenderAdapter.selectedImages.removeAll(keepingCapacity: true)
+            
+            //Change the sharing mode to No
+            self.bartenderAdapter.shareEnabled = false
+            self.tableView?.allowsMultipleSelection = false
+            self.shareButton.image = UIImage(systemName: "square.and.arrow.up")
+            self.shareButton.style = UIBarButtonItem.Style.plain
+            
+        }
+        present(activityController, animated: true, completion: nil)
     }
     // MARK: - Table view data source
     
@@ -58,8 +97,28 @@ class BartenderTableViewController: UITableViewController {
             cell.configure(withInfo: self.bartenderAdapter.drinkDetail[indexPath.row])
         }
        
-        cell.selectionStyle = .none
+        cell.selectionStyle = .blue
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if bartenderAdapter.shareEnabled == false {
+           // performSegue(withIdentifier: "SegueShowDetail", sender: nil)
+        }else {
+            let selected = bartenderAdapter.drinkDetail[indexPath.row]
+            if let snapshot = tableView.cellForRow(at: indexPath)?.snapshot {
+                bartenderAdapter.selectedImages.append((image: selected, snapshot: snapshot))
+            }
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard bartenderAdapter.shareEnabled else {return}
+        let deselected = bartenderAdapter.drinkDetail[indexPath.row]
+        if let index = bartenderAdapter.selectedImages.firstIndex(where: { $0.image.strDrinkThumb == deselected.strDrinkThumb }) {
+            bartenderAdapter.selectedImages.remove(at: index)
+        }
     }
     
     

@@ -22,8 +22,6 @@ class BartenderProvider {
     var userQuery: String?
     var cocktailID: String?
     var favDrinkId = [BartenderDrinks]()
-    var drinksFav = [DrinkDetail]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     func fetchAllBratenderAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
         
@@ -126,42 +124,6 @@ class BartenderProvider {
             }
         }
         task.resume()
-    }
-    
-    
-    
-    func fetchFavourites(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
-        print("fetching favour \(favDrinkId.count)")
-        for i in 0..<favDrinkId.count {
-            let items = favDrinkId[i].drinkId as String?
-            let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(items!)"
-            let url = URL(string: queryURL)!
-            let urlSession = URLSession.shared
-            let urlRequest = URLRequest(url: url)
-            let task = urlSession.dataTask(with: urlRequest){ data, _, _ in
-                
-                guard let jsonData = data else {
-                    completion(.failure(.noDataAvailable))
-                    return
-                }
-                do{
-                    let BDecoder = JSONDecoder()
-                    let categoryData = try BDecoder.decode(CocktailResponse.self, from: jsonData).drinks
-                    self.drinksFav.append(contentsOf: categoryData)
-                    DispatchQueue.main.async {
-                        
-                        completion(.success(categoryData))
-                        print("Favourites download")
-                    }
-                    
-                } catch {
-                    print("fail to download")
-                    completion(.failure(.canNotProcessData))
-                }
-                
-            }
-            task.resume()
-        }
     }
     
     

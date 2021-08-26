@@ -46,7 +46,7 @@ class BartenderDetailViewController: UIViewController {
             let alert  = UIAlertController(title: "Existing Item", message: "Already in favourites!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
-                //self?.deleteFavourite((self!.bartenderAdapter.details?.drinksId)!)
+                self?.deleteFavourite((self!.bartenderAdapter.details?.drinksId)!)
                 self!.drinkFavButton.setImage(UIImage(named: "ic_un_fav"), for: .normal)
                 let notifier  = UIAlertController(title: "Succesfully Removed", message: "\((self!.bartenderAdapter.details?.drinksId)!) removed from your favourites!", preferredStyle: .alert)
                 notifier.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -59,10 +59,11 @@ class BartenderDetailViewController: UIViewController {
     
     fileprivate  func getDetail() {
         drinkName.text = "\(bartenderAdapter.details?.strDrink ?? "")"
-        let url = URL(string: "\(bartenderAdapter.details?.strDrinkThumb ?? "")")!
-        if let dataImage = try? Data(contentsOf: url){
-            drinkImageView.image = UIImage(data: dataImage)
-        }
+//        let url = URL(string: "\(bartenderAdapter.details?.strDrinkThumb ?? "")")!
+//        if let dataImage = try? Data(contentsOf: url){
+//            drinkImageView.image = UIImage(data: dataImage)
+//        }
+        self.drinkImageView.downloaded(from: self.bartenderAdapter.details?.strDrinkThumb ?? "")
         drinkCategory.text = "Category: \(bartenderAdapter.details?.strCategory ?? "")"
         drinkAlcoholic.text = "Alcoholic: \(bartenderAdapter.details?.strAlcoholic ?? "")"
         drinkInstruction.text = "Instructions: \(bartenderAdapter.details?.strInstructions ?? "")"
@@ -112,23 +113,23 @@ class BartenderDetailViewController: UIViewController {
         }
     }
     
-   /* func deleteFavourite( _ itemID: String) {
+    func deleteFavourite( _ itemID: String) {
         do{
             let request: NSFetchRequest<BartenderDrinks> = BartenderDrinks.fetchRequest()
             request.predicate = NSPredicate(format: "drinkId == %@", itemID)
             
-            bartenderAdapter.models = try bartenderAdapter.context.fetch(request)
+            bartenderAdapter.favDrinkId = try bartenderAdapter.context.fetch(request)
         } catch {
             
         }
-        bartenderAdapter.context.delete(bartenderAdapter.models[0])
+        bartenderAdapter.context.delete(bartenderAdapter.favDrinkId[0])
         
         do {
             try bartenderAdapter.context.save()
         } catch {
             print("Save Error: \(error.localizedDescription)")
         }
-    }*/
+    }
 }
 
 extension BartenderDetailViewController: BartenderAdaptersProtocol4 {

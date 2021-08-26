@@ -100,73 +100,20 @@
                             <outlet property="delegate" destination="mU5-gl-AE3" id="TW3-bk-oh9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qre-zP-ZDG"/>
+                    <navigationItem key="navigationItem" id="qre-zP-ZDG">
+                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.up" catalog="system" id="ODg-4o-p0u">
+                            <connections>
+                                <action selector="shareBtnTapped:" destination="mU5-gl-AE3" id="9K9-6W-zCz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="shareButton" destination="ODg-4o-p0u" id="Reu-FR-nCr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUj-fm-iqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1755.1401869158879" y="103.67170626349893"/>
-        </scene>
-        <!--Bartender Onboarding View Controller-->
-        <scene sceneID="ndW-rp-4lO">
-            <objects>
-                <viewController storyboardIdentifier="BartenderOnboardingViewController" id="xSa-ju-XWa" customClass="BartenderOnboardingViewController" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KdA-Y4-hQt">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zyf-u7-J8B">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="727"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="AqL-XT-XJF"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="shb-Ez-Wqr"/>
-                            </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCK-2x-N5v">
-                                <rect key="frame" x="20" y="801" width="388" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aHK-LR-FbE"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Start">
-                                            <attributes>
-                                                <color key="NSColor" red="0.83379338067773179" green="0.38651799831236183" blue="0.80584187406187291" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" metaFont="system" size="21"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="startedTapped:" destination="xSa-ju-XWa" eventType="touchUpInside" id="8nh-CR-RIS"/>
-                                </connections>
-                            </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="fSG-Vh-ccw">
-                                <rect key="frame" x="154" y="766" width="120.33333333333331" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="pageIndicatorTintColor" red="0.82768560920000001" green="0.11156219689999999" blue="0.63047531020000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" systemColor="systemGrayColor"/>
-                                <connections>
-                                    <action selector="pageChanged:" destination="xSa-ju-XWa" eventType="valueChanged" id="VzA-xm-dgJ"/>
-                                </connections>
-                            </pageControl>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="kv9-xn-RYc"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="kv9-xn-RYc" firstAttribute="trailing" secondItem="RCK-2x-N5v" secondAttribute="trailing" constant="20" id="0yI-Fz-37a"/>
-                            <constraint firstItem="RCK-2x-N5v" firstAttribute="leading" secondItem="kv9-xn-RYc" secondAttribute="leading" constant="20" id="4IR-lU-Uaw"/>
-                            <constraint firstItem="kv9-xn-RYc" firstAttribute="bottom" secondItem="RCK-2x-N5v" secondAttribute="bottom" constant="41" id="DPy-xx-sCb"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="pageController" destination="fSG-Vh-ccw" id="Mhs-oO-PIk"/>
-                        <outlet property="scroll" destination="Zyf-u7-J8B" id="5kD-aQ-C3R"/>
-                        <outlet property="startButton" destination="RCK-2x-N5v" id="dHC-Vr-tpm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JOw-KA-AZw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2571" y="839"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3xg-dQ-0BN">
@@ -379,7 +326,7 @@
         <!--Bartender Detail View Controller-->
         <scene sceneID="85A-2a-A0T">
             <objects>
-                <viewController id="EhE-MS-4Nu" customClass="BartenderDetailViewController" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BartenderDetailViewController" id="EhE-MS-4Nu" customClass="BartenderDetailViewController" customModule="DrinkStreet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7E9-GA-hch">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,7 +335,7 @@
                                 <rect key="frame" x="0.0" y="88" width="427" height="1851"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s0z-2y-wNo">
-                                        <rect key="frame" x="126" y="88" width="175" height="200"/>
+                                        <rect key="frame" x="114" y="88" width="199" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="S0C-fI-QqQ"/>
                                         </constraints>
@@ -426,7 +373,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYL-3m-esI">
-                                        <rect key="frame" x="306" y="34" width="106" height="40"/>
+                                        <rect key="frame" x="294" y="34" width="106" height="33"/>
                                         <state key="normal">
                                             <imageReference key="image" image="ic_un_fav" symbolScale="large"/>
                                         </state>
@@ -435,7 +382,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwQ-8z-RnW">
-                                        <rect key="frame" x="126" y="50" width="162" height="24"/>
+                                        <rect key="frame" x="114" y="20" width="162" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="162" id="D2M-Pl-hHc"/>
                                         </constraints>
@@ -724,7 +671,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xid-PY-3BO"/>
+        <segue reference="JE3-aH-ufd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
@@ -740,9 +687,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

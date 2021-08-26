@@ -10,10 +10,10 @@ import ProgressHUD
 
 
 class BartenderCategoryTableView: UITableViewController {
-  
+    
     let cate = CategoryTableViewController()
     let bartenderAdapter = BartenderAdapter()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ProgressHUD.animationType = .lineScaling
@@ -90,7 +90,6 @@ class BartenderCategoryTableView: UITableViewController {
      }
      */
     
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -98,16 +97,15 @@ class BartenderCategoryTableView: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-           
             destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
-            destination.bartenderAdapter.details?.strCategory = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].strCategory
-            BartenderAdapter.userQuery = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
-           self.navigationController?.pushViewController(destination, animated: true)
+            destination.bartenderAdapter.bartenderProvider.cocktailID = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
+            
         }
     }
 }
 
 extension BartenderCategoryTableView: BartenderAdaptersProtocol3 {
+    
     static var chosenCategory: String?
     func getBartenderCategory() {
         DispatchQueue.main.async {
@@ -115,6 +113,5 @@ extension BartenderCategoryTableView: BartenderAdaptersProtocol3 {
             self.navigationItem.title = "21 Drink Street"
         }
     }
-    
     
 }

@@ -28,29 +28,27 @@ protocol BartenderAdaptersProtocol4 {
     func getFavourites()
     static var cocktailID: String? { get }
 }
-protocol BartenderAdaptersProtocol5 {
-    func getFavouritesDrink()
+
+class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3, BartenderAdaptersProtocol4{
     
-}
-class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3, BartenderAdaptersProtocol4, BartenderAdaptersProtocol5{
     
     
     static var cocktailID: String?
     static var chosenCategory: String?
     static var userQuery: String?
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    //var models = [BartenderDrinks]()
     var favDrinkId = [BartenderDrinks]()
-    var favId: BartenderDrinks?
     weak var delegate: BartenderAdaptersProtocol?
     weak var delegate2: BartenderAdaptersProtocol2?
     weak var delegate3: BartenderAdaptersProtocol3?
     var delegate4: BartenderAdaptersProtocol4?
-    var delegate5: BartenderAdaptersProtocol5?
     var bartenderProvider = BartenderProvider()
-    var drinkDetail: [DrinkDetail] = []
+    var drinkDetail = [DrinkDetail]()
+    var favDrinkDetail = [DrinkDetail]()
     var categoryDetail: [CategoryDetails] = []
     var details: DrinkDetail?
+    var shareEnabled = false
+    var selectedImages : [(image: DrinkDetail, snapshot: UIImage)] = []
     
     // All drinks
     func getAllBartender() {
@@ -122,38 +120,17 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
             }
         }
     }
-    func getCDCocktails()
-    {
+    //Core data get all drink ID's
+    func getCDCocktails() {
         
-        do
-        {
-            favDrinkId = try context.fetch(BartenderDrinks.fetchRequest())
-            
-        }
-        catch
-        {
+        do {
+            bartenderProvider.favDrinkId = try context.fetch(BartenderDrinks.fetchRequest())
+        } catch {
             print("Error Getting items: \(error.localizedDescription)")
         }
-        print("This is count \(favDrinkId.count)")
+       
     }
-    // Showing the favourting Drinks
-    func getFavouritesDrink() {
-        self.delegate5 = self
-        bartenderProvider.favDrinkId = favDrinkId
-        //  bartenderProvider.favDrinkId = favId?.drinkId
-        bartenderProvider.fetchFavourites { [weak self] result in
-            switch result {
-            case .success(let drinkD):
-                self?.drinkDetail = drinkD
-            case .failure(let error):
-                print("API Fetching error: \(error)")
-            }
-        }
-        
-    }
-//    
-//    func favorites(atIndex: Int){
-//        self.drinkDetail[atIndex].isFav = !self.drinkDetail[atIndex].isFav
-//    }
+
+    
     
 }
