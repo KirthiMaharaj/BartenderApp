@@ -170,7 +170,8 @@ class BartenderTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.bartenderAdapter.details =  bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+            
+            destination.cocktailID = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
         }
         
     }
@@ -179,6 +180,7 @@ class BartenderTableViewController: UITableViewController {
 extension BartenderTableViewController: BartenderAdaptersProtocol {
     static var userQuery: String?
     func getAllBartender() {
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.navigationItem.title = "21 Drink Street"

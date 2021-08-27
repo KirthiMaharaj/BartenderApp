@@ -24,7 +24,7 @@ class BartenderProvider {
     var favDrinkId = [BartenderDrinks]()
 
     func fetchAllBratenderAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
-        
+       
         let yourString = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=\((userQuery) ?? "")"
         let urlNew:String = yourString.replacingOccurrences(of: " ", with: "+").trimmingCharacters(in: .whitespacesAndNewlines)
         let url = URL(string: urlNew)!
@@ -51,7 +51,7 @@ class BartenderProvider {
         //        }
     }
     
-    func fetchCategoryAPI(completion: @escaping (Result<[CategoryDetails], BartenderError>) -> Void){
+    func fetchCategoryAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
         
         let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list")!
         let sharedSession = URLSession.shared
@@ -64,8 +64,8 @@ class BartenderProvider {
             }
             do{
                 let BDecoder = JSONDecoder()
-                let categoryData = try BDecoder.decode(CategoryResponse.self, from: jsonData)
-                let categoryDetail = categoryData.catedrinks
+                let categoryData = try BDecoder.decode(CocktailResponse.self, from: jsonData)
+                let categoryDetail = categoryData.drinks
                 completion(.success(categoryDetail))
             } catch {
                 completion(.failure(.canNotProcessData))
@@ -77,7 +77,7 @@ class BartenderProvider {
     func fetchAPI(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
         
         var url:URL?
-        let yourString = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=\((chosenCategory)!)"
+        let yourString = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=\((chosenCategory) ?? "")"
         let urlNew:String = yourString.replacingOccurrences(of: " ", with: "_").trimmingCharacters(in: .whitespacesAndNewlines)
         print("This is your link: \(urlNew)")
         url = URL(string: urlNew)!
@@ -103,7 +103,7 @@ class BartenderProvider {
     }
     
     func fetchFavouritesDetail(completion: @escaping (Result<[DrinkDetail], BartenderError>) -> Void){
-        
+       
         let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\((cocktailID) ?? "")"
         let url = URL(string: queryURL)!
         let sharedSession = URLSession.shared

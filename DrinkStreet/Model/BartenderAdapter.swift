@@ -26,14 +26,14 @@ protocol BartenderAdaptersProtocol3: AnyObject {
 
 protocol BartenderAdaptersProtocol4 {
     func getFavourites()
-    static var cocktailID: String? { get }
+    var cocktailID: String? { get }
 }
 
 class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3, BartenderAdaptersProtocol4{
     
     
     
-    static var cocktailID: String?
+    var cocktailID: String?
     static var chosenCategory: String?
     static var userQuery: String?
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -53,6 +53,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     // All drinks
     func getAllBartender() {
         self.delegate?.getAllBartender()
+        print("The BartenderAdapter.userQuery is \(String(describing: BartenderAdapter.userQuery))")
         bartenderProvider.userQuery = BartenderAdapter.userQuery
         bartenderProvider.fetchAllBratenderAPI { [weak self] allDetail in
             switch allDetail {
@@ -64,7 +65,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 }
             case .failure(let error):
                 ProgressHUD.showFailed()
-                print("API Fetching error: \(error)")
+                print("API Fetching error: \(error) on function getAllBartender()")
             }
         }
     }
@@ -75,14 +76,14 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
         bartenderProvider.fetchCategoryAPI { [weak self] result in
             switch result {
             case .success(let category):
-                self?.categoryDetail = category
+                self?.drinkDetail = category
                 self?.delegate2?.getCategory()
                 DispatchQueue.main.async {
                     ProgressHUD.dismiss()
                 }
             case .failure(let error):
                 ProgressHUD.showFailed()
-                print("API Fetching error: \(error)")
+                print("API Fetching error: \(error) on function getCategory()")
             }
         }
     }
@@ -90,7 +91,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     // Select drinks for the Category
     func getBartenderCategory() {
         self.delegate3?.getBartenderCategory()
-        bartenderProvider.chosenCategory = BartenderAdapter.chosenCategory!
+        bartenderProvider.chosenCategory = BartenderAdapter.chosenCategory
         bartenderProvider.fetchAPI { [weak self] result in
             switch result {
             case .success(let drinks):
@@ -101,7 +102,7 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
                 }
             case .failure(let error):
                 ProgressHUD.showFailed()
-                print("API Fetching error: \(error)")
+                print("API Fetching error: \(error) on function getBartenderCategory()")
             }
         }
     }
@@ -109,14 +110,16 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     // Favourting the drinks
     func getFavourites() {
         self.delegate4 = self
-        bartenderProvider.cocktailID = BartenderAdapter.cocktailID
+        bartenderProvider.cocktailID = cocktailID
         bartenderProvider.fetchFavouritesDetail { [weak self] result in
             switch result {
             case .success(let drink):
+               
                 self?.drinkDetail = drink
                 self?.details = drink[0]
+                
             case .failure(let error):
-                print("API Fetching error: \(error)")
+                print("API Fetching error: \(error) on function getFavourites()")
             }
         }
     }
