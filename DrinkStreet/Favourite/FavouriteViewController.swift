@@ -59,7 +59,11 @@ class FavouriteViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.bartenderAdapter.details = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+      //  destination.cocktailID = drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
+        destination.bartenderAdapter.details = drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+
+          //  BartenderDetailViewController.cocktailID = drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
+
         }
         
     }

@@ -22,6 +22,7 @@ class BartenderCategoryTableView: UITableViewController {
         ProgressHUD.showProgress(0.45)
         ProgressHUD.show()
         self.bindViewModel()
+        bartenderAdapter.getAllBartender()
         bartenderAdapter.getBartenderCategory()
     }
     
@@ -58,7 +59,10 @@ class BartenderCategoryTableView: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? BartenderDetailViewController {
-            destination.cocktailID = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
+           // destination.cocktailID = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
+            destination.bartenderAdapter.details = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!]
+
+          // destination.cocktailID = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].drinksId
         }
     }
 }

@@ -24,16 +24,14 @@ protocol BartenderAdaptersProtocol3: AnyObject {
     func getBartenderCategory()
 }
 
-protocol BartenderAdaptersProtocol4 {
+protocol BartenderAdaptersProtocol4: AnyObject {
+   static var cocktailID: String? { get }
     func getFavourites()
-    var cocktailID: String? { get }
 }
 
 class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, BartenderAdaptersProtocol3, BartenderAdaptersProtocol4{
     
-    
-    
-    var cocktailID: String?
+    static var cocktailID: String?
     static var chosenCategory: String?
     static var userQuery: String?
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -110,13 +108,13 @@ class BartenderAdapter: BartenderAdaptersProtocol, BartenderAdaptersProtocol2, B
     // Favourting the drinks
     func getFavourites() {
         self.delegate4 = self
-        bartenderProvider.cocktailID = cocktailID
+        bartenderProvider.cocktailID = BartenderAdapter.cocktailID
         bartenderProvider.fetchFavouritesDetail { [weak self] result in
             switch result {
             case .success(let drink):
-               
-                self?.drinkDetail = drink
-                self?.details = drink[0]
+                
+                    self?.drinkDetail = drink
+                    self?.details = drink[0]
                 
             case .failure(let error):
                 print("API Fetching error: \(error) on function getFavourites()")

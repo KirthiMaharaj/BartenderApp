@@ -116,9 +116,9 @@ class BartenderProvider {
             }
             do{
                 let BDecoder = JSONDecoder()
-                let categoryData = try BDecoder.decode(CocktailResponse.self, from: jsonData)
-                let categoryDetail = categoryData.drinks
-                completion(.success(categoryDetail))
+                let categoryData = try BDecoder.decode(CocktailResponse.self, from: jsonData).drinks
+                //let categoryDetail = categoryData.drinks
+                completion(.success(categoryData))
             } catch {
                 completion(.failure(.canNotProcessData))
             }

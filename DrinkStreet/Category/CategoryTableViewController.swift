@@ -19,7 +19,6 @@ class CategoryTableViewController: UITableViewController {
         ProgressHUD.colorAnimation = .systemBlue
         ProgressHUD.showProgress(0.45)
         ProgressHUD.show()
-        
         self.bindViewModel()
         self.bartenderAdapter.getCategory()
     }
@@ -60,6 +59,8 @@ class CategoryTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.destination is BartenderCategoryTableView {
             BartenderAdapter.chosenCategory = bartenderAdapter.drinkDetail[(tableView.indexPathForSelectedRow?.row)!].strCategory
+//            destination.bartenderAdapter.categoryDetail = bartenderAdapter.categoryDetail
+//            BartenderAdapter.chosenCategory = bartenderAdapter.categoryDetail[(tableView.indexPathForSelectedRow?.row)!].strCategory
         }
     }
 }

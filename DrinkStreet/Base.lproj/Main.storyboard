@@ -419,9 +419,7 @@
                             <constraint firstAttribute="bottom" secondItem="fNc-Zs-qdi" secondAttribute="bottom" constant="-1013" id="qpk-0G-dMA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RxS-Tu-6Pt">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="9Cu-ga-l9J"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="RxS-Tu-6Pt"/>
                     <connections>
                         <outlet property="drinkAlcoholic" destination="fq2-RG-l8C" id="3qg-Bc-zqO"/>
                         <outlet property="drinkCategory" destination="NKT-ct-Hd4" id="iRi-PK-yid"/>

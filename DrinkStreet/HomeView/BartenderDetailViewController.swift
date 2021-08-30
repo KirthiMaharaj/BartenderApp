@@ -28,25 +28,30 @@ class BartenderDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        downloadCocktailDetaillsJSON {
-            self.details = self.drinkDetail[0]
-            self.getDetail()
-        }
+       
+        
+//        downloadCocktailDetaillsJSON {
+//            self.details = self.drinkDetail[0]
+//            self.getDetail()
+//        }
+        
+        bartenderAdapter.getFavourites()
+        getDetail()
+        
     }
+    
+   
     
     @IBAction func favouriteTapped(_ sender: Any) {
         let checkRecord = checkIfExists((bartenderAdapter.details!.drinksId)!)
         
-        if checkRecord == false
-        {
+        if checkRecord == false {
             addFavouriteCocktail((bartenderAdapter.details?.drinksId)!)
             self.drinkFavButton.setImage(UIImage(named: "ic_fav"), for: .normal)
             let alert  = UIAlertController(title: "Succesfully Addded", message: "\((bartenderAdapter.details?.drinksId)!) added to your favourites!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
-        }
-        else
-        {
+        } else {
             let alert  = UIAlertController(title: "Existing Item", message: "Already in favourites!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
@@ -55,22 +60,20 @@ class BartenderDetailViewController: UIViewController {
                 let notifier  = UIAlertController(title: "Succesfully Removed", message: "\((self!.bartenderAdapter.details?.drinksId)!) removed from your favourites!", preferredStyle: .alert)
                 notifier.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self!.present(notifier, animated: true)
-                
             }))
             self.present(alert, animated: true)
         }
     }
     
     fileprivate  func getDetail() {
-        drinkName.text = "\(details?.strDrink ?? "")"
-        
-        self.drinkImageView.downloaded(from: self.details?.strDrinkThumb ?? "")
-        drinkCategory.text = "Category: \(details?.strCategory ?? "")"
-        drinkAlcoholic.text = "Alcoholic: \(details?.strAlcoholic ?? "")"
-        drinkInstruction.text = "Instructions: \(details?.strInstructions ?? "")"
-        drinkIngredient.text = "Ingredients:" + "\n \(details?.strIngredient1 ?? "")" + "\n \(details?.strIngredient2 ?? "")" + "\n \(details?.strIngredient3 ?? "")"
-            + "\n \(details?.strIngredient4 ?? "")" + "\n \(details?.strIngredient5 ?? "")"
-            + "\n \(details?.strIngredient6 ?? "")" + "\n \(details?.strIngredient7 ?? "")"
+        drinkName.text = "\(bartenderAdapter.details?.strDrink ?? "")"
+        self.drinkImageView.downloaded(from: self.bartenderAdapter.details?.strDrinkThumb ?? "")
+        drinkCategory.text = "Category: \(bartenderAdapter.details?.strCategory ?? "")"
+        drinkAlcoholic.text = "Alcoholic: \(bartenderAdapter.details?.strAlcoholic ?? "")"
+        drinkInstruction.text = "Instructions: \(bartenderAdapter.details?.strInstructions ?? "")"
+        drinkIngredient.text = "Ingredients:" + "\n \(bartenderAdapter.details?.strIngredient1 ?? "")" + "\n \(bartenderAdapter.details?.strIngredient2 ?? "")" + "\n \(bartenderAdapter.details?.strIngredient3 ?? "")"
+            + "\n \(bartenderAdapter.details?.strIngredient4 ?? "")" + "\n \(bartenderAdapter.details?.strIngredient5 ?? "")"
+            + "\n \(bartenderAdapter.details?.strIngredient6 ?? "")" + "\n \(bartenderAdapter.details?.strIngredient7 ?? "")"
         
     }
     
@@ -135,26 +138,25 @@ class BartenderDetailViewController: UIViewController {
     }
     
     func downloadCocktailDetaillsJSON(completed: @escaping () -> ()) {
-        let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(cocktailID!)"
-        
+        let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(cocktailID ?? "")"
         let url = URL(string: queryURL)!
         let urlSession = URLSession.shared
         let urlRequest = URLRequest(url: url)
-        
+
         let task = urlSession.dataTask(with: urlRequest) {
             data, urlResponse, error in
-            
+
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 return
             }
-            
+
             guard let unwrappedData = data else {
                 print("No data")
                 return
             }
             let jsonDecoder = JSONDecoder()
-            
+
             do {
                 self.drinkDetail = try jsonDecoder.decode(CocktailResponse.self, from: unwrappedData).drinks
                 DispatchQueue.main.async {
@@ -165,8 +167,18 @@ class BartenderDetailViewController: UIViewController {
             }
         }
         task.resume()
-        
+
     }
 }
 
+extension BartenderDetailViewController: BartenderAdaptersProtocol4 {
+    static var cocktailID: String?
 
+    func getFavourites() {
+        getDetail()
+        self.bartenderAdapter.details = self.bartenderAdapter.drinkDetail[0]
+        favBtnStatus((bartenderAdapter.details?.drinksId)!)
+    }
+
+
+}
